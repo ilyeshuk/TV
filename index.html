@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Habitudes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="content">
+        <div class="left-content">
+            <h1>Suivi des Habitudes</h1>
+            <p class="motivation-text">
+                Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.
+            </p>
+            <form class="habit-form" onsubmit="return addHabit()">
+                <label for="habit">Habitude :</label>
+                <input type="text" id="habit" required>
+                <button type="submit"><i class="fas fa-plus"></i> Ajouter</button>
+            </form>
+            
+            <table id="habit-table">
+                <thead>
+                    <tr>
+                        <th>Habitude</th>
+                        <th>Fait aujourd'hui</th>
+                    </tr>
+                </thead>
+                <tbody id="habit-list">
+                    <!-- Les lignes seront ajoutées dynamiquement ici -->
+                </tbody>
+            </table>
+
+            <button class="toggle-dark-mode-button" onclick="toggleDarkMode()">Activer le mode sombre</button>
+            <button class="reset-data-button" onclick="resetData()">Réinitialiser les données</button>
+        </div>
+        
+        <div class="right-content">
+            <canvas id="habit-chart" width="400" height="300"></canvas>
+        </div>
+    </div>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
