@@ -1,13 +1,17 @@
-var habits = [];
-var habitHistory = {}; // Object to store the history of habits
-var habitChart;
+let habits = [];
+let habitHistory = {};
+let habitChart;
 
-loadFromLocalStorage();
+document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
+    document.querySelector('.habit-form').addEventListener('submit', addHabit);
+});
 
-function addHabit() {
+function addHabit(event) {
     event.preventDefault();
 
-    var habit = document.getElementById('habit').value.trim();
+    const habitInput = document.getElementById('habit');
+    const habit = habitInput.value.trim();
     if (habit === '') return false;
 
     habits.push({ name: habit, done: false });
@@ -15,7 +19,7 @@ function addHabit() {
     updateHabitChart();
     saveToLocalStorage();
 
-    document.getElementById('habit').value = '';
+    habitInput.value = '';
     return false;
 }
 
@@ -27,14 +31,15 @@ function deleteHabit(index) {
 }
 
 function updateHabitList() {
-    var habitList = document.getElementById('habit-list');
+    const habitList = document.getElementById('habit-list');
     habitList.innerHTML = '';
 
-    habits.forEach(function(habit, index) {
-        var row = habitList.insertRow();
+    habits.forEach((habit, index) => {
+        const row = habitList.insertRow();
         row.innerHTML = `
             <td>${habit.name}</td>
-            <td><input type="checkbox" onchange="toggleHabit(${index}, this)" ${habit.done ? 'checked' : ''}>
+            <td>
+                <input type="checkbox" onchange="toggleHabit(${index}, this)" ${habit.done ? 'checked' : ''}>
                 <button class="delete-button" onclick="deleteHabit(${index})"><i class="fas fa-trash-alt"></i></button>
             </td>
         `;
@@ -49,42 +54,30 @@ function toggleHabit(index, checkbox) {
     updateHabitList();
     updateHabitChart();
     saveToLocalStorage();
-
-    var habitList = document.getElementById('habit-list');
-    var rows = habitList.getElementsByTagName('tr');
-    rows[index].classList.toggle('habit-done-today', habits[index].done);
 }
 
 function updateHabitChart() {
-    var today = new Date();
-    var day = ('0' + today.getDate()).slice(-2);
-    var month = ('0' + (today.getMonth() + 1)).slice(-2);
-    var year = today.getFullYear();
-    var formattedDate = `${day}/${month}/${year}`;
+    const today = new Date();
+    const day = ('0' + today.getDate()).slice(-2);
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const year = today.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
 
-    // Mettre à jour seulement le point d'aujourd'hui
     habitHistory[formattedDate] = habits.filter(habit => habit.done).length;
 
-    var dates = Object.keys(habitHistory).sort(function(a, b) {
-        var aParts = a.split('/');
-        var bParts = b.split('/');
-        var aDate = new Date(aParts[2], aParts[1] - 1, aParts[0]);
-        var bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
-        return aDate - bDate;
+    const dates = Object.keys(habitHistory).sort((a, b) => {
+        const [aDay, aMonth, aYear] = a.split('/').map(Number);
+        const [bDay, bMonth, bYear] = b.split('/').map(Number);
+        return new Date(aYear, aMonth - 1, aDay) - new Date(bYear, bMonth - 1, bDay);
     });
-    var totalHabits = habits.length;
-    var percentages = dates.map(date => {
-        if (totalHabits === 0) {
-            return 0;
-        }
-        return (habitHistory[date] / totalHabits) * 100;
-    });
+    const totalHabits = habits.length;
+    const percentages = dates.map(date => (totalHabits === 0 ? 0 : (habitHistory[date] / totalHabits) * 100));
 
     if (habitChart) {
         habitChart.destroy();
     }
 
-    var ctx = document.getElementById('habit-chart').getContext('2d');
+    const ctx = document.getElementById('habit-chart').getContext('2d');
     habitChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -104,9 +97,7 @@ function updateHabitChart() {
                     beginAtZero: true,
                     max: 100,
                     ticks: {
-                        callback: function(value) {
-                            return value + '%';
-                        }
+                        callback: value => `${value}%`
                     }
                 }
             },
@@ -132,8 +123,8 @@ function saveToLocalStorage() {
 }
 
 function loadFromLocalStorage() {
-    var storedHabits = localStorage.getItem('habits');
-    var storedHabitHistory = localStorage.getItem('habitHistory');
+    const storedHabits = localStorage.getItem('habits');
+    const storedHabitHistory = localStorage.getItem('habitHistory');
     if (storedHabits) {
         habits = JSON.parse(storedHabits);
     }
