@@ -7,6 +7,101 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.habit-form').addEventListener('submit', addHabit);
 });
 
+const translations = {
+    fr: {
+        title: "Suivi des Habitudes",
+        motivationText: "Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.",
+        habitLabel: "Habitude :",
+        addButtonText: "Ajouter",
+        habitColumn: "Habitude",
+        doneColumn: "Fait aujourd'hui",
+        darkModeButtonText: "Activer le mode sombre",
+        resetButtonText: "Réinitialiser les données"
+    },
+    en: {
+        title: "Habit Tracker",
+        motivationText: "Motivate yourself to achieve your goals. By regularly tracking your habits, you strengthen your determination and increase your chances of success.",
+        habitLabel: "Habit:",
+        addButtonText: "Add",
+        habitColumn: "Habit",
+        doneColumn: "Done Today",
+        darkModeButtonText: "Activate Dark Mode",
+        resetButtonText: "Reset Data"
+    },
+    es: {
+        title: "Seguimiento de Hábitos",
+        motivationText: "Motívate para alcanzar tus objetivos. Al seguir tus hábitos regularmente, refuerzas tu determinación y aumentas tus posibilidades de éxito.",
+        habitLabel: "Hábito:",
+        addButtonText: "Agregar",
+        habitColumn: "Hábito",
+        doneColumn: "Hecho Hoy",
+        darkModeButtonText: "Activar Modo Oscuro",
+        resetButtonText: "Restablecer Datos"
+    },
+    zh: {
+        title: "习惯追踪",
+        motivationText: "激励自己实现目标。通过定期跟踪您的习惯，您会增强决心并增加成功的机会。",
+        habitLabel: "习惯：",
+        addButtonText: "添加",
+        habitColumn: "习惯",
+        doneColumn: "今天完成",
+        darkModeButtonText: "启用黑暗模式",
+        resetButtonText: "重置数据"
+    },
+    ar: {
+        title: "تتبع العادات",
+        motivationText: "حفز نفسك لتحقيق أهدافك. من خلال متابعة عاداتك بانتظام، تقوي عزيمتك وتزيد من فرص نجاحك.",
+        habitLabel: "عادة:",
+        addButtonText: "أضف",
+        habitColumn: "عادة",
+        doneColumn: "تم اليوم",
+        darkModeButtonText: "تفعيل الوضع الداكن",
+        resetButtonText: "إعادة تعيين البيانات"
+    },
+    hi: {
+        title: "आदत ट्रैकर",
+        motivationText: "अपने लक्ष्यों को प्राप्त करने के लिए खुद को प्रेरित करें। नियमित रूप से अपनी आदतों को ट्रैक करके, आप अपने दृढ़ संकल्प को मजबूत करते हैं और अपनी सफलता की संभावना बढ़ाते हैं।",
+        habitLabel: "आदत:",
+        addButtonText: "जोड़ें",
+        habitColumn: "आदत",
+        doneColumn: "आज किया गया",
+        darkModeButtonText: "डार्क मोड सक्रिय करें",
+        resetButtonText: "डेटा रीसेट करें"
+    },
+    pt: {
+        title: "Rastreador de Hábitos",
+        motivationText: "Motiva-te a alcançar os teus objetivos. Ao acompanhar regularmente os teus hábitos, fortaleces a tua determinação e aumentas as tuas chances de sucesso.",
+        habitLabel: "Hábito:",
+        addButtonText: "Adicionar",
+        habitColumn: "Hábito",
+        doneColumn: "Feito Hoje",
+        darkModeButtonText: "Ativar Modo Escuro",
+        resetButtonText: "Redefinir Dados"
+    },
+    bn: {
+        title: "অভ্যাস ট্র্যাকার",
+        motivationText: "আপনার লক্ষ্য অর্জনের জন্য নিজেকে অনুপ্রাণিত করুন। আপনার অভ্যাসগুলি নিয়মিতভাবে ট্র্যাক করার মাধ্যমে, আপনি আপনার সংকল্পকে শক্তিশালী করেন এবং আপনার সাফল্যের সম্ভাবনাকে বাড়ান।",
+        habitLabel: "অভ্যাস:",
+        addButtonText: "যোগ করুন",
+        habitColumn: "অভ্যাস",
+        doneColumn: "আজ সম্পন্ন",
+        darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
+        resetButtonText: "ডেটা রিসেট করুন"
+    }
+};
+
+function translatePage(language) {
+    const translation = translations[language];
+    document.getElementById('title').innerText = translation.title;
+    document.getElementById('motivation-text').innerText = translation.motivationText;
+    document.getElementById('habit-label').innerText = translation.habitLabel;
+    document.getElementById('add-button-text').innerText = translation.addButtonText;
+    document.getElementById('habit-column').innerText = translation.habitColumn;
+    document.getElementById('done-column').innerText = translation.doneColumn;
+    document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
+    document.getElementById('reset-button-text').innerText = translation.resetButtonText;
+}
+
 function addHabit(event) {
     event.preventDefault();
 
@@ -54,6 +149,10 @@ function toggleHabit(index, checkbox) {
     updateHabitList();
     updateHabitChart();
     saveToLocalStorage();
+
+    const habitList = document.getElementById('habit-list');
+    const rows = habitList.getElementsByTagName('tr');
+    rows[index].classList.toggle('habit-done-today', habits[index].done);
 }
 
 function updateHabitChart() {
@@ -66,12 +165,14 @@ function updateHabitChart() {
     habitHistory[formattedDate] = habits.filter(habit => habit.done).length;
 
     const dates = Object.keys(habitHistory).sort((a, b) => {
-        const [aDay, aMonth, aYear] = a.split('/').map(Number);
-        const [bDay, bMonth, bYear] = b.split('/').map(Number);
-        return new Date(aYear, aMonth - 1, aDay) - new Date(bYear, bMonth - 1, bDay);
+        const aParts = a.split('/');
+        const bParts = b.split('/');
+        const aDate = new Date(aParts[2], aParts[1] - 1, aParts[0]);
+        const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
+        return aDate - bDate;
     });
     const totalHabits = habits.length;
-    const percentages = dates.map(date => (totalHabits === 0 ? 0 : (habitHistory[date] / totalHabits) * 100));
+    const percentages = dates.map(date => totalHabits === 0 ? 0 : (habitHistory[date] / totalHabits) * 100);
 
     if (habitChart) {
         habitChart.destroy();
@@ -97,7 +198,9 @@ function updateHabitChart() {
                     beginAtZero: true,
                     max: 100,
                     ticks: {
-                        callback: value => `${value}%`
+                        callback: function(value) {
+                            return value + '%';
+                        }
                     }
                 }
             },
