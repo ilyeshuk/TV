@@ -7,7 +7,6 @@ body {
     text-align: center;
     background-color: #f9f9f9;
     color: #333;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 .content {
@@ -17,6 +16,26 @@ body {
     margin: 20px;
     padding: 20px;
     box-sizing: border-box;
+}
+
+.language-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.language-buttons button {
+    padding: 8px 16px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.language-buttons button:hover {
+    background-color: #999;
 }
 
 .left-content {
@@ -121,8 +140,16 @@ body.dark-mode .motivation-text {
     color: #fff;
 }
 
-body.dark-mode .toggle-dark-mode-button {
-    border: none;
+body.dark-mode .toggle-dark-mode-button,
+body.dark-mode .reset-data-button {
+    background-color: #555;
+    color: #f0f0f0;
+    border: 1px solid #888;
+}
+
+body.dark-mode .toggle-dark-mode-button:hover,
+body.dark-mode .reset-data-button:hover {
+    background-color: #777;
 }
 
 body.dark-mode .chartjs-text {
