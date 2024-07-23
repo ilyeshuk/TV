@@ -9,23 +9,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="language-buttons">
+        <button onclick="translatePage('fr')">Français</button>
+        <button onclick="translatePage('en')">English</button>
+        <button onclick="translatePage('es')">Español</button>
+        <button onclick="translatePage('zh')">中文</button>
+        <button onclick="translatePage('ar')">العربية</button>
+        <button onclick="translatePage('hi')">हिन्दी</button>
+        <button onclick="translatePage('pt')">Português</button>
+        <button onclick="translatePage('bn')">বাংলা</button>
+    </div>
     <div class="content">
         <div class="left-content">
-            <h1>Suivi des Habitudes</h1>
-            <p class="motivation-text">
+            <h1 id="title">Suivi des Habitudes</h1>
+            <p id="motivation-text" class="motivation-text">
                 Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.
             </p>
             <form class="habit-form" onsubmit="return addHabit()">
-                <label for="habit">Habitude :</label>
+                <label for="habit" id="habit-label">Habitude :</label>
                 <input type="text" id="habit" required>
-                <button type="submit"><i class="fas fa-plus"></i> Ajouter</button>
+                <button type="submit"><i class="fas fa-plus"></i> <span id="add-button-text">Ajouter</span></button>
             </form>
             
             <table id="habit-table">
                 <thead>
                     <tr>
-                        <th>Habitude</th>
-                        <th>Fait aujourd'hui</th>
+                        <th id="habit-column">Habitude</th>
+                        <th id="done-column">Fait aujourd'hui</th>
                     </tr>
                 </thead>
                 <tbody id="habit-list">
@@ -33,8 +43,8 @@
                 </tbody>
             </table>
 
-            <button class="toggle-dark-mode-button" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Activer le mode sombre</button>
-            <button class="reset-data-button" onclick="resetData()">Réinitialiser les données</button>
+            <button class="toggle-dark-mode-button" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> <span id="dark-mode-button-text">Activer le mode sombre</span></button>
+            <button class="reset-data-button" onclick="resetData()"><i class="fas fa-redo"></i> <span id="reset-button-text">Réinitialiser les données</span></button>
         </div>
         
         <div class="right-content">
