@@ -6,4 +6,5 @@ Here are some features I'd like to add (feel free to suggest your own ideas):
 
   - User authentication.
   - Saving habits to a database with authentication.
-  - Organizing habits into multiple categories.    
+  - Organizing habits into multiple categories.
+  - Make the code more secure without security vulnerability    
