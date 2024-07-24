@@ -4,7 +4,6 @@ If you have suggestions to improve the site by adding new features, I would be i
 
 Here are some features I'd like to add (feel free to suggest your own ideas):
 
-  - A button to select different languages for translating the site.
   - User authentication.
   - Saving habits to a database with authentication.
   - Organizing habits into multiple categories.    
