@@ -8,4 +8,4 @@ Here are some features I'd like to add (feel free to suggest your own ideas):
   - Saving habits and other user data legally with the permision of the user to a database with authentication.
   - Organizing habits into multiple categories.
   - Make the code more secure without security vulnerability
-  - Make the interface more modern (make the color of the page white and make transparent the line of the menu table)
+  - Make the interface more modern 
