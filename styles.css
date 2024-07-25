@@ -91,7 +91,7 @@ h1 {
 }
 
 .habit-form input[type="text"]:focus {
-    border-color: var(--accent-color);
+    border-color: #ccc;
 }
 
 .habit-form button {
@@ -106,7 +106,7 @@ h1 {
 
 .habit-form button:hover {
     background-color: var(--accent-color);
-    color: var(--secondary-color);
+    color: #ccc;
     transform: scale(1.05);
 }
 
