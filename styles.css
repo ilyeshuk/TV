@@ -106,7 +106,7 @@ h1 {
 
 .habit-form button:hover {
     background-color: #ccc;
-    color: #ccc;
+    color: #bbb;
     transform: scale(1.05);
 }
 
