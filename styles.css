@@ -46,7 +46,7 @@ body {
 }
 
 .language-buttons button:hover {
-    background-color: var(--accent-color);
+    background-color: #999;
     color: var(--secondary-color);
     transform: scale(1.05);
 }
@@ -125,7 +125,7 @@ th, td {
 }
 
 .habit-done-today {
-    background-color: var(--background-light);
+    background-color: #999;
 }
 
 canvas {
