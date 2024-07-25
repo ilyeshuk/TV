@@ -96,7 +96,7 @@ h1 {
 
 .habit-form button {
     padding: 10px 20px;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Même couleur que les boutons de langue */
     color: var(--primary-color);
     border: none;
     border-radius: 5px;
@@ -105,8 +105,8 @@ h1 {
 }
 
 .habit-form button:hover {
-    background-color: #999;
-    color: #aaa;
+    background-color: #999; /* Même couleur que les boutons de langue */
+    color: var(--secondary-color);
     transform: scale(1.05);
 }
 
