@@ -16,7 +16,8 @@ const translations = {
         habitColumn: "Habitude",
         doneColumn: "Fait aujourd'hui",
         darkModeButtonText: "Activer le mode sombre",
-        resetButtonText: "Réinitialiser les données"
+        resetButtonText: "Réinitialiser les données",
+        chartLabel: "Pourcentage d'habitudes faites"
     },
     en: {
         title: "Habit Tracker",
@@ -26,7 +27,8 @@ const translations = {
         habitColumn: "Habit",
         doneColumn: "Done Today",
         darkModeButtonText: "Activate Dark Mode",
-        resetButtonText: "Reset Data"
+        resetButtonText: "Reset Data",
+        chartLabel: "Percentage of Habits Done"
     },
     es: {
         title: "Seguimiento de Hábitos",
@@ -36,7 +38,8 @@ const translations = {
         habitColumn: "Hábito",
         doneColumn: "Hecho Hoy",
         darkModeButtonText: "Activar Modo Oscuro",
-        resetButtonText: "Restablecer Datos"
+        resetButtonText: "Restablecer Datos",
+        chartLabel: "Porcentaje de Hábitos Realizados"
     },
     zh: {
         title: "习惯追踪",
@@ -46,7 +49,8 @@ const translations = {
         habitColumn: "习惯",
         doneColumn: "今天完成",
         darkModeButtonText: "启用黑暗模式",
-        resetButtonText: "重置数据"
+        resetButtonText: "重置数据",
+        chartLabel: "完成习惯的百分比"
     },
     ar: {
         title: "تتبع العادات",
@@ -56,7 +60,8 @@ const translations = {
         habitColumn: "عادة",
         doneColumn: "تم اليوم",
         darkModeButtonText: "تفعيل الوضع الداكن",
-        resetButtonText: "إعادة تعيين البيانات"
+        resetButtonText: "إعادة تعيين البيانات",
+        chartLabel: "نسبة العادات المنجزة"
     },
     hi: {
         title: "आदत ट्रैकर",
@@ -66,7 +71,8 @@ const translations = {
         habitColumn: "आदत",
         doneColumn: "आज किया गया",
         darkModeButtonText: "डार्क मोड सक्रिय करें",
-        resetButtonText: "डेटा रीसेट करें"
+        resetButtonText: "डेटा रीसेट करें",
+        chartLabel: "पूरी की गई आदतों का प्रतिशत"
     },
     pt: {
         title: "Rastreador de Hábitos",
@@ -76,7 +82,8 @@ const translations = {
         habitColumn: "Hábito",
         doneColumn: "Feito Hoje",
         darkModeButtonText: "Ativar Modo Escuro",
-        resetButtonText: "Redefinir Dados"
+        resetButtonText: "Redefinir Dados",
+        chartLabel: "Porcentagem de Hábitos Realizados"
     },
     bn: {
         title: "অভ্যাস ট্র্যাকার",
@@ -86,7 +93,8 @@ const translations = {
         habitColumn: "অভ্যাস",
         doneColumn: "আজ সম্পন্ন",
         darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
-        resetButtonText: "ডেটা রিসেট করুন"
+        resetButtonText: "ডেটা রিসেট করুন",
+        chartLabel: "সম্পন্ন অভ্যাসের শতাংশ"
     }
 };
 
@@ -100,6 +108,10 @@ function translatePage(language) {
     document.getElementById('done-column').innerText = translation.doneColumn;
     document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
     document.getElementById('reset-button-text').innerText = translation.resetButtonText;
+    if (habitChart) {
+        habitChart.data.datasets[0].label = translation.chartLabel;
+        habitChart.update();
+    }
 }
 
 function addHabit(event) {
@@ -179,12 +191,13 @@ function updateHabitChart() {
     }
 
     const ctx = document.getElementById('habit-chart').getContext('2d');
+    const currentLanguage = document.documentElement.lang || 'en';
     habitChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: dates,
             datasets: [{
-                label: 'Pourcentage d\'habitudes faites',
+                label: translations[currentLanguage].chartLabel,
                 data: percentages,
                 fill: true,
                 backgroundColor: 'rgba(201, 203, 207, 0.2)',
