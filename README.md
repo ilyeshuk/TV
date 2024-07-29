@@ -12,3 +12,4 @@ Here are some features I'd like to add (feel free to suggest your own ideas):
   - Make the code more secure without security vulnerability
   - Make the interface more modern
   - Analyze the data : the habits you have done the least
+  - Table for tasks to be done
