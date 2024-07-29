@@ -242,5 +242,6 @@ function resetData() {
     habitHistory = {};
     habits = [];
     saveToLocalStorage();
+    updateHabitList();
     updateHabitChart();
 }
