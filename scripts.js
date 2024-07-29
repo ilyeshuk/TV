@@ -240,6 +240,7 @@ function loadFromLocalStorage() {
 
 function resetData() {
     habitHistory = {};
+    habits = [];
     saveToLocalStorage();
     updateHabitChart();
 }
