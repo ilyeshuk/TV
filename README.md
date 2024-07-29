@@ -2,7 +2,7 @@ Follow the evolution of your habits with my web site : [Habit Tracker Evolution]
 
 If you have suggestions to improve the site by adding new features, I would be immensely grateful for your help.
 
-Essential features and guidelines: minimalist, simple, modern, efficient
+Essential features and guidelines : minimalist, simple, modern and efficient.
 
 Here are some features I'd like to add (feel free to suggest your own ideas):
 
