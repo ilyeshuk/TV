@@ -11,5 +11,6 @@ Here are some features I'd like to add (feel free to suggest your own ideas):
   - Organizing habits into multiple categories.
   - Make the code more secure without security vulnerability
   - Make the interface more modern
-  - Analyze the data : the habits you have done the least
+  - Analyze the data : the habits you have done the least and the most
   - Table for tasks to be done
+  - Add an AI Chat to help the user to do his habits who analyze automatically your habits (motivation and advice)
