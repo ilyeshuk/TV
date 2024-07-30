@@ -119,7 +119,7 @@ function addHabit(event) {
 
     const habitInput = document.getElementById('habit');
     const habit = habitInput.value.trim();
-    if (habit === '') return false;
+    if (habit === '' || habits.some(h => h.name === habit)) return false;
 
     habits.push({ name: habit, done: false });
     updateHabitList();
