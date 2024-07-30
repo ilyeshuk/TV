@@ -258,3 +258,47 @@ function resetData() {
     updateHabitList();
     updateHabitChart();
 }
+
+async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value;
+    if (message.trim() === '') return;
+
+    displayMessage('Vous', message);
+    input.value = '';
+
+    const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
+        },
+        body: JSON.stringify({
+            prompt: generatePrompt(message),
+            max_tokens: 150,
+            n: 1,
+            stop: null,
+            temperature: 0.7
+        })
+    });
+
+    const data = await response.json();
+    const reply = data.choices[0].text.trim();
+    displayMessage('AI', reply);
+}
+
+function displayMessage(sender, message) {
+    const chatContent = document.getElementById('chat-content');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${sender}: ${message}`;
+    chatContent.appendChild(messageElement);
+    chatContent.scrollTop = chatContent.scrollHeight;
+}
+
+function generatePrompt(message) {
+    return `
+    The user is tracking habits and has asked the following question or made the following statement: "${message}"
+    Provide an insightful, motivational, and supportive response to help them stay on track with their habits.
+    `;
+}
+
