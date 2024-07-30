@@ -152,8 +152,17 @@ function updateHabitList() {
         `;
         if (habit.done) {
             row.classList.add('habit-done-today');
+        } else {
+            row.classList.remove('habit-done-today');
         }
     });
+
+    // Check for habits not done and provide advice
+    const notDoneHabits = habits.filter(habit => !habit.done);
+    if (notDoneHabits.length > 0) {
+        const advice = notDoneHabits.map(habit => habit.name).join(', ');
+        sendMessage(`Je remarque que vous n'avez pas terminé les habitudes suivantes aujourd'hui : ${advice}. Avez-vous besoin de conseils ou de motivation pour les accomplir ?`);
+    }
 }
 
 function toggleHabit(index, checkbox) {
@@ -267,38 +276,42 @@ async function sendMessage() {
     displayMessage('Vous', message);
     input.value = '';
 
-    const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
-        },
-        body: JSON.stringify({
-            prompt: generatePrompt(message),
-            max_tokens: 150,
-            n: 1,
-            stop: null,
-            temperature: 0.7
-        })
-    });
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer sk-proj-ZOBb8y3KqQp21sBlNSNUT3BlbkFJWbXpVjGCkfhfnZIiA1EX' // Remplacez ceci par votre clé API sécurisée
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: message }],
+                max_tokens: 150,
+                temperature: 0.7
+            })
+        });
 
-    const data = await response.json();
-    const reply = data.choices[0].text.trim();
-    displayMessage('AI', reply);
-}
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-function displayMessage(sender, message) {
-    const chatContent = document.getElementById('chat-content');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = `${sender}: ${message}`;
-    chatContent.appendChild(messageElement);
-    chatContent.scrollTop = chatContent.scrollHeight;
+        const result = await response.json();
+        const aiMessage = result.choices[0].message.content;
+        displayMessage('AI', aiMessage);
+    } catch (error) {
+        console.error('Error:', error);
+        displayMessage('AI', 'Désolé, une erreur s\'est produite. Veuillez réessayer.');
+    }
 }
 
 function generatePrompt(message) {
-    return `
-    The user is tracking habits and has asked the following question or made the following statement: "${message}"
-    Provide an insightful, motivational, and supportive response to help them stay on track with their habits.
-    `;
+    // Modifiez cette fonction pour générer le prompt en fonction de votre besoin.
+    return `User: ${message}\nAI:`;
 }
 
+function displayMessage(sender, message) {
+    const messageContainer = document.getElementById('message-container');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${sender}: ${message}`;
+    messageContainer.appendChild(messageElement);
+}
