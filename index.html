@@ -51,7 +51,15 @@
             <canvas id="habit-chart" width="400" height="300"></canvas>
         </div>
     </div>
-    
+
+<div id="chat-container">
+    <div id="chat-box">
+        <div id="chat-content"></div>
+        <input type="text" id="chat-input" placeholder="Écrivez un message..." onkeydown="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+</div>
+
     <script src="scripts.js"></script>
 </body>
 </html>
