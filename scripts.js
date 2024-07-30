@@ -277,41 +277,22 @@ async function sendMessage() {
     input.value = '';
 
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch('/api/chat', { // Assurez-vous que cette URL correspond à l'endpoint de votre serveur backend
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ${YOUR_API_KEY}' // Remplacez ceci par votre clé API sécurisée
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
-                messages: [{ role: 'user', content: message }],
-                max_tokens: 150,
-                temperature: 0.7
-            })
+            body: JSON.stringify({ message })
         });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const result = await response.json();
-        const aiMessage = result.choices[0].message.content;
+        const aiMessage = await response.text();
         displayMessage('AI', aiMessage);
     } catch (error) {
         console.error('Error:', error);
         displayMessage('AI', 'Désolé, une erreur s\'est produite. Veuillez réessayer.');
     }
-}
-
-function generatePrompt(message) {
-    // Modifiez cette fonction pour générer le prompt en fonction de votre besoin.
-    return `User: ${message}\nAI:`;
-}
-
-function displayMessage(sender, message) {
-    const messageContainer = document.getElementById('message-container');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = `${sender}: ${message}`;
-    messageContainer.appendChild(messageElement);
 }
