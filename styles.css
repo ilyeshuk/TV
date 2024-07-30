@@ -132,6 +132,55 @@ canvas {
     margin-top: 20px;
 }
 
+#chat-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    background: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#chat-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#chat-input {
+    border: none;
+    padding: 10px;
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#chat-input:focus {
+    outline: none;
+}
+
+#chat-container button {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Thème Sombre */
 body.dark-mode {
     background-color: var(--background-dark);
