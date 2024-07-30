@@ -281,7 +281,7 @@ async function sendMessage() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer sk-proj-ZOBb8y3KqQp21sBlNSNUT3BlbkFJWbXpVjGCkfhfnZIiA1EX' // Remplacez ceci par votre clé API sécurisée
+                'Authorization': 'Bearer ${YOUR_API_KEY}' // Remplacez ceci par votre clé API sécurisée
             },
             body: JSON.stringify({
                 model: 'gpt-3.5-turbo',
