@@ -1,0 +1,31 @@
+/* Styles pour le corps de la page */
+body {
+    font-family: Arial, sans-serif; /* Définit la police du texte pour tout le corps de la page */
+    margin: 0; /* Supprime les marges par défaut du corps */
+    padding: 0; /* Supprime le padding par défaut du corps */
+}
+
+/* Styles pour la barre de navigation */
+nav {
+    background-color: #333; /* Définit une couleur de fond sombre pour la barre de navigation */
+    padding: 10px; /* Ajoute un padding de 10px autour des éléments de la barre de navigation */
+}
+
+/* Styles pour les liens dans la barre de navigation */
+nav a {
+    color: white; /* Définit la couleur du texte des liens de navigation à blanc */
+    padding: 14px 20px; /* Ajoute du padding autour des liens de navigation pour les rendre plus larges et cliquables */
+    text-decoration: none; /* Supprime le soulignement des liens */
+    display: inline-block; /* Permet aux liens de s'afficher en ligne avec du padding autour */
+}
+
+/* Styles pour les liens au survol dans la barre de navigation */
+nav a:hover {
+    background-color: #575757; /* Change la couleur de fond des liens au survol pour améliorer l'interaction visuelle */
+}
+
+/* Styles pour le titre principal */
+h1 {
+    text-align: center; /* Centre le texte du titre */
+    margin-top: 20px; /* Ajoute un espace au-dessus du titre pour le séparer des autres éléments */
+}
