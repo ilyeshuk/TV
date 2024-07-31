@@ -9,7 +9,7 @@ body {
 
 /* Styles de l'en-tête */
 header {
-    background: #e0e0e0; /* Applique une couleur de fond gris clair à l'en-tête */
+    background: #bbb; /* Applique une couleur de fond gris clair à l'en-tête */
     color: #333; /* Définit la couleur du texte en gris foncé pour un bon contraste avec le fond clair */
     padding: 2rem 1rem; /* Ajoute un espacement intérieur de 2rem en haut et en bas et 1rem à gauche et à droite */
     text-align: center; /* Centre le texte horizontalement dans l'en-tête */
