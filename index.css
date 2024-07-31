@@ -1,66 +1,69 @@
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f4f8;
-    color: #333;
+    font-family: Arial, sans-serif; /* Définit la police globale du site à Arial, avec une police de secours sans-serif */
+    margin: 0; /* Supprime les marges par défaut du navigateur */
+    padding: 0; /* Supprime les espacements par défaut du navigateur */
+    background-color: #aaa; /* Applique une couleur de fond gris moyen pour le corps de la page */
+    color: #333; /* Définit la couleur du texte par défaut en gris foncé pour une meilleure lisibilité */
 }
 
+/* Styles de l'en-tête */
 header {
-    background: #4CAF50;
-    color: white;
-    padding: 2rem 1rem;
-    text-align: center;
+    background: #bbb; /* Applique une couleur de fond gris clair à l'en-tête */
+    color: white; /* Définit la couleur du texte en blanc pour un bon contraste avec le fond gris */
+    padding: 2rem 1rem; /* Ajoute un espacement intérieur de 2rem en haut et en bas et 1rem à gauche et à droite */
+    text-align: center; /* Centre le texte horizontalement dans l'en-tête */
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+    margin: 0; /* Supprime les marges par défaut autour du titre */
+    font-size: 2.5rem; /* Définit une taille de police de 2.5rem pour le titre, le rendant bien visible */
 }
 
 header p {
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Définit une taille de police de 1.2rem pour les paragraphes de l'en-tête */
 }
 
+/* Styles de la navigation */
 nav {
-    background: #333;
-    padding: 1rem;
-    text-align: center;
+    background: #333; /* Applique une couleur de fond gris foncé à la barre de navigation */
+    padding: 1rem; /* Ajoute un espacement intérieur de 1rem pour donner plus de respirabilité aux éléments de navigation */
+    text-align: center; /* Centre les liens horizontalement dans la barre de navigation */
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background 0.3s;
+    color: white; /* Définit la couleur du texte des liens en blanc pour un contraste élevé avec le fond gris foncé */
+    text-decoration: none; /* Supprime le soulignement par défaut des liens pour un look plus propre */
+    margin: 0 1rem; /* Ajoute une marge horizontale de 1rem entre les liens pour les espacer */
+    padding: 0.5rem 1rem; /* Ajoute un espacement intérieur de 0.5rem verticalement et 1rem horizontalement pour rendre les liens plus cliquables et esthétiques */
+    border-radius: 5px; /* Ajoute des coins arrondis de 5px aux liens pour un look plus doux */
+    transition: background 0.3s; /* Ajoute une transition de 0.3 secondes pour les changements de fond */
 }
 
 nav a:hover {
-    background: #575757;
+    background: #575757; /* Change la couleur de fond en gris moyen lors du survol, fournissant un feedback visuel que le lien est interactif */
 }
 
+/* Styles du contenu principal */
 main {
-    padding: 2rem;
-    text-align: center;
+    padding: 2rem; /* Ajoute un espacement intérieur de 2rem autour du contenu principal pour un espace bien aéré */
+    text-align: center; /* Centre le texte horizontalement dans la section principale */
 }
 
 main section {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin: 2rem auto;
+    background: white; /* Applique un fond blanc aux sections pour un contraste clair avec le fond gris du body */
+    padding: 2rem; /* Ajoute un espacement intérieur de 2rem pour un aspect plus espacé et lisible */
+    border-radius: 10px; /* Ajoute des coins arrondis de 10px pour un aspect plus doux et moderne */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ajoute une ombre légère pour créer une impression de profondeur */
+    max-width: 800px; /* Limite la largeur maximale des sections à 800px pour une lisibilité optimale */
+    margin: 2rem auto; /* Ajoute une marge verticale de 2rem et centre horizontalement les sections avec auto */
 }
 
 main section h2 {
-    color: #4CAF50;
+    color: #bbb; /* Applique une couleur gris clair aux titres de section pour un aspect harmonieux avec l'en-tête */
 }
 
 .intro-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.1rem; /* Définit une taille de police de 1.1rem pour le texte d'introduction pour une bonne lisibilité */
+    line-height: 1.6; /* Définit un interligne de 1.6 pour améliorer la lisibilité */
 }
