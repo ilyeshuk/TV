@@ -45,6 +45,7 @@ nav {
     padding: 1rem; /* Ajoute un espacement intérieur de 1rem pour donner plus de respirabilité aux éléments de navigation */
     text-align: center; /* Centre les liens horizontalement dans la barre de navigation */
     border-radius: 5px; /* Ajoute des coins arrondis pour une apparence plus douce */
+    margin-top: 1rem; /* Ajoute une marge supérieure pour espacer la navigation de l'en-tête */
 }
 
 nav a {
@@ -67,6 +68,7 @@ main {
     text-align: center; /* Centre le texte horizontalement dans la section principale */
 }
 
+/* Style de la section principale */
 main section {
     background: white; /* Applique un fond blanc aux sections pour un contraste clair avec le fond gris du body */
     padding: 2rem; /* Ajoute un espacement intérieur de 2rem pour un aspect plus espacé et lisible */
@@ -74,6 +76,11 @@ main section {
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ajoute une ombre légère pour créer une impression de profondeur */
     max-width: 800px; /* Limite la largeur maximale des sections à 800px pour une lisibilité optimale */
     margin: 2rem auto; /* Ajoute une marge verticale de 2rem et centre horizontalement les sections avec auto */
+}
+
+/* Espacement entre les sections principales */
+main > section + section {
+    margin-top: 2rem; /* Ajoute une marge supérieure de 2rem entre les sections pour espacer les blocs */
 }
 
 main section h2 {
