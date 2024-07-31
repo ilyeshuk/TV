@@ -34,7 +34,7 @@ header .logo {
 }
 
 header .logo img {
-    height: 50px; /* Ajustez la taille selon vos besoins */
+    height: 25px; /* Ajustez la taille selon vos besoins */
 }
 
 header .menu-toggle {
