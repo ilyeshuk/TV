@@ -60,7 +60,7 @@ main section {
 }
 
 main section h2 {
-    color: #bbb; /* Applique une couleur gris clair aux titres de section pour un aspect harmonieux avec l'en-tête */
+    color: #aaa; /* Applique une couleur gris aux titres de section pour un aspect harmonieux avec l'en-tête */
 }
 
 .intro-text {
