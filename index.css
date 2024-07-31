@@ -9,11 +9,11 @@ body {
 
 /* Styles de l'en-tête */
 header {
-    background: #bbb; /* Applique une couleur de fond gris clair à l'en-tête */
+    background: #ccc; /* Applique une couleur de fond gris clair légèrement plus foncée à l'en-tête */
     color: #333; /* Définit la couleur du texte en gris foncé pour un bon contraste avec le fond clair */
     padding: 2rem 1rem; /* Ajoute un espacement intérieur de 2rem en haut et en bas et 1rem à gauche et à droite */
     text-align: center; /* Centre le texte horizontalement dans l'en-tête */
-    border-bottom: 2px solid #ccc; /* Ajoute une bordure inférieure grise claire pour une séparation visuelle */
+    border-bottom: 2px solid #bbb; /* Ajoute une bordure inférieure grise plus foncée pour une séparation visuelle */
 }
 
 header h1 {
@@ -28,14 +28,14 @@ header p {
 
 /* Styles de la navigation */
 nav {
-    background: #f0f0f0; /* Applique une couleur de fond gris très clair à la barre de navigation */
+    background: #bbb; /* Applique une couleur de fond gris foncé à la barre de navigation */
     padding: 1rem; /* Ajoute un espacement intérieur de 1rem pour donner plus de respirabilité aux éléments de navigation */
     text-align: center; /* Centre les liens horizontalement dans la barre de navigation */
-    border-bottom: 1px solid #ddd; /* Ajoute une bordure inférieure grise très claire pour une séparation visuelle */
+    border-bottom: 1px solid #aaa; /* Ajoute une bordure inférieure grise pour une séparation visuelle */
 }
 
 nav a {
-    color: #333; /* Définit la couleur du texte des liens en gris foncé pour un contraste élevé avec le fond clair */
+    color: white; /* Définit la couleur du texte des liens en blanc pour un contraste élevé avec le fond gris foncé */
     text-decoration: none; /* Supprime le soulignement par défaut des liens pour un look plus propre */
     margin: 0 1rem; /* Ajoute une marge horizontale de 1rem entre les liens pour les espacer */
     padding: 0.5rem 1rem; /* Ajoute un espacement intérieur de 0.5rem verticalement et 1rem horizontalement pour rendre les liens plus cliquables et esthétiques */
@@ -44,8 +44,8 @@ nav a {
 }
 
 nav a:hover {
-    background: #ddd; /* Change la couleur de fond en gris clair lors du survol, fournissant un feedback visuel que le lien est interactif */
-    color: #000; /* Change la couleur du texte en noir lors du survol pour un contraste accru */
+    background: #999; /* Change la couleur de fond en gris plus foncé lors du survol, fournissant un feedback visuel que le lien est interactif */
+    color: #fff; /* Change la couleur du texte en blanc lors du survol pour un contraste accru */
 }
 
 /* Styles du contenu principal */
