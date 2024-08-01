@@ -3,37 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Tâches</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Suivi des Habitudes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Lien vers le CSS spécifique -->
+    <link rel="stylesheet" href="tracker_habits.css"> 
 </head>
 <body>
     <header>
-        <h1>Gestion des Tâches</h1>
-        <button id="addTaskBtn">Ajouter une Tâche</button>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav id="sidebar" class="sidebar">
+            <a href="index.html">Accueil</a>
+            <a href="To_Do.html">Tâches à faire</a>
+        </nav>
     </header>
-    
-    <main>
-        <section id="taskList">
-            <!-- La liste des tâches sera insérée ici -->
-        </section>
-    </main>
-
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Ajouter une Tâche</h2>
-            <form id="taskForm">
-                <label for="taskTitle">Titre :</label>
-                <input type="text" id="taskTitle" required>
-                <label for="taskDate">Date :</label>
-                <input type="date" id="taskDate">
-                <label for="taskDescription">Description :</label>
-                <textarea id="taskDescription"></textarea>
-                <button type="submit">Ajouter</button>
+    <div class="language-buttons">
+        <button aria-label="Changer la langue en français" onclick="translatePage('fr')">Français</button>
+        <button aria-label="Change language to English" onclick="translatePage('en')">English</button>
+        <button aria-label="Cambiar idioma a español" onclick="translatePage('es')">Español</button>
+        <button aria-label="更改语言为中文" onclick="translatePage('zh')">中文</button>
+        <button aria-label="تغيير اللغة إلى العربية" onclick="translatePage('ar')">العربية</button>
+        <button aria-label="भाषा हिंदी में बदलें" onclick="translatePage('hi')">हिन्दी</button>
+        <button aria-label="Mudar idioma para português" onclick="translatePage('pt')">Português</button>
+        <button aria-label="ভাষা বাংলা তে পরিবর্তন করুন" onclick="translatePage('bn')">বাংলা</button>
+    </div>
+    <div class="content">
+        <div class="left-content">
+            <h1 id="title">Suivi des Habitudes</h1>
+            <p id="motivation-text" class="motivation-text">
+                Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.
+            </p>
+            <form class="habit-form" onsubmit="return addHabit()">
+                <label for="habit" id="habit-label">Habitude :</label>
+                <input type="text" id="habit" required>
+                <button type="submit"><i class="fas fa-plus"></i> <span id="add-button-text">Ajouter</span></button>
             </form>
+            
+            <table id="habit-table">
+                <thead>
+                    <tr>
+                        <th id="habit-column">Habitude</th>
+                        <th id="done-column">Fait aujourd'hui</th>
+                    </tr>
+                </thead>
+                <tbody id="habit-list">
+                    <!-- Les lignes seront ajoutées dynamiquement ici -->
+                </tbody>
+            </table>
+
+            <button class="toggle-dark-mode-button" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> <span id="dark-mode-button-text">Activer le mode sombre</span></button>
+            <button class="reset-data-button" onclick="resetData()"><i class="fas fa-redo"></i> <span id="reset-button-text">Réinitialiser les données</span></button>
+        </div>
+        
+        <div class="right-content">
+            <canvas id="habit-chart" width="400" height="300"></canvas>
         </div>
     </div>
+    <!-- Citation à ajouter dans le corps -->
+<div id="quoteContainer" class="mt-4">
+    <blockquote id="quote" class="blockquote text-center"></blockquote>
+</div>
 
-    <script src="script.js"></script>
+<!-- Script pour afficher une citation aléatoire -->
+<script>
+    
+</script>
+    
+    <!-- Lien vers le JavaScript spécifique -->
+    <script src="tracker_habits.js"></script>
 </body>
 </html>
