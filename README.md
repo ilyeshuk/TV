@@ -1,16 +1,25 @@
-Follow the evolution of your habits with my web site : [Habit Tracker Evolution] (https://habit-tracker-evolution.netlify.app/).
+Follow the evolution of your habits and your tasks with my web site : TrackVibe https://trackvibe.netlify.app/ .
 
 If you have suggestions to improve the site by adding new features, I would be immensely grateful for your help.
 
 Guidelines : minimalist, simple, modern and efficient.
 
-Here are some features I'd like to add (feel free to suggest your own ideas):
 
+Here are some features I'd like to add at my website (feel free to suggest your own ideas): 
   - User authentication.
-  - Saving habits and other user data legally with the permision of the user to a database with authentication.
-  - Organizing habits into multiple categories.
   - Make the code more secure without security vulnerability
   - Make the interface more modern
+
+
+Here are some features I'd like to add at my homepage (feel free to suggest your own ideas):
+  - Saving habits and other user data legally with the permision of the user to a database with authentication.
+  - Organizing habits into multiple categories.
   - Analyze the data : the habits you have done the least and the most
-  - Table for tasks to be done
+
+
+Here are some features I'd like to add at my habit's page (feel free to suggest your own ideas):
   - Add an AI Chat to help the user to do his habits who analyze automatically your habits (motivation and advice)
+
+
+Here are some features I'd like to add at my homepage (feel free to suggest your own ideas):
+  - The homepage is to empty
