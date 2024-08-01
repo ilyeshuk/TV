@@ -1,90 +1,277 @@
-/* Styles de base */
+/* Variables : Définition des couleurs et des durées de transition */
+:root {
+    --primary-color: #333; /* Couleur principale du texte */
+    --secondary-color: #f0f0f0; /* Couleur secondaire pour les fonds et les textes sur fond sombre */
+    --background-light: #f9f9f9; /* Couleur de fond pour le mode clair */
+    --background-dark: #333; /* Couleur de fond pour le mode sombre */
+    --accent-color: #ddd; /* Couleur d'accent pour les interactions */
+    --transition-duration: 0.3s; /* Durée des transitions */
+}
+
+/* Style de base pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif; /* Police de caractère */
+    max-width: 1200px; /* Largeur maximale */
+    margin: 0 auto; /* Centrage horizontal */
+    padding: 20px; /* Padding interne */
+    text-align: center; /* Alignement du texte */
+    background-color: var(--background-light); /* Couleur de fond en mode clair */
+    color: var(--primary-color); /* Couleur du texte */
+    transition: background-color var(--transition-duration), color var(--transition-duration); /* Transitions pour les changements de couleur */
 }
 
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
+/* Mise en page principale avec une grille adaptable */
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille réactive */
+    gap: 20px; /* Espacement entre les éléments */
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions de l'élément */
+}
+
+/* Styles pour les boutons de changement de langue */
+.language-buttons {
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage horizontal des boutons */
+    gap: 10px; /* Espacement entre les boutons */
+    margin-bottom: 20px;
+}
+
+.language-buttons button,
+.habit-form button,
+.toggle-dark-mode-button,
+.reset-data-button {
+    padding: 10px 20px; /* Padding interne */
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: var(--primary-color); /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur en mode pointeur */
+    transition: background-color var(--transition-duration), color var(--transition-duration), transform var(--transition-duration); /* Transitions pour les interactions */
+}
+
+/* Effet de survol pour les boutons */
+.language-buttons button:hover,
+.habit-form button:hover,
+.toggle-dark-mode-button:hover,
+.reset-data-button:hover {
+    background-color: #999; /* Changement de couleur de fond */
+    color: var(--secondary-color); /* Changement de couleur du texte */
+    transform: scale(1.05); /* Agrandissement léger */
+}
+
+/* Alignement du contenu à gauche */
+.left-content {
+    text-align: left;
+}
+
+/* Centrage du contenu à droite */
+.right-content {
+    text-align: center;
+}
+
+/* Style pour les titres */
+h1 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* Style pour le texte de motivation */
+.motivation-text {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #666; /* Couleur du texte */
+}
+
+/* Style pour le formulaire d'ajout d'habitudes */
+.habit-form {
+    display: flex; /* Affichage en flexbox */
+    align-items: flex-end; /* Alignement en bas */
+    gap: 10px; /* Espacement entre les éléments */
+    margin-bottom: 20px;
+}
+
+.habit-form label {
+    flex: 0 0 80px; /* Largeur fixe de 80px */
+    text-align: right; /* Alignement du texte à droite */
+}
+
+/* Style pour le champ de texte */
+.habit-form input[type="text"] {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding: 10px; /* Padding interne */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Bordures arrondies */
+    transition: border-color var(--transition-duration); /* Transition pour la bordure */
+}
+
+/* Effet de focus pour le champ de texte */
+.habit-form input[type="text"]:focus {
+    border-color: #ffffff; /* Changement de couleur de bordure */
+}
+
+/* Style pour les tableaux */
+table {
+    width: 100%; /* Largeur complète */
+    border-collapse: collapse; /* Fusion des bordures */
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Style pour les cellules du tableau */
+th, td {
+    border: 1px solid #ccc; /* Bordure grise */
+    padding: 10px; /* Padding interne */
+    text-align: center; /* Alignement centré */
+}
+
+/* Style pour les lignes avec des habitudes faites */
+.habit-done-today {
+    background-color: #eee; /* Couleur de fond */
+}
+
+/* Style pour le graphique */
+canvas {
+    margin-top: 20px;
+}
+
+/* Thème sombre */
+body.dark-mode {
+    background-color: var(--background-dark); /* Couleur de fond en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte en mode sombre */
+}
+
+body.dark-mode .habit-form input[type="text"],
+body.dark-mode .language-buttons button,
+body.dark-mode .habit-form button,
+body.dark-mode .toggle-dark-mode-button,
+body.dark-mode .reset-data-button {
+    background-color: #555; /* Couleur de fond pour les éléments en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte */
+    border: 1px solid #888; /* Bordure grise foncée */
+}
+
+body.dark-mode .language-buttons button:hover,
+body.dark-mode .habit-form button:hover,
+body.dark-mode .toggle-dark-mode-button:hover,
+body.dark-mode .reset-data-button:hover {
+    background-color: #777; /* Changement de couleur de fond */
+}
+
+body.dark-mode table {
+    border-color: #888; /* Couleur de bordure pour les tableaux en mode sombre */
+}
+
+body.dark-mode .habit-done-today {
+    background-color: #555; /* Couleur de fond pour les habitudes faites en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte */
+}
+
+body.dark-mode h1,
+body.dark-mode .motivation-text {
+    color: var(--secondary-color); /* Couleur du texte pour les titres et le texte de motivation */
+}
+
+body.dark-mode .chartjs-text {
+    fill: var(--secondary-color) !important; /* Couleur du texte du graphique en mode sombre */
+}
+
+body.dark-mode .chartjs-tick {
+    color: var(--secondary-color) !important; /* Couleur des graduations du graphique en mode sombre */
+}
+
+body.dark-mode .chartjs-border {
+    stroke: var(--secondary-color) !important; /* Couleur des bordures du graphique en mode sombre */
+}
+
+/* Style pour le bouton de suppression */
+.delete-button {
+    background-color: transparent; /* Pas de couleur de fond */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur en mode pointeur */
+    transition: color var(--transition-duration); /* Transition pour la couleur */
+    color: #999; /* Couleur initiale */
+    padding: 0; /* Pas de padding */
+}
+
+.delete-button:hover {
+    color: var(--accent-color); /* Changement de couleur au survol */
+}
+
+/* Styles du menu hamburger */
+header .menu-toggle {
+    position: fixed; /* Change position from absolute to fixed */
+    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
+    left: 1rem;
+    cursor: pointer;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1100; /* Ensure it is above the sidebar */
 }
 
-header h1 {
-    margin: 0;
+header .menu-toggle .bar {
+    width: 30px; /* Largeur des barres */
+    height: 3px; /* Hauteur des barres */
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s; /* Transitions pour les effets */
 }
 
-button {
-    background-color: #28a745;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Styles pour le modal */
-.modal {
-    display: none;
+/* Styles du menu latéral */
+.sidebar {
     position: fixed;
-    z-index: 1;
-    left: 0;
     top: 0;
-    width: 100%;
+    left: -250px; /* Hors de l'écran par défaut */
+    width: 250px;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #eee;
+    transition: left 0.3s; /* Transition pour l'ouverture */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Ombre légère pour le menu */
+    z-index: 1000;
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 600px;
+.sidebar.active {
+    left: 0; /* Affiche le menu lorsque l'élément a la classe 'active' */
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
+.sidebar a {
+    color: var(--primary-color);
     text-decoration: none;
-    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
 }
 
-/* Styles pour la liste des tâches */
-#taskList {
-    padding: 20px;
+/* Changement de couleur des liens lors du survol */
+.sidebar a:hover {
+    background-color: var(--primary-color);
+    color: var(--background-light);
 }
 
-.task-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 15px;
+/* Styles du contenu principal */
+main {
+    padding: 2rem;
+    text-align: center;
 }
 
-.task-item h3 {
-    margin: 0;
+/* Styles des sections dans le contenu principal */
+main section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 2rem auto;
 }
 
-.task-item p {
-    margin: 5px 0;
+/* Styles des titres dans les sections */
+main section h2 {
+    color: var(--accent-color);
 }
