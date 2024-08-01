@@ -39,7 +39,7 @@ body {
 }
 
 .language-buttons button,
-.habit-form button,
+.task-form button,
 .toggle-dark-mode-button,
 .reset-data-button {
     padding: 10px 20px; /* Padding interne */
@@ -53,7 +53,7 @@ body {
 
 /* Effet de survol pour les boutons */
 .language-buttons button:hover,
-.habit-form button:hover,
+.task-form button:hover,
 .toggle-dark-mode-button:hover,
 .reset-data-button:hover {
     background-color: #999; /* Changement de couleur de fond */
@@ -84,21 +84,21 @@ h1 {
     color: #666; /* Couleur du texte */
 }
 
-/* Style pour le formulaire d'ajout d'habitudes */
-.habit-form {
+/* Style pour le formulaire d'ajout de tâches */
+.task-form {
     display: flex; /* Affichage en flexbox */
     align-items: flex-end; /* Alignement en bas */
     gap: 10px; /* Espacement entre les éléments */
     margin-bottom: 20px;
 }
 
-.habit-form label {
+.task-form label {
     flex: 0 0 80px; /* Largeur fixe de 80px */
     text-align: right; /* Alignement du texte à droite */
 }
 
 /* Style pour le champ de texte */
-.habit-form input[type="text"] {
+.task-form input[type="text"] {
     flex: 1; /* Prend tout l'espace disponible */
     padding: 10px; /* Padding interne */
     border: 1px solid #ccc; /* Bordure grise */
@@ -127,7 +127,7 @@ th, td {
     text-align: center; /* Alignement centré */
 }
 
-/* Style pour les lignes avec des habitudes faites */
+/* Style pour les lignes avec des tâches faites */
 .task-done-today {
     background-color: #eee; /* Couleur de fond */
 }
@@ -143,9 +143,9 @@ body.dark-mode {
     color: var(--secondary-color); /* Couleur du texte en mode sombre */
 }
 
-body.dark-mode .habit-form input[type="text"],
+body.dark-mode .task-form input[type="text"],
 body.dark-mode .language-buttons button,
-body.dark-mode .habit-form button,
+body.dark-mode .task-form button,
 body.dark-mode .toggle-dark-mode-button,
 body.dark-mode .reset-data-button {
     background-color: #555; /* Couleur de fond pour les éléments en mode sombre */
@@ -154,7 +154,7 @@ body.dark-mode .reset-data-button {
 }
 
 body.dark-mode .language-buttons button:hover,
-body.dark-mode .habit-form button:hover,
+body.dark-mode .task-form button:hover,
 body.dark-mode .toggle-dark-mode-button:hover,
 body.dark-mode .reset-data-button:hover {
     background-color: #777; /* Changement de couleur de fond */
@@ -164,7 +164,7 @@ body.dark-mode table {
     border-color: #888; /* Couleur de bordure pour les tableaux en mode sombre */
 }
 
-body.dark-mode .habit-done-today {
+body.dark-mode .task-done-today {
     background-color: #555; /* Couleur de fond pour les habitudes faites en mode sombre */
     color: var(--secondary-color); /* Couleur du texte */
 }
