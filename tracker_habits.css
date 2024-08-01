@@ -75,13 +75,15 @@ body {
 h1 {
     margin-bottom: 20px;
     color: var(--primary-color);
+    font-size: 2rem; /* Utilisation de rem pour la taille du texte */
 }
 
 /* Style pour le texte de motivation */
 .motivation-text {
     text-align: left;
     margin-bottom: 20px;
-    color: #666; /* Couleur du texte */
+    color: #666;
+    font-size: 1rem; /* Utilisation de rem pour la taille du texte */
 }
 
 /* Style pour le formulaire d'ajout de tâches */
