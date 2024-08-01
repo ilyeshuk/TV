@@ -199,3 +199,79 @@ body.dark-mode .chartjs-border {
 .delete-button:hover {
     color: var(--accent-color); /* Changement de couleur au survol */
 }
+
+/* Styles du menu hamburger */
+header .menu-toggle {
+    position: fixed; /* Change position from absolute to fixed */
+    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
+    left: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1100; /* Ensure it is above the sidebar */
+}
+
+header .menu-toggle .bar {
+    width: 30px; /* Largeur des barres */
+    height: 3px; /* Hauteur des barres */
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s; /* Transitions pour les effets */
+}
+
+/* Styles du menu latéral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hors de l'écran par défaut */
+    width: 250px;
+    height: 100%;
+    background-color: #eee;
+    transition: left 0.3s; /* Transition pour l'ouverture */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Ombre légère pour le menu */
+    z-index: 1000;
+}
+
+.sidebar.active {
+    left: 0; /* Affiche le menu lorsque l'élément a la classe 'active' */
+}
+
+.sidebar a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+/* Changement de couleur des liens lors du survol */
+.sidebar a:hover {
+    background-color: var(--primary-color);
+    color: var(--background-light);
+}
+
+/* Styles du contenu principal */
+main {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Styles des sections dans le contenu principal */
+main section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+/* Styles des titres dans les sections */
+main section h2 {
+    color: var(--accent-color);
+}
