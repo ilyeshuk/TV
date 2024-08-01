@@ -1,10 +1,10 @@
-let habits = [];
-let habitHistory = {};
-let habitChart;
+let tasks = [];
+let taskHistory = {};
+let taskChart;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
-    document.querySelector('.habit-form').addEventListener('submit', addHabit);
+    document.querySelector('.task-form').addEventListener('submit', addTask);
 });
 
 const translations = {
@@ -102,97 +102,97 @@ function translatePage(language) {
     const translation = translations[language];
     document.getElementById('title').innerText = translation.title;
     document.getElementById('motivation-text').innerText = translation.motivationText;
-    document.getElementById('habit-label').innerText = translation.habitLabel;
+    document.getElementById('task-label').innerText = translation.taskLabel;
     document.getElementById('add-button-text').innerText = translation.addButtonText;
-    document.getElementById('habit-column').innerText = translation.habitColumn;
+    document.getElementById('task-column').innerText = translation.taskColumn;
     document.getElementById('done-column').innerText = translation.doneColumn;
     document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
     document.getElementById('reset-button-text').innerText = translation.resetButtonText;
-    if (habitChart) {
-        habitChart.data.datasets[0].label = translation.chartLabel;
-        habitChart.update();
+    if (taskChart) {
+        taskChart.data.datasets[0].label = translation.chartLabel;
+        taskChart.update();
     }
 }
 
-function addHabit(event) {
+function addTask(event) {
     event.preventDefault();
 
-    const habitInput = document.getElementById('habit');
-    const habit = habitInput.value.trim();
-    if (habit === '' || habits.some(h => h.name.toLowerCase() === habit.toLowerCase())) return false;
+    const taskInput = document.getElementById('task');
+    const task = taskInput.value.trim();
+    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
 
-    habits.push({ name: habit, done: false });
-    updateHabitList();
-    updateHabitChart();
+    tasks.push({ name: task, done: false });
+    updateTaskList();
+    updateTaskChart();
     saveToLocalStorage();
 
-    habitInput.value = '';
+    taskInput.value = '';
     return false;
 }
 
-function deleteHabit(index) {
-    habits.splice(index, 1);
-    updateHabitList();
-    updateHabitChart();
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    updateTaskList();
+    updateTaskChart();
     saveToLocalStorage();
 }
 
-function updateHabitList() {
-    const habitList = document.getElementById('habit-list');
-    habitList.innerHTML = '';
+function updateTaskList() {
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
 
-    habits.forEach((habit, index) => {
-        const row = habitList.insertRow();
+    tasks.forEach((task, index) => {
+        const row = taskList.insertRow();
         row.innerHTML = `
-            <td>${habit.name}</td>
+            <td>${task.name}</td>
             <td>
-                <input type="checkbox" onchange="toggleHabit(${index}, this)" ${habit.done ? 'checked' : ''}>
-                <button class="delete-button" onclick="deleteHabit(${index})"><i class="fas fa-trash-alt"></i></button>
+                <input type="checkbox" onchange="toggleTask(${index}, this)" ${task.done ? 'checked' : ''}>
+                <button class="delete-button" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i></button>
             </td>
         `;
-        if (habit.done) {
-            row.classList.add('habit-done-today');
+        if (task.done) {
+            row.classList.add('task-done-today');
         }
     });
 }
 
-function toggleHabit(index, checkbox) {
-    habits[index].done = checkbox.checked;
-    updateHabitList();
-    updateHabitChart();
+function toggleTask(index, checkbox) {
+    tasks[index].done = checkbox.checked;
+    updateTaskList();
+    updateTaskChart();
     saveToLocalStorage();
 
-    const habitList = document.getElementById('habit-list');
-    const rows = habitList.getElementsByTagName('tr');
-    rows[index].classList.toggle('habit-done-today', habits[index].done);
+    const taskList = document.getElementById('task-list');
+    const rows = taskList.getElementsByTagName('tr');
+    rows[index].classList.toggle('task-done-today', tasks[index].done);
 }
 
-function updateHabitChart() {
+function updateTaskChart() {
     const today = new Date();
     const day = ('0' + today.getDate()).slice(-2);
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const year = today.getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
 
-    habitHistory[formattedDate] = habits.filter(habit => habit.done).length;
+    taskHistory[formattedDate] = tasks.filter(task => task.done).length;
 
-    const dates = Object.keys(habitHistory).sort((a, b) => {
+    const dates = Object.keys(taskHistory).sort((a, b) => {
         const aParts = a.split('/');
         const bParts = b.split('/');
         const aDate = new Date(aParts[2], aParts[1] - 1, aParts[0]);
         const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
         return aDate - bDate;
     });
-    const totalHabits = habits.length;
-    const percentages = dates.map(date => totalHabits === 0 ? 0 : (habitHistory[date] / totalHabits) * 100);
+    const totalTasks = tasks.length;
+    const percentages = dates.map(date => totalTasks === 0 ? 0 : (taskHistory[date] / totalTasks) * 100);
 
-    if (habitChart) {
-        habitChart.destroy();
+    if (taskChart) {
+        taskChart.destroy();
     }
 
-    const ctx = document.getElementById('habit-chart').getContext('2d');
+    const ctx = document.getElementById('task-chart').getContext('2d');
     const currentLanguage = document.documentElement.lang || 'en';
-    habitChart = new Chart(ctx, {
+    taskChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: dates,
@@ -230,33 +230,33 @@ function updateHabitChart() {
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-    updateHabitChart();
+    updateTaskChart();
 }
 
 function saveToLocalStorage() {
-    localStorage.setItem('habits', JSON.stringify(habits));
-    localStorage.setItem('habitHistory', JSON.stringify(habitHistory));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
 }
 
 function loadFromLocalStorage() {
-    const storedHabits = localStorage.getItem('habits');
-    const storedHabitHistory = localStorage.getItem('habitHistory');
-    if (storedHabits) {
-        habits = JSON.parse(storedHabits);
+    const storedTasks = localStorage.getItem('tasks');
+    const storedTaskHistory = localStorage.getItem('taskHistory');
+    if (storedTasks) {
+        tasks = JSON.parse(storedTasks);
     }
-    if (storedHabitHistory) {
-        habitHistory = JSON.parse(storedHabitHistory);
+    if (storedTaskHistory) {
+        taskHistory = JSON.parse(storedTaskHistory);
     }
-    updateHabitList();
-    updateHabitChart();
+    updateTaskList();
+    updateTaskChart();
 }
 
 function resetData() {
-    habitHistory = {};
-    habits = [];
+    taskHistory = {};
+    tasks = [];
     saveToLocalStorage();
-    updateHabitList();
-    updateHabitChart();
+    updateTaskList();
+    updateTaskChart();
 }
 
 // JavaScript pour le menu hamburger
