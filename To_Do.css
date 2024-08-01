@@ -107,7 +107,7 @@ h1 {
 }
 
 /* Effet de focus pour le champ de texte */
-.habit-form input[type="text"]:focus {
+.task-form input[type="text"]:focus {
     border-color: #ffffff; /* Changement de couleur de bordure */
 }
 
@@ -128,7 +128,7 @@ th, td {
 }
 
 /* Style pour les lignes avec des habitudes faites */
-.habit-done-today {
+.task-done-today {
     background-color: #eee; /* Couleur de fond */
 }
 
