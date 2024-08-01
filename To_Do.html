@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Tâches</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Tâches</h1>
+        <button id="addTaskBtn">Ajouter une Tâche</button>
+    </header>
+    
+    <main>
+        <section id="taskList">
+            <!-- La liste des tâches sera insérée ici -->
+        </section>
+    </main>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter une Tâche</h2>
+            <form id="taskForm">
+                <label for="taskTitle">Titre :</label>
+                <input type="text" id="taskTitle" required>
+                <label for="taskDate">Date :</label>
+                <input type="date" id="taskDate">
+                <label for="taskDescription">Description :</label>
+                <textarea id="taskDescription"></textarea>
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
