@@ -43,13 +43,14 @@ header .logo img {
 
 /* Styles du menu hamburger */
 header .menu-toggle {
-    position: absolute;
+    position: fixed; /* Change position from absolute to fixed */
     top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
     left: 1rem;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    z-index: 1100; /* Ensure it is above the sidebar */
 }
 
 /* Styles des barres du menu hamburger */
