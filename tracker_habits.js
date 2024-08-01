@@ -258,3 +258,62 @@ function resetData() {
     updateHabitList();
     updateHabitChart();
 }
+
+var quotes = [
+        "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès. Si vous aimez ce que vous faites, vous réussirez. - Albert Schweitzer",
+        "N'abandonnez jamais un rêve juste à cause du temps qu'il faudra pour l'accomplir. Le temps passera de toute façon. - Earl Nightingale",
+        "Vous êtes plus courageux que vous ne le croyez, plus fort que vous ne le semblez, et plus intelligent que vous ne le pensez. - A.A. Milne",
+        "La seule limite à notre épanouissement de demain sera nos doutes d'aujourd'hui. - Franklin D. Roosevelt",
+        "La meilleure façon de prédire l'avenir est de le créer. - Peter Drucker",
+        "Le seul endroit où le succès vient avant le travail est dans le dictionnaire. - Vidal Sassoon",
+        "Ne regarde pas l'escalier tout entier. Commence juste par la première marche. - Martin Luther King Jr.",
+        "Le bonheur est un choix que vous pouvez faire à tout moment et en tout lieu. - Steve Maraboli",
+        "Vous ne trouvez jamais le bonheur en vous comparant aux autres. - Roy T. Bennett",
+        "La vie est ce qui arrive quand vous êtes occupé à faire d'autres plans. - John Lennon",
+        "Ne comptez pas les jours, faites que les jours comptent. - Muhammad Ali",
+        "Le succès consiste à aller d'échec en échec sans perdre son enthousiasme. - Winston Churchill",
+        "Il n'y a qu'une façon d'éviter les critiques : ne rien faire, ne rien dire et n'être rien. - Aristote",
+        "L'échec est l'épice qui donne sa saveur au succès. - Truman Capote",
+        "L'obstacle est le chemin. - Proverbe zen",
+        "La plus grande gloire n'est pas de ne jamais tomber, mais de se relever à chaque chute. - Confucius",
+        "Le bonheur n'est pas quelque chose de prêt à l'emploi. Il vient de vos propres actions. - Dalai Lama",
+        "La vie est courte, le monde est vaste. Plus vous tardez à commencer, moins il vous reste de temps pour profiter de l'aventure. - Anonyme",
+        "Les grandes choses ne sont jamais faites par une seule personne. Elles sont faites par une équipe de personnes. - Steve Jobs",
+        "L'avenir appartient à ceux qui croient en la beauté de leurs rêves. - Eleanor Roosevelt",
+        "Ce que l'esprit peut concevoir et croire, il peut le réaliser. - Napoleon Hill",
+        "Les opportunités ne se présentent pas. Vous les créez. - Chris Grosser",
+        "Votre temps est limité, ne le gâchez pas en menant une existence qui n'est pas la vôtre. - Steve Jobs",
+        "L'action est la clé fondamentale de tout succès. - Pablo Picasso",
+        "La réussite n'est pas finale, l'échec n'est pas fatal : c'est le courage de continuer qui compte. - Winston Churchill",
+        "La plus grande récompense de notre travail n'est pas ce que nous en obtenons, mais ce que nous devenons grâce à lui. - John Ruskin",
+        "Croyez que vous pouvez et vous êtes à mi-chemin. - Theodore Roosevelt",
+        "Le succès est de se coucher chaque soir en sachant que nous avons fait de notre mieux. - John Wooden",
+        "Ne rêvez pas de la réussite. Travaillez pour y parvenir. - Estée Lauder",
+        "La motivation vous sert de départ. L'habitude vous fait continuer. - Jim Ryun",
+        "Ne laissez jamais une mauvaise situation amener le pire de vous. Choisissez de rester positif et soyez fort. - Anonyme",
+        "Le plus grand plaisir dans la vie est de réaliser ce que les autres vous pensent incapable de réaliser. - Walter Bagehot",
+        "La vraie motivation vient de l'intérieur de vous. Personne d'autre ne peut vous motiver à devenir meilleur. - Anonyme",
+        "Les choses que vous faites pour vous-même disparaissent quand vous n'êtes plus là, mais les choses que vous faites pour les autres restent comme votre héritage. - Kalu Ndukwe Kalu",
+        "L'inspiration existe, mais elle doit vous trouver en train de travailler. - Pablo Picasso",
+        "La seule chose qui se dresse entre vous et votre objectif est la même histoire que vous continuez de vous raconter sur les raisons pour lesquelles vous ne pouvez pas l'atteindre. - Jordan Belfort",
+        "Pour réaliser de grandes choses, nous devons non seulement agir, mais aussi rêver; non seulement planifier, mais aussi croire. - Anatole France",
+        "Il est temps de vivre la vie que vous vous êtes imaginée. - Henry James",
+        "Le futur appartient à ceux qui se lèvent tôt. - Proverbe français",
+        "Il n'y a pas de vent favorable pour celui qui ne sait pas où il va. - Sénèque",
+        "L'enthousiasme est à la base de tout progrès. Avec lui, il n'y a que des réalisations. Sans lui, il n'y a que des excuses. - Henry Ford",
+        "La meilleure façon de commencer est d'arrêter de parler et de commencer à faire. - Walt Disney",
+        "La route vers la réussite est toujours en construction. - Lily Tomlin",
+        "Les gens qui réussissent ont des habitudes de réussite. - Brian Tracy",
+        "Les seules limites à nos réalisations de demain sont nos doutes d'aujourd'hui. - Franklin D. Roosevelt",
+        "Ne laissez jamais les petites querelles ruiner de grandes amitiés. - Anonyme",
+        "La vie est ce que nous en faisons, elle a toujours été, elle sera toujours. - Grand-mère Moses",
+        "Le succès est souvent atteint par ceux qui ne savent pas que l'échec est inévitable. - Coco Chanel"
+    ];
+
+    function displayRandomQuote() {
+        var quote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('quote').innerText = quote;
+    }
+
+    // Affiche une citation aléatoire à chaque chargement de la page
+    displayRandomQuote();
