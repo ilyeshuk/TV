@@ -9,92 +9,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const translations = {
     fr: {
-        title: "Suivi des Habitudes",
-        motivationText: "Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.",
-        habitLabel: "Habitude :",
+        title: "Gestion des Tâches",
+        motivationText: "Restez concentré sur vos objectifs en suivant vos tâches régulièrement. Cela renforce votre motivation et augmente vos chances de réussite.",
+        taskLabel: "Tâche :",
         addButtonText: "Ajouter",
-        habitColumn: "Habitude",
-        doneColumn: "Fait aujourd'hui",
-        darkModeButtonText: "Activer le mode sombre",
-        resetButtonText: "Réinitialiser les données",
-        chartLabel: "Pourcentage d'habitudes faites"
+        taskColumn: "Tâche",
+        doneColumn: "Fait Aujourd'hui",
+        darkModeButtonText: "Activer le Mode Sombre",
+        resetButtonText: "Réinitialiser les Données",
+        chartLabel: "Pourcentage de Tâches Réalisées"
     },
     en: {
-        title: "Habit Tracker",
-        motivationText: "Motivate yourself to achieve your goals. By regularly tracking your habits, you strengthen your determination and increase your chances of success.",
-        habitLabel: "Habit:",
+        title: "Task Manager",
+        motivationText: "Stay focused on your goals by regularly tracking your tasks. This boosts your motivation and increases your chances of success.",
+        taskLabel: "Task:",
         addButtonText: "Add",
-        habitColumn: "Habit",
+        taskColumn: "Task",
         doneColumn: "Done Today",
         darkModeButtonText: "Activate Dark Mode",
         resetButtonText: "Reset Data",
-        chartLabel: "Percentage of Habits Done"
+        chartLabel: "Percentage of Tasks Completed"
     },
     es: {
-        title: "Seguimiento de Hábitos",
-        motivationText: "Motívate para alcanzar tus objetivos. Al seguir tus hábitos regularmente, refuerzas tu determinación y aumentas tus posibilidades de éxito.",
-        habitLabel: "Hábito:",
+        title: "Gestor de Tareas",
+        motivationText: "Mantente enfocado en tus objetivos al seguir tus tareas regularmente. Esto refuerza tu motivación y aumenta tus posibilidades de éxito.",
+        taskLabel: "Tarea:",
         addButtonText: "Agregar",
-        habitColumn: "Hábito",
+        taskColumn: "Tarea",
         doneColumn: "Hecho Hoy",
         darkModeButtonText: "Activar Modo Oscuro",
         resetButtonText: "Restablecer Datos",
-        chartLabel: "Porcentaje de Hábitos Realizados"
+        chartLabel: "Porcentaje de Tareas Completadas"
     },
     zh: {
-        title: "习惯追踪",
-        motivationText: "激励自己实现目标。通过定期跟踪您的习惯，您会增强决心并增加成功的机会。",
-        habitLabel: "习惯：",
+        title: "任务管理器",
+        motivationText: "通过定期跟踪任务来保持目标进度。这可以提升您的动机并增加成功的机会。",
+        taskLabel: "任务：",
         addButtonText: "添加",
-        habitColumn: "习惯",
+        taskColumn: "任务",
         doneColumn: "今天完成",
         darkModeButtonText: "启用黑暗模式",
         resetButtonText: "重置数据",
-        chartLabel: "完成习惯的百分比"
+        chartLabel: "完成任务的百分比"
     },
     ar: {
-        title: "تتبع العادات",
-        motivationText: "حفز نفسك لتحقيق أهدافك. من خلال متابعة عاداتك بانتظام، تقوي عزيمتك وتزيد من فرص نجاحك.",
-        habitLabel: "عادة:",
+        title: "مدير المهام",
+        motivationText: "ابقَ مركزًا على أهدافك من خلال متابعة مهامك بانتظام. هذا يعزز حافزك ويزيد من فرص نجاحك.",
+        taskLabel: "مهمة:",
         addButtonText: "أضف",
-        habitColumn: "عادة",
+        taskColumn: "مهمة",
         doneColumn: "تم اليوم",
         darkModeButtonText: "تفعيل الوضع الداكن",
         resetButtonText: "إعادة تعيين البيانات",
-        chartLabel: "نسبة العادات المنجزة"
+        chartLabel: "نسبة المهام المنجزة"
     },
     hi: {
-        title: "आदत ट्रैकर",
-        motivationText: "अपने लक्ष्यों को प्राप्त करने के लिए खुद को प्रेरित करें। नियमित रूप से अपनी आदतों को ट्रैक करके, आप अपने दृढ़ संकल्प को मजबूत करते हैं और अपनी सफलता की संभावना बढ़ाते हैं।",
-        habitLabel: "आदत:",
+        title: "कार्य प्रबंधक",
+        motivationText: "अपने लक्ष्यों पर केंद्रित रहने के लिए नियमित रूप से अपने कार्यों को ट्रैक करें। इससे आपकी प्रेरणा बढ़ती है और सफलता की संभावनाएं बढ़ती हैं।",
+        taskLabel: "कार्य:",
         addButtonText: "जोड़ें",
-        habitColumn: "आदत",
-        doneColumn: "आज किया गया",
+        taskColumn: "कार्य",
+        doneColumn: "आज पूरा किया",
         darkModeButtonText: "डार्क मोड सक्रिय करें",
         resetButtonText: "डेटा रीसेट करें",
-        chartLabel: "पूरी की गई आदतों का प्रतिशत"
+        chartLabel: "पूरे किए गए कार्यों का प्रतिशत"
     },
     pt: {
-        title: "Rastreador de Hábitos",
-        motivationText: "Motiva-te a alcançar os teus objetivos. Ao acompanhar regularmente os teus hábitos, fortaleces a tua determinação e aumentas as tuas chances de sucesso.",
-        habitLabel: "Hábito:",
+        title: "Gerenciador de Tarefas",
+        motivationText: "Mantenha-se focado em seus objetivos ao acompanhar suas tarefas regularmente. Isso aumenta sua motivação e suas chances de sucesso.",
+        taskLabel: "Tarefa:",
         addButtonText: "Adicionar",
-        habitColumn: "Hábito",
+        taskColumn: "Tarefa",
         doneColumn: "Feito Hoje",
         darkModeButtonText: "Ativar Modo Escuro",
         resetButtonText: "Redefinir Dados",
-        chartLabel: "Porcentagem de Hábitos Realizados"
+        chartLabel: "Percentual de Tarefas Concluídas"
     },
     bn: {
-        title: "অভ্যাস ট্র্যাকার",
-        motivationText: "আপনার লক্ষ্য অর্জনের জন্য নিজেকে অনুপ্রাণিত করুন। আপনার অভ্যাসগুলি নিয়মিতভাবে ট্র্যাক করার মাধ্যমে, আপনি আপনার সংকল্পকে শক্তিশালী করেন এবং আপনার সাফল্যের সম্ভাবনাকে বাড়ান।",
-        habitLabel: "অভ্যাস:",
+        title: "টাস্ক ম্যানেজার",
+        motivationText: "নিয়মিতভাবে আপনার কাজগুলি ট্র্যাক করে আপনার লক্ষ্য অর্জনে মনোযোগ দিন। এটি আপনার মোটিভেশন বাড়ায় এবং সাফল্যের সম্ভাবনা বৃদ্ধি করে।",
+        taskLabel: "কাজ:",
         addButtonText: "যোগ করুন",
-        habitColumn: "অভ্যাস",
+        taskColumn: "কাজ",
         doneColumn: "আজ সম্পন্ন",
         darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
         resetButtonText: "ডেটা রিসেট করুন",
-        chartLabel: "সম্পন্ন অভ্যাসের শতাংশ"
+        chartLabel: "সম্পন্ন কাজের শতাংশ"
     }
 };
 
