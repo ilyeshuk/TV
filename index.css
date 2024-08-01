@@ -68,7 +68,7 @@ header .menu-toggle .bar {
     left: -250px; /* Hors de l'écran par défaut */
     width: 250px;
     height: 100%;
-    background-color: var(--accent-color);
+    background-color: #eee;
     transition: left 0.3s; /* Transition pour l'ouverture */
     display: flex;
     flex-direction: column;
