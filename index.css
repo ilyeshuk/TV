@@ -41,14 +41,16 @@ header .logo img {
     height: 50px; /* Ajustez la taille selon vos besoins */
 }
 
+/* Styles du menu hamburger */
 header .menu-toggle {
-    position: absolute;
-    top: 1rem;
+    position: fixed; /* Change position from absolute to fixed */
+    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
     left: 1rem;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    z-index: 1100; /* Ensure it is above the sidebar */
 }
 
 header .menu-toggle .bar {
@@ -88,6 +90,7 @@ header .menu-toggle .bar {
     transition: background-color 0.3s;
 }
 
+/* Changement de couleur des liens lors du survol */
 .sidebar a:hover {
     background-color: var(--primary-color);
     color: var(--background-light);
@@ -99,6 +102,7 @@ main {
     text-align: center;
 }
 
+/* Styles des sections dans le contenu principal */
 main section {
     background: white;
     padding: 2rem;
@@ -108,10 +112,12 @@ main section {
     margin: 2rem auto;
 }
 
+/* Styles des titres dans les sections */
 main section h2 {
     color: var(--accent-color);
 }
 
+/* Styles du texte d'introduction */
 .intro-text {
     font-size: 1.1rem;
     line-height: 1.6;
