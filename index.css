@@ -116,7 +116,7 @@ main section {
 
 /* Styles des titres dans les sections */
 main section h2 {
-    color: var(--accent-color);
+    color: #aaa;
 }
 
 /* Styles du texte d'introduction */
