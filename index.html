@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organisez votre vie de manière efficace et simple</title>
     <link rel="stylesheet" href="index.css"> <!-- Inclut le CSS spécifique -->
-    <!-- Incluez les liens pour les icônes et favicons ici -->
+    <!-- Inclusion des icônes -->
     <link rel="apple-touch-icon" sizes="57x57" href="/Logo/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/Logo/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/Logo/apple-icon-72x72.png">
@@ -25,19 +25,20 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+    <nav>
+        <a href="tracker_habits.html">Suivi des habitudes</a>
+        <a href="To_Do.html">Tâches à faire</a>
+    </nav>
     <header>
         <div class="logo">
-            <img src="/Logo/logo.png" alt="Logo du site"> <!-- Assurez-vous que le chemin est correct -->
+            <img src="/Logo/favicon-96x96.png" alt="Logo du site">
         </div>
-        <div class="menu-toggle" id="menuToggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+        <div class="menu-toggle" onclick="toggleSidebar()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
-        <nav id="sidebar" class="sidebar">
-            <a href="tracker_habits.html">Suivi des habitudes</a>
-            <a href="To_Do.html">Tâches à faire</a>
-        </nav>
+        <h1>Organisez votre vie de manière efficace et simple</h1> <!-- Balise H1 ajoutée -->
     </header>
     <main>
         <section>
@@ -45,14 +46,14 @@
             <p>Explorez nos différentes sections pour découvrir comment nous pouvons vous accompagner dans votre parcours vers un mieux-être et une meilleure gestion de vos objectifs personnels.</p>
         </section>
     </main>
+    <aside class="sidebar">
+        <a href="tracker_habits.html">Suivi des habitudes</a>
+        <a href="To_Do.html">Tâches à faire</a>
+    </aside>
     <script>
-        // JavaScript pour le menu hamburger
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            var sidebar = document.getElementById('sidebar');
-            var menuToggle = document.getElementById('menuToggle');
-            sidebar.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
     </script>
 </body>
 </html>
