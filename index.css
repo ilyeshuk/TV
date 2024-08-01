@@ -24,12 +24,16 @@ header {
     padding: 1rem;
     position: relative;
     background-color: var(--background-light);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombre légère */
+    /* Supprimer la bordure ou ombre en haut de l'en-tête */
+    border-bottom: none;
+    box-shadow: none;
 }
 
+/* Styles du logo dans l'en-tête */
 header .logo {
     position: absolute;
     left: 50%;
+    top: 1.5rem; /* Ajustez cette valeur pour descendre le logo si nécessaire */
     transform: translateX(-50%);
 }
 
