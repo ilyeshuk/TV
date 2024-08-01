@@ -277,3 +277,13 @@ main section {
 main section h2 {
     color: var(--accent-color);
 }
+
+/* Media queries pour les petits écrans */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem; /* Réduction de la taille du titre */
+    }
+    .motivation-text {
+        font-size: 0.875rem; /* Réduction de la taille du texte de motivation */
+    }
+}
