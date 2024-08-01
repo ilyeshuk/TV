@@ -145,7 +145,7 @@ body.dark-mode {
 
 body.dark-mode .habit-form input[type="text"],
 body.dark-mode .language-buttons button,
-body.dark-mode .task-form button,
+body.dark-mode .habit-form button,
 body.dark-mode .toggle-dark-mode-button,
 body.dark-mode .reset-data-button {
     background-color: #555; /* Couleur de fond pour les éléments en mode sombre */
@@ -154,7 +154,7 @@ body.dark-mode .reset-data-button {
 }
 
 body.dark-mode .language-buttons button:hover,
-body.dark-mode .task-form button:hover,
+body.dark-mode .habit-form button:hover,
 body.dark-mode .toggle-dark-mode-button:hover,
 body.dark-mode .reset-data-button:hover {
     background-color: #777; /* Changement de couleur de fond */
