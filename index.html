@@ -48,10 +48,11 @@
     <script>
         // JavaScript pour le menu hamburger
         document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
+            var sidebar = document.getElementById('sidebar');
+            var menuToggle = document.getElementById('menuToggle');
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
     </script>
 </body>
 </html>
-
-
