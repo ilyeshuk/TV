@@ -23,23 +23,28 @@ header {
     justify-content: center;
     padding: 1rem;
     position: relative;
-    background-color: var(--background-light);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombre légère */
+    background-color: var(--background-light); /* Fond blanc */
+    /* Supprimer la bordure ou ombre en haut de l'en-tête */
+    border-bottom: none;
+    box-shadow: none;
 }
 
+/* Styles du logo dans l'en-tête */
 header .logo {
     position: absolute;
     left: 50%;
+    top: 1.5rem; /* Ajustez cette valeur pour descendre le logo si nécessaire */
     transform: translateX(-50%);
 }
 
 header .logo img {
-    height: 25px; /* Ajustez la taille selon vos besoins */
+    height: 50px; /* Ajustez la taille selon vos besoins */
 }
 
+/* Styles du menu hamburger */
 header .menu-toggle {
     position: absolute;
-    top: 1rem;
+    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
     left: 1rem;
     cursor: pointer;
     display: flex;
@@ -47,6 +52,7 @@ header .menu-toggle {
     gap: 4px;
 }
 
+/* Styles des barres du menu hamburger */
 header .menu-toggle .bar {
     width: 30px; /* Largeur des barres */
     height: 3px; /* Hauteur des barres */
@@ -55,7 +61,7 @@ header .menu-toggle .bar {
     transition: background-color 0.3s, transform 0.3s; /* Transitions pour les effets */
 }
 
-/* Styles du menu latéral */
+/* Styles du menu latéral (sidebar) */
 .sidebar {
     position: fixed;
     top: 0;
@@ -72,10 +78,12 @@ header .menu-toggle .bar {
     z-index: 1000;
 }
 
+/* Affichage du menu latéral lorsqu'il a la classe 'active' */
 .sidebar.active {
     left: 0; /* Affiche le menu lorsque l'élément a la classe 'active' */
 }
 
+/* Styles des liens dans le menu latéral */
 .sidebar a {
     color: var(--primary-color);
     text-decoration: none;
@@ -84,6 +92,7 @@ header .menu-toggle .bar {
     transition: background-color 0.3s;
 }
 
+/* Changement de couleur des liens lors du survol */
 .sidebar a:hover {
     background-color: var(--primary-color);
     color: var(--background-light);
@@ -95,6 +104,7 @@ main {
     text-align: center;
 }
 
+/* Styles des sections dans le contenu principal */
 main section {
     background: white;
     padding: 2rem;
@@ -104,10 +114,12 @@ main section {
     margin: 2rem auto;
 }
 
+/* Styles des titres dans les sections */
 main section h2 {
     color: var(--accent-color);
 }
 
+/* Styles du texte d'introduction */
 .intro-text {
     font-size: 1.1rem;
     line-height: 1.6;
