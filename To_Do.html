@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tâches à afaire</title>
+    <title>Suivi des Habitudes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Lien vers le CSS spécifique -->
@@ -18,7 +18,7 @@
         </div>
         <nav id="sidebar" class="sidebar">
             <a href="index.html">Accueil</a>
-            <a href="tracker_habits.html">Suivi des tâches</a>
+            <a href="To_Do.html">Tâches à faire</a>
         </nav>
     </header>
     <div class="language-buttons">
@@ -33,12 +33,12 @@
     </div>
     <div class="content">
         <div class="left-content">
-            <h1 id="title">Gestion des Tâches</h1>
+            <h1 id="title">Suivi des Habitudes</h1>
             <p id="motivation-text" class="motivation-text">
-                Restez concentré sur vos objectifs en suivant vos tâches régulièrement. Cela renforce votre motivation et augmente vos chances de réussite.
+                Motivez-vous pour atteindre vos objectifs. En suivant vos habitudes régulièrement, vous renforcez votre détermination et augmentez vos chances de succès.
             </p>
             <form class="habit-form" onsubmit="return addHabit()">
-                <label for="habit" id="habit-label">Tâche :</label>
+                <label for="habit" id="habit-label">Habitude :</label>
                 <input type="text" id="habit" required>
                 <button type="submit"><i class="fas fa-plus"></i> <span id="add-button-text">Ajouter</span></button>
             </form>
@@ -46,7 +46,7 @@
             <table id="habit-table">
                 <thead>
                     <tr>
-                        <th id="habit-column">Tâche</th>
+                        <th id="habit-column">Habitude</th>
                         <th id="done-column">Fait aujourd'hui</th>
                     </tr>
                 </thead>
@@ -63,8 +63,12 @@
             <canvas id="habit-chart" width="400" height="300"></canvas>
         </div>
     </div>
-    
+    <!-- Citation à ajouter dans le corps -->
+<div id="quoteContainer" class="mt-4">
+    <blockquote id="quote" class="blockquote text-center"></blockquote>
+</div>
+
     <!-- Lien vers le JavaScript spécifique -->
-    <script src="tracker_habits.js"></script>
+    <script src="To_Do.js"></script>
 </body>
 </html>
