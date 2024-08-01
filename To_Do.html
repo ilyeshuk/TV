@@ -37,20 +37,20 @@
             <p id="motivation-text" class="motivation-text">
                 Restez concentré sur vos objectifs en suivant vos tâches régulièrement. Cela renforce votre motivation et augmente vos chances de réussite.
             </p>
-            <form class="habit-form" onsubmit="return addHabit()">
-                <label for="habit" id="habit-label">Tâche :</label>
-                <input type="text" id="habit" required>
+            <form class="task-form" onsubmit="return addTask()">
+                <label for="task" id="task-label">Tâche :</label>
+                <input type="text" id="task" required>
                 <button type="submit"><i class="fas fa-plus"></i> <span id="add-button-text">Ajouter</span></button>
             </form>
             
-            <table id="habit-table">
+            <table id="task-table">
                 <thead>
                     <tr>
-                        <th id="habit-column">Tâche</th>
+                        <th id="task-column">Tâche</th>
                         <th id="done-column">Fait aujourd'hui</th>
                     </tr>
                 </thead>
-                <tbody id="habit-list">
+                <tbody id="task-list">
                     <!-- Les lignes seront ajoutées dynamiquement ici -->
                 </tbody>
             </table>
@@ -60,7 +60,7 @@
         </div>
         
         <div class="right-content">
-            <canvas id="habit-chart" width="400" height="300"></canvas>
+            <canvas id="task-chart" width="400" height="300"></canvas>
         </div>
     </div>
 
