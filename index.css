@@ -1,176 +1,174 @@
 /* Variables : Définition des couleurs */
 :root {
-    --primary-color: #333;
-    --secondary-color: #666;
-    --background-light: #ffffff; /* Fond blanc */
-    --accent-color: #ddd;
+    --primary-color: #333; /* Couleur principale */
+    --secondary-color: #666; /* Couleur secondaire */
+    --background-light: #ffffff; /* Couleur de fond claire */
+    --accent-color: #ddd; /* Couleur d'accent */
 }
 
 /* Style de base pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-light); /* Fond blanc */
-    color: var(--primary-color);
+    font-family: Arial, sans-serif; /* Police de caractères */
+    margin: 0; /* Marge */
+    padding: 0; /* Remplissage */
+    background-color: var(--background-light); /* Couleur de fond */
+    color: var(--primary-color); /* Couleur du texte */
     overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
 /* Styles de l'en-tête */
 header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
-    background-color: var(--background-light);
-    /* Supprimer la bordure ou ombre en haut de l'en-tête */
-    border-bottom: none;
-    box-shadow: none;
+    display: flex; /* Utilise Flexbox pour l'alignement */
+    align-items: center; /* Centre les éléments verticalement */
+    justify-content: center; /* Centre les éléments horizontalement */
+    padding: 1rem; /* Remplissage */
+    position: relative; /* Position relative */
+    background-color: var(--background-light); /* Couleur de fond */
+    border-bottom: none; /* Supprime la bordure inférieure */
+    box-shadow: none; /* Supprime l'ombre */
 }
 
 /* Styles du logo dans l'en-tête */
 header .logo {
-    position: absolute;
-    left: 50%;
-    top: 1.5rem; /* Ajustez cette valeur pour descendre le logo si nécessaire */
-    transform: translateX(-50%);
+    position: absolute; /* Position absolue */
+    left: 50%; /* Centre horizontalement */
+    top: 1.5rem; /* Distance du haut */
+    transform: translateX(-50%); /* Centre horizontalement avec translation */
 }
 
 header .logo img {
-    height: 50px; /* Ajustez la taille selon vos besoins */
+    height: 50px; /* Hauteur de l'image */
 }
 
 /* Styles du menu hamburger */
 header .menu-toggle {
-    position: fixed; /* Change position from absolute to fixed */
-    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
-    left: 1rem;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    z-index: 1100; /* Ensure it is above the sidebar */
+    position: fixed; /* Position fixe */
+    top: 1.5rem; /* Distance du haut */
+    left: 1rem; /* Distance de la gauche */
+    cursor: pointer; /* Curseur en forme de pointeur */
+    display: flex; /* Utilise Flexbox */
+    flex-direction: column; /* Colonnes */
+    gap: 4px; /* Espacement entre les barres */
+    z-index: 1100; /* Niveau de superposition */
 }
 
 header .menu-toggle .bar {
     width: 30px; /* Largeur des barres */
     height: 3px; /* Hauteur des barres */
-    background-color: var(--primary-color);
-    border-radius: 3px;
+    background-color: var(--primary-color); /* Couleur de fond */
+    border-radius: 3px; /* Bords arrondis */
     transition: background-color 0.3s, transform 0.3s; /* Transitions pour les effets */
 }
 
 /* Styles du menu latéral */
 .sidebar {
-    position: fixed;
-    top: 0;
+    position: fixed; /* Position fixe */
+    top: 0; /* En haut */
     left: -250px; /* Hors de l'écran par défaut */
-    width: 250px;
-    height: 100%;
-    background-color: #eee;
+    width: 250px; /* Largeur */
+    height: 100%; /* Hauteur complète */
+    background-color: #eee; /* Couleur de fond */
     transition: left 0.3s; /* Transition pour l'ouverture */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Ombre légère pour le menu */
-    z-index: 1000;
+    display: flex; /* Utilise Flexbox */
+    flex-direction: column; /* Colonnes */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center; /* Centre les éléments verticalement */
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Ombre légère */
+    z-index: 1000; /* Niveau de superposition */
 }
 
 .sidebar.active {
-    left: 0; /* Affiche le menu lorsque l'élément a la classe 'active' */
+    left: 0; /* Affiche le menu */
 }
 
 .sidebar a {
-    color: var(--primary-color);
-    text-decoration: none;
-    padding: 1rem;
-    font-size: 1.2rem;
-    transition: background-color 0.3s;
+    color: var(--primary-color); /* Couleur du texte */
+    text-decoration: none; /* Sans décoration de texte */
+    padding: 1rem; /* Remplissage */
+    font-size: 1.2rem; /* Taille de la police */
+    transition: background-color 0.3s; /* Transition de couleur de fond */
 }
 
 /* Changement de couleur des liens lors du survol */
 .sidebar a:hover {
-    background-color: var(--primary-color);
-    color: var(--background-light);
+    background-color: var(--primary-color); /* Couleur de fond au survol */
+    color: var(--background-light); /* Couleur du texte au survol */
 }
 
 /* Styles du contenu principal */
 main {
-    padding: 2rem;
-    text-align: center;
+    padding: 2rem; /* Remplissage */
+    text-align: center; /* Texte centré */
 }
 
 /* Styles des sections dans le contenu principal */
 main section {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin: 2rem auto;
+    background: white; /* Couleur de fond */
+    padding: 2rem; /* Remplissage */
+    border-radius: 10px; /* Bords arrondis */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombre */
+    max-width: 800px; /* Largeur maximale */
+    margin: 2rem auto; /* Marges automatique */
 }
 
 /* Styles des titres dans les sections */
 main section h1, main section h2 {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Couleur du texte */
 }
 
 /* Styles des titres principaux */
 h1 {
-    font-size: 2.5em;
-    margin: 20px 0;
-    color: var(--primary-color);
-    text-align: center;
+    font-size: 2.5em; /* Taille de la police */
+    margin: 20px 0; /* Marges */
+    color: var(--primary-color); /* Couleur du texte */
+    text-align: center; /* Texte centré */
 }
 
 /* Styles des sous-titres */
 h2 {
-    font-size: 1.25em;
-    margin: 15px 0;
-    color: var(--secondary-color);
-    text-align: center;
+    font-size: 1.25em; /* Taille de la police */
+    margin: 15px 0; /* Marges */
+    color: var(--secondary-color); /* Couleur du texte */
+    text-align: center; /* Texte centré */
 }
 
 /* Styles du texte d'introduction */
 .intro-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--secondary-color);
+    font-size: 1.1rem; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne */
+    color: var(--secondary-color); /* Couleur du texte */
 }
 
 /* Conteneur principal pour les sections */
 .main-sections {
-    display: flex; /* Utilise Flexbox pour aligner les sections côte à côte */
+    display: flex; /* Utilise Flexbox */
     gap: 20px; /* Espace entre les sections */
-    margin: 2rem auto;
+    margin: 2rem auto; /* Marges automatique */
 }
 
 /* Styles pour chaque section */
 .main-sections section {
-    flex: 1; /* Chaque section prendra une part égale de l'espace disponible */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    flex: 1; /* Chaque section prend une part égale de l'espace disponible */
+    padding: 2rem; /* Remplissage */
+    border-radius: 10px; /* Bords arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    max-width: 800px; /* Largeur maximale */
 }
-
 
 /* Pour le menu toggle sur mobile */
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: block; /* Affiche le menu toggle */
     }
     .sidebar {
-        display: none;
-        flex-direction: column;
+        display: none; /* Cache le menu latéral */
+        flex-direction: column; /* Colonnes */
     }
     .sidebar a {
-        padding: 10px;
-        text-align: center;
+        padding: 10px; /* Remplissage */
+        text-align: center; /* Texte centré */
     }
     .sidebar a:hover {
-        background-color: #555;
+        background-color: #555; /* Couleur de fond au survol */
     }
 }
