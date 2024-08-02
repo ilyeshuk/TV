@@ -154,6 +154,7 @@ h2 {
     border: 1px solid #ddd; /* Ajout d'une bordure pour une meilleure visibilité */
     border-radius: 5px; /* Coins arrondis */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    max-width: 800px;
 }
 
 
