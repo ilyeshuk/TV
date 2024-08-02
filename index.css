@@ -140,6 +140,23 @@ h2 {
     color: var(--secondary-color);
 }
 
+/* Conteneur principal pour les sections */
+.main-sections {
+    display: flex; /* Utilise Flexbox pour aligner les sections côte à côte */
+    gap: 20px; /* Espace entre les sections */
+    margin: 20px 0; /* Marge autour des sections */
+}
+
+/* Styles pour chaque section */
+.main-sections section {
+    flex: 1; /* Chaque section prendra une part égale de l'espace disponible */
+    padding: 10px;
+    border: 1px solid #ddd; /* Ajout d'une bordure pour une meilleure visibilité */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+
 /* Pour le menu toggle sur mobile */
 @media (max-width: 768px) {
     .menu-toggle {
