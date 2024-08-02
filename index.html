@@ -58,6 +58,12 @@
     </script>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
+    <!-- Déclaration de l'organisation -->
+    <div itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="TrackVibe">
+        <meta itemprop="url" content="https://trackvibe.netlify.app">
+        <meta itemprop="logo" content="https://trackvibe.netlify.app/Logo/logo.png">
+    </div>
     <header>
         <div class="logo" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
             <img src="/Logo/logo.png" alt="Logo du site" itemprop="logo"> <!-- Assurez-vous que le chemin est correct -->
@@ -90,6 +96,27 @@
             </section>
         </div>
     </main>
+    <!-- BreadcrumbList pour le fil d'Ariane -->
+    <div itemscope itemtype="https://schema.org/BreadcrumbList">
+        <div itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="1">
+            <a itemprop="item" href="https://trackvibe.netlify.app">
+                <span itemprop="name">Accueil</span>
+            </a>
+        </div>
+        <div itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="2">
+            <a itemprop="item" href="tracker_habits.html">
+                <span itemprop="name">Suivi des habitudes</span>
+            </a>
+        </div>
+        <div itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="3">
+            <a itemprop="item" href="To_Do.html">
+                <span itemprop="name">Tâches à faire</span>
+            </a>
+        </div>
+    </div>
     <script src="index.js"></script> <!-- Lien vers le fichier JavaScript externe -->
 </body>
 </html>
