@@ -37,12 +37,31 @@
       gtag('js', new Date());
 
       gtag('config', 'G-6QF21B4SPX');
-</script>
+    </script>
+    <!-- Données Structurées JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Organisez votre vie de manière efficace et simple",
+      "url": "https://trackvibe.netlify.app",
+      "description": "Découvrez comment suivre et gérer vos habitudes et tâches pour atteindre vos objectifs plus facilement avec notre outil innovant.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ilyes El Ghamami",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trackvibe.netlify.app/Logo/logo.png"
+        }
+      }
+    }
+    </script>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
     <header>
-        <div class="logo">
-            <img src="/Logo/logo.png" alt="Logo du site"> <!-- Assurez-vous que le chemin est correct -->
+        <div class="logo" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <img src="/Logo/logo.png" alt="Logo du site" itemprop="logo"> <!-- Assurez-vous que le chemin est correct -->
+            <meta itemprop="name" content="TrackVibe">
         </div>
         <div class="menu-toggle" id="menuToggle">
             <span class="bar"></span>
@@ -55,19 +74,19 @@
         </nav>
     </header>
     <main>
-        <section>
-            <h1>Bienvenue sur TrackVibe</h1>
-            <h2>Découvrez nos fonctionnalités</h2>
-            <p>Explorez nos différentes sections pour découvrir comment nous pouvons vous accompagner dans votre parcours vers un mieux-être et une meilleure gestion de vos objectifs personnels.</p>
+        <section itemprop="mainEntity" itemscope itemtype="https://schema.org/Article">
+            <h1 itemprop="headline">Bienvenue sur TrackVibe</h1>
+            <h2 itemprop="alternativeHeadline">Découvrez nos fonctionnalités</h2>
+            <p itemprop="description">Explorez nos différentes sections pour découvrir comment nous pouvons vous accompagner dans votre parcours vers un mieux-être et une meilleure gestion de vos objectifs personnels.</p>
         </section>
         <div class="main-sections">
-            <section>
-                <h3>Suivi des habitudes</h3>
-                <p>Suivez vos habitudes quotidiennes et visualisez vos progrès grâce à des graphiques et des rapports détaillés.</p>
+            <section itemprop="hasPart" itemscope itemtype="https://schema.org/Article">
+                <h3 itemprop="headline">Suivi des habitudes</h3>
+                <p itemprop="description">Suivez vos habitudes quotidiennes et visualisez vos progrès grâce à des graphiques et des rapports détaillés.</p>
             </section>
-            <section>
-                <h4>Gestion des tâches</h4>
-                <p>Organisez vos tâches à faire avec des listes et des rappels pour ne jamais manquer une échéance.</p>
+            <section itemprop="hasPart" itemscope itemtype="https://schema.org/Article">
+                <h4 itemprop="headline">Gestion des tâches</h4>
+                <p itemprop="description">Organisez vos tâches à faire avec des listes et des rappels pour ne jamais manquer une échéance.</p>
             </section>
         </div>
     </main>
