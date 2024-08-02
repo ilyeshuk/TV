@@ -113,8 +113,24 @@ main section {
 }
 
 /* Styles des titres dans les sections */
-main section h2 {
-    color: var(--accent-color);
+main section h1, main section h2 {
+    color: var(--primary-color);
+}
+
+/* Styles des titres principaux */
+h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+/* Styles des sous-titres */
+h2 {
+    font-size: 2em;
+    margin: 15px 0;
+    color: var(--secondary-color);
+    text-align: center;
 }
 
 /* Styles du texte d'introduction */
