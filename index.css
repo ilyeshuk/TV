@@ -127,7 +127,7 @@ h1 {
 
 /* Styles des sous-titres */
 h2 {
-    font-size: 1em;
+    font-size: 1.25em;
     margin: 15px 0;
     color: var(--secondary-color);
     text-align: center;
