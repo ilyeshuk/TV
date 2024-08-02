@@ -139,3 +139,21 @@ h2 {
     line-height: 1.6;
     color: var(--secondary-color);
 }
+
+/* Pour le menu toggle sur mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .sidebar {
+        display: none;
+        flex-direction: column;
+    }
+    .sidebar a {
+        padding: 10px;
+        text-align: center;
+    }
+    .sidebar a:hover {
+        background-color: #555;
+    }
+}
