@@ -1,4 +1,4 @@
-/* Variables : Définition des couleurs et des durées de transition */
+  /* Variables : Définition des couleurs et des durées de transition */
 :root {
     --primary-color: #333; /* Couleur principale du texte */
     --secondary-color: #f0f0f0; /* Couleur secondaire pour les fonds et les textes sur fond sombre */
