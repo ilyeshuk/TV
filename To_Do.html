@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Tâches</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.11.3/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.11.3/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.11.3/main.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Lien vers le CSS spécifique -->
     <link rel="stylesheet" href="To_Do.css"> 
 </head>
 <body>
@@ -60,11 +62,10 @@
         </div>
         
         <div class="right-content">
-            <canvas id="task-chart" width="400" height="300"></canvas>
+            <div id="calendar"></div>
         </div>
     </div>
 
-    <!-- Lien vers le JavaScript spécifique -->
     <script src="To_Do.js"></script>
 </body>
 </html>
