@@ -287,3 +287,10 @@ main section h2 {
         font-size: 0.875rem; /* Réduction de la taille du texte de motivation */
     }
 }
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
