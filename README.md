@@ -9,6 +9,7 @@ Here are some features I'd like to add at my website (feel free to suggest your 
   - Make the code more secure without security vulnerability
   - Make the interface more modern
   - Saving user data legally with the permision of the user to a database with authentication.
+  - Custom theme
 
 Here are some features I'd like to add at my homepage (feel free to suggest your own ideas):
   - The homepage is to empty
