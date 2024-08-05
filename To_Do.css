@@ -1,100 +1,289 @@
-/* Variables : Définition des couleurs */
+/* Variables : Définition des couleurs et des durées de transition */
 :root {
-    --primary-color: #333;
-    --secondary-color: #666;
-    --background-light: #f9f9f9;
-    --accent-color: #ddd;
+    --primary-color: #333; /* Couleur principale du texte */
+    --secondary-color: #f0f0f0; /* Couleur secondaire pour les fonds et les textes sur fond sombre */
+    --background-light: #f9f9f9; /* Couleur de fond pour le mode clair */
+    --background-dark: #333; /* Couleur de fond pour le mode sombre */
+    --accent-color: #ddd; /* Couleur d'accent pour les interactions */
+    --transition-duration: 0.3s; /* Durée des transitions */
 }
 
 /* Style de base pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background-light);
-    color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Police de caractère */
+    max-width: 1200px; /* Largeur maximale */
+    margin: 0 auto; /* Centrage horizontal */
+    padding: 20px; /* Padding interne */
+    text-align: center; /* Alignement du texte */
+    background-color: var(--background-light); /* Couleur de fond en mode clair */
+    color: var(--primary-color); /* Couleur du texte */
+    transition: background-color var(--transition-duration), color var(--transition-duration); /* Transitions pour les changements de couleur */
 }
 
-/* Conteneur principal */
-.container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+/* Mise en page principale avec une grille adaptable */
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille réactive */
+    gap: 20px; /* Espacement entre les éléments */
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions de l'élément */
+}
+
+/* Styles pour les boutons de changement de langue */
+.language-buttons {
+    display: flex; /* Affichage en flexbox */
+    justify-content: center; /* Centrage horizontal des boutons */
+    gap: 10px; /* Espacement entre les boutons */
+    margin-bottom: 20px;
+}
+
+.language-buttons button,
+.task-form button,
+.toggle-dark-mode-button,
+.reset-data-button {
+    padding: 10px 20px; /* Padding interne */
+    background-color: var(--secondary-color); /* Couleur de fond */
+    color: var(--primary-color); /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bordures arrondies */
+    cursor: pointer; /* Curseur en mode pointeur */
+    transition: background-color var(--transition-duration), color var(--transition-duration), transform var(--transition-duration); /* Transitions pour les interactions */
+}
+
+/* Effet de survol pour les boutons */
+.language-buttons button:hover,
+.task-form button:hover,
+.toggle-dark-mode-button:hover,
+.reset-data-button:hover {
+    background-color: #999; /* Changement de couleur de fond */
+    color: var(--secondary-color); /* Changement de couleur du texte */
+    transform: scale(1.05); /* Agrandissement léger */
+}
+
+/* Alignement du contenu à gauche */
+.left-content {
+    text-align: left;
+}
+
+/* Centrage du contenu à droite */
+.right-content {
     text-align: center;
 }
 
-/* Style du titre */
+/* Style pour les titres */
 h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 2rem; /* Utilisation de rem pour la taille du texte */
 }
 
-/* Style du conteneur d'entrée */
-.input-container {
+/* Style pour le texte de motivation */
+.motivation-text {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 1rem; /* Utilisation de rem pour la taille du texte */
+}
+
+/* Style pour le formulaire d'ajout de tâches */
+.task-form {
+    display: flex; /* Affichage en flexbox */
+    align-items: flex-end; /* Alignement en bas */
+    gap: 10px; /* Espacement entre les éléments */
+    margin-bottom: 20px;
+}
+
+.task-form label {
+    flex: 0 0 80px; /* Largeur fixe de 80px */
+    text-align: right; /* Alignement du texte à droite */
+}
+
+/* Style pour le champ de texte */
+.task-form input[type="text"] {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding: 10px; /* Padding interne */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Bordures arrondies */
+    transition: border-color var(--transition-duration); /* Transition pour la bordure */
+}
+
+/* Effet de focus pour le champ de texte */
+.task-form input[type="text"]:focus {
+    border-color: #ffffff; /* Changement de couleur de bordure */
+}
+
+/* Style pour les tableaux */
+table {
+    width: 100%; /* Largeur complète */
+    border-collapse: collapse; /* Fusion des bordures */
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Style pour les cellules du tableau */
+th, td {
+    border: 1px solid #ccc; /* Bordure grise */
+    padding: 10px; /* Padding interne */
+    text-align: center; /* Alignement centré */
+}
+
+/* Style pour les lignes avec des tâches faites */
+.task-done-today {
+    background-color: #eee; /* Couleur de fond */
+}
+
+/* Style pour le graphique */
+canvas {
+    margin-top: 20px;
+}
+
+/* Thème sombre */
+body.dark-mode {
+    background-color: var(--background-dark); /* Couleur de fond en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte en mode sombre */
+}
+
+body.dark-mode .task-form input[type="text"],
+body.dark-mode .language-buttons button,
+body.dark-mode .task-form button,
+body.dark-mode .toggle-dark-mode-button,
+body.dark-mode .reset-data-button {
+    background-color: #555; /* Couleur de fond pour les éléments en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte */
+    border: 1px solid #888; /* Bordure grise foncée */
+}
+
+body.dark-mode .language-buttons button:hover,
+body.dark-mode .task-form button:hover,
+body.dark-mode .toggle-dark-mode-button:hover,
+body.dark-mode .reset-data-button:hover {
+    background-color: #777; /* Changement de couleur de fond */
+}
+
+body.dark-mode table {
+    border-color: #888; /* Couleur de bordure pour les tableaux en mode sombre */
+}
+
+body.dark-mode .task-done-today {
+    background-color: #555; /* Couleur de fond pour les habitudes faites en mode sombre */
+    color: var(--secondary-color); /* Couleur du texte */
+}
+
+body.dark-mode h1,
+body.dark-mode .motivation-text {
+    color: var(--secondary-color); /* Couleur du texte pour les titres et le texte de motivation */
+}
+
+body.dark-mode .chartjs-text {
+    fill: var(--secondary-color) !important; /* Couleur du texte du graphique en mode sombre */
+}
+
+body.dark-mode .chartjs-tick {
+    color: var(--secondary-color) !important; /* Couleur des graduations du graphique en mode sombre */
+}
+
+body.dark-mode .chartjs-border {
+    stroke: var(--secondary-color) !important; /* Couleur des bordures du graphique en mode sombre */
+}
+
+/* Style pour le bouton de suppression */
+.delete-button {
+    background-color: transparent; /* Pas de couleur de fond */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur en mode pointeur */
+    transition: color var(--transition-duration); /* Transition pour la couleur */
+    color: #999; /* Couleur initiale */
+    padding: 0; /* Pas de padding */
+}
+
+.delete-button:hover {
+    color: var(--accent-color); /* Changement de couleur au survol */
+}
+
+/* Styles du menu hamburger */
+header .menu-toggle {
+    position: fixed; /* Change position from absolute to fixed */
+    top: 1.5rem; /* Ajustez pour aligner le menu hamburger avec le logo */
+    left: 1rem;
+    cursor: pointer;
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1100; /* Ensure it is above the sidebar */
 }
 
-/* Style de l'entrée */
-#taskInput {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid var(--accent-color);
-    border-radius: 5px;
-}
-
-/* Style du bouton */
-#addTaskBtn {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
+header .menu-toggle .bar {
+    width: 30px; /* Largeur des barres */
+    height: 3px; /* Hauteur des barres */
     background-color: var(--primary-color);
-    color: white;
-    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, transform 0.3s; /* Transitions pour les effets */
 }
 
-#addTaskBtn:hover {
-    background-color: var(--secondary-color);
-}
-
-/* Style de la liste de tâches */
-#taskList {
-    list-style-type: none;
-    padding: 0;
-}
-
-/* Style des éléments de la liste */
-.task-item {
-    background-color: var(--accent-color);
-    padding: 0.5rem;
-    border-radius: 5px;
+/* Styles du menu latéral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hors de l'écran par défaut */
+    width: 250px;
+    height: 100%;
+    background-color: #eee;
+    transition: left 0.3s; /* Transition pour l'ouverture */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 0.5rem;
+    justify-content: center;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1); /* Ombre légère pour le menu */
+    z-index: 1000;
 }
 
-/* Style des boutons de suppression */
-.delete-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 0.2rem 0.5rem;
+.sidebar.active {
+    left: 0; /* Affiche le menu lorsque l'élément a la classe 'active' */
 }
 
-.delete-btn:hover {
-    background-color: darkred;
+.sidebar a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
 }
 
-/* Style des tâches terminées */
-.completed {
-    text-decoration: line-through;
-    color: var(--secondary-color);
+/* Changement de couleur des liens lors du survol */
+.sidebar a:hover {
+    background-color: var(--primary-color);
+    color: var(--background-light);
+}
+
+/* Styles du contenu principal */
+main {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Styles des sections dans le contenu principal */
+main section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+/* Styles des titres dans les sections */
+main section h2 {
+    color: var(--accent-color);
+}
+
+/* Media queries pour les petits écrans */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem; /* Réduction de la taille du titre */
+    }
+    .motivation-text {
+        font-size: 0.875rem; /* Réduction de la taille du texte de motivation */
+    }
 }
