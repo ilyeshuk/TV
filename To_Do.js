@@ -266,3 +266,100 @@ document.getElementById('menuToggle').addEventListener('click', function() {
     sidebar.classList.toggle('active');
     menuToggle.classList.toggle('active');
 });
+
+let calendar;
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
+    document.querySelector('.task-form').addEventListener('submit', addTask);
+    initCalendar();
+});
+
+function initCalendar() {
+    const calendarEl = document.getElementById('calendar');
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: getCalendarEvents(),
+        editable: true,
+        eventDrop: handleEventDrop,
+        eventResize: handleEventResize
+    });
+
+    calendar.render();
+}
+
+function getCalendarEvents() {
+    return tasks.map(task => {
+        const eventDates = task.dates || [];
+        return eventDates.map(date => ({
+            title: task.name,
+            start: date.start,
+            end: date.end || date.start
+        }));
+    }).flat();
+}
+
+function handleEventDrop(info) {
+    const task = tasks.find(t => t.name === info.event.title);
+    if (task) {
+        task.dates = [{
+            start: info.event.startStr,
+            end: info.event.endStr
+        }];
+        saveToLocalStorage();
+    }
+}
+
+function handleEventResize(info) {
+    const task = tasks.find(t => t.name === info.event.title);
+    if (task) {
+        task.dates = [{
+            start: info.event.startStr,
+            end: info.event.endStr
+        }];
+        saveToLocalStorage();
+    }
+}
+
+function addTask(event) {
+    event.preventDefault();
+
+    const taskInput = document.getElementById('task');
+    const task = taskInput.value.trim();
+    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
+
+    tasks.push({ name: task, done: false, dates: [] });
+    updateTaskList();
+    updateCalendar();
+    saveToLocalStorage();
+
+    taskInput.value = '';
+    return false;
+}
+
+function updateTaskList() {
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
+
+    tasks.forEach((task, index) => {
+        const row = taskList.insertRow();
+        row.innerHTML = `
+            <td>${task.name}</td>
+            <td>
+                <input type="checkbox" onchange="toggleTask(${index}, this)" ${task.done ? 'checked' : ''}>
+                <button class="delete-button" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        `;
+        if (task.done) {
+            row.classList.add('task-done-today');
+        }
+    });
+}
+
+function updateCalendar() {
+    if (calendar) {
+        calendar.removeAllEvents();
+        calendar.addEventSource(getCalendarEvents());
+    }
+}
