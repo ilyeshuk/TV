@@ -1,3 +1,12 @@
+let tasks = [];
+let taskHistory = {};
+let taskChart;
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
+    document.querySelector('.task-form').addEventListener('submit', addTask);
+});
+
 const translations = {
     fr: {
         title: "Gestion des Tâches",
@@ -88,3 +97,172 @@ const translations = {
         chartLabel: "সম্পন্ন কাজের শতাংশ"
     }
 };
+
+function translatePage(language) {
+    const translation = translations[language];
+    document.getElementById('title').innerText = translation.title;
+    document.getElementById('motivation-text').innerText = translation.motivationText;
+    document.getElementById('task-label').innerText = translation.taskLabel;
+    document.getElementById('add-button-text').innerText = translation.addButtonText;
+    document.getElementById('task-column').innerText = translation.taskColumn;
+    document.getElementById('done-column').innerText = translation.doneColumn;
+    document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
+    document.getElementById('reset-button-text').innerText = translation.resetButtonText;
+    if (taskChart) {
+        taskChart.data.datasets[0].label = translation.chartLabel;
+        taskChart.update();
+    }
+}
+
+function addTask(event) {
+    event.preventDefault();
+
+    const taskInput = document.getElementById('task');
+    const task = taskInput.value.trim();
+    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
+
+    tasks.push({ name: task, done: false });
+    updateTaskList();
+    updateTaskChart();
+    saveToLocalStorage();
+
+    taskInput.value = '';
+    return false;
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    updateTaskList();
+    updateTaskChart();
+    saveToLocalStorage();
+}
+
+function updateTaskList() {
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
+
+    tasks.forEach((task, index) => {
+        const row = taskList.insertRow();
+        row.innerHTML = `
+            <td>${task.name}</td>
+            <td>
+                <input type="checkbox" onchange="toggleTask(${index}, this)" ${task.done ? 'checked' : ''}>
+                <button class="delete-button" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        `;
+        if (task.done) {
+            row.classList.add('task-done-today');
+        }
+    });
+}
+
+function toggleTask(index, checkbox) {
+    tasks[index].done = checkbox.checked;
+    updateTaskList();
+    updateTaskChart();
+    saveToLocalStorage();
+
+    const taskList = document.getElementById('task-list');
+    const rows = taskList.getElementsByTagName('tr');
+    rows[index].classList.toggle('task-done-today', tasks[index].done);
+}
+
+function updateTaskChart() {
+    const today = new Date();
+    const day = ('0' + today.getDate()).slice(-2);
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const year = today.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+
+    taskHistory[formattedDate] = tasks.filter(task => task.done).length;
+
+    const dates = Object.keys(taskHistory).sort((a, b) => {
+        const aParts = a.split('/');
+        const bParts = b.split('/');
+        const aDate = new Date(aParts[2], aParts[1] - 1, aParts[0]);
+        const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
+        return aDate - bDate;
+    });
+    const totalTasks = tasks.length;
+    const percentages = dates.map(date => totalTasks === 0 ? 0 : (taskHistory[date] / totalTasks) * 100);
+
+    if (taskChart) {
+        taskChart.destroy();
+    }
+
+    const ctx = document.getElementById('task-chart').getContext('2d');
+    const currentLanguage = document.documentElement.lang || 'en';
+    taskChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: translations[currentLanguage].chartLabel,
+                data: percentages,
+                fill: true,
+                backgroundColor: 'rgba(201, 203, 207, 0.2)',
+                borderColor: 'rgba(201, 203, 207, 1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: document.body.classList.contains('dark-mode') ? '#fff' : '#333'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    updateTaskChart();
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
+}
+
+function loadFromLocalStorage() {
+    const storedTasks = localStorage.getItem('tasks');
+    const storedTaskHistory = localStorage.getItem('taskHistory');
+    if (storedTasks) {
+        tasks = JSON.parse(storedTasks);
+    }
+    if (storedTaskHistory) {
+        taskHistory = JSON.parse(storedTaskHistory);
+    }
+    updateTaskList();
+    updateTaskChart();
+}
+
+function resetData() {
+    taskHistory = {};
+    tasks = [];
+    saveToLocalStorage();
+    updateTaskList();
+    updateTaskChart();
+}
+
+// JavaScript pour le menu hamburger
+document.getElementById('menuToggle').addEventListener('click', function() {
+    var sidebar = document.getElementById('sidebar');
+    var menuToggle = document.getElementById('menuToggle');
+    sidebar.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+});
