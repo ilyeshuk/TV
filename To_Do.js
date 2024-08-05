@@ -363,3 +363,20 @@ function updateCalendar() {
         calendar.addEventSource(getCalendarEvents());
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        editable: true,
+        events: [
+            // Exemple d'événements
+            { title: 'Tâche 1', start: '2024-08-05', backgroundColor: '#ff9f00' },
+            { title: 'Tâche 2', start: '2024-08-10', end: '2024-08-12', backgroundColor: '#ff0000' }
+        ]
+    });
+
+    calendar.render();
+});
+
