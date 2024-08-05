@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Tâches</title>
+
+    <!-- Styles et scripts FullCalendar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.7/index.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.7/index.min.js"></script>
+    
+    <!-- Inclusion de FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <!-- Lien vers le CSS spécifique -->
-    <link rel="stylesheet" href="To_Do.css"> 
+    <link rel="stylesheet" href="To_Do.css">
+    
     <!-- URL canonique -->
     <link rel="canonical" href="https://trackvibe.netlify.app/to_do">
+    
     <!-- Inclusion des icônes -->
     <link rel="apple-touch-icon" sizes="57x57" href="/Logo/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/Logo/apple-icon-60x60.png">
@@ -28,13 +36,15 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/Logo/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
     <!-- Meta Tag SEO pour referencement -->
     <meta name="description" content="Découvrez comment suivre et gérer vos habitudes et tâches pour atteindre vos objectifs plus facilement avec notre outil innovant.">
     <meta name="keywords" content="suivi des habitudes, tâches, objectifs, motivation, succès, détermination.">
     <meta name="author" content="Ilyes El Ghamami">
+    
     <!-- Autres inclusions -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.0.1/fullcalendar.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.0.1/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.7/index.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.7/index.min.js"></script>
 </head>
 <body>
     <header>
@@ -64,12 +74,11 @@
             <p id="motivation-text" class="motivation-text">
                 Restez concentré sur vos objectifs en suivant vos tâches régulièrement. Cela renforce votre motivation et augmente vos chances de réussite.
             </p>
-             <form class="task-form" onsubmit="return addTask()">
+            <form class="task-form" onsubmit="return addTask()">
                 <label for="task" id="task-label">Tâche :</label>
                 <input type="text" id="task" required>
                 <button type="submit"><i class="fas fa-plus"></i> <span id="add-button-text">Ajouter</span></button>
             </form>
-            
             <table id="task-table">
                 <thead>
                     <tr>
@@ -81,11 +90,9 @@
                     <!-- Les lignes seront ajoutées dynamiquement ici -->
                 </tbody>
             </table>
-
             <button class="toggle-dark-mode-button" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> <span id="dark-mode-button-text">Activer le mode sombre</span></button>
             <button class="reset-data-button" onclick="resetData()"><i class="fas fa-redo"></i> <span id="reset-button-text">Réinitialiser les données</span></button>
         </div>
-        
         <div class="right-content">
             <div id="calendar"></div>
         </div>
