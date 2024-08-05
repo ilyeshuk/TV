@@ -1,11 +1,7 @@
 let tasks = [];
 let taskHistory = {};
 let taskChart;
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    document.querySelector('.task-form').addEventListener('submit', addTask);
-});
+let calendar;
 
 const translations = {
     fr: {
@@ -98,6 +94,22 @@ const translations = {
     }
 };
 
+document.addEventListener('DOMContentLoaded', function() {
+    loadFromLocalStorage();
+    document.querySelector('.task-form').addEventListener('submit', addTask);
+    initCalendar();
+    document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+    document.getElementById('reset-button').addEventListener('click', resetData);
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        var sidebar = document.getElementById('sidebar');
+        var menuToggle = document.getElementById('menuToggle');
+        sidebar.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+    // Set the initial language, e.g., 'en'
+    translatePage('en');
+});
+
 function translatePage(language) {
     const translation = translations[language];
     document.getElementById('title').innerText = translation.title;
@@ -116,16 +128,14 @@ function translatePage(language) {
 
 function addTask(event) {
     event.preventDefault();
-
     const taskInput = document.getElementById('task');
     const task = taskInput.value.trim();
     if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
 
-    tasks.push({ name: task, done: false });
+    tasks.push({ name: task, done: false, dates: [] });
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
     saveToLocalStorage();
-
     taskInput.value = '';
     return false;
 }
@@ -133,14 +143,13 @@ function addTask(event) {
 function deleteTask(index) {
     tasks.splice(index, 1);
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
     saveToLocalStorage();
 }
 
 function updateTaskList() {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
-
     tasks.forEach((task, index) => {
         const row = taskList.insertRow();
         row.innerHTML = `
@@ -161,7 +170,6 @@ function toggleTask(index, checkbox) {
     updateTaskList();
     updateTaskChart();
     saveToLocalStorage();
-
     const taskList = document.getElementById('task-list');
     const rows = taskList.getElementsByTagName('tr');
     rows[index].classList.toggle('task-done-today', tasks[index].done);
@@ -183,6 +191,7 @@ function updateTaskChart() {
         const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
         return aDate - bDate;
     });
+
     const totalTasks = tasks.length;
     const percentages = dates.map(date => totalTasks === 0 ? 0 : (taskHistory[date] / totalTasks) * 100);
 
@@ -249,6 +258,7 @@ function loadFromLocalStorage() {
     }
     updateTaskList();
     updateTaskChart();
+    updateCalendar();
 }
 
 function resetData() {
@@ -257,35 +267,18 @@ function resetData() {
     saveToLocalStorage();
     updateTaskList();
     updateTaskChart();
+    updateCalendar();
 }
-
-// JavaScript pour le menu hamburger
-document.getElementById('menuToggle').addEventListener('click', function() {
-    var sidebar = document.getElementById('sidebar');
-    var menuToggle = document.getElementById('menuToggle');
-    sidebar.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
-
-let calendar;
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    document.querySelector('.task-form').addEventListener('submit', addTask);
-    initCalendar();
-});
 
 function initCalendar() {
     const calendarEl = document.getElementById('calendar');
-
     calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        events: getCalendarEvents(),
         editable: true,
+        events: getCalendarEvents(),
         eventDrop: handleEventDrop,
         eventResize: handleEventResize
     });
-
     calendar.render();
 }
 
@@ -322,61 +315,9 @@ function handleEventResize(info) {
     }
 }
 
-function addTask(event) {
-    event.preventDefault();
-
-    const taskInput = document.getElementById('task');
-    const task = taskInput.value.trim();
-    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
-
-    tasks.push({ name: task, done: false, dates: [] });
-    updateTaskList();
-    updateCalendar();
-    saveToLocalStorage();
-
-    taskInput.value = '';
-    return false;
-}
-
-function updateTaskList() {
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
-
-    tasks.forEach((task, index) => {
-        const row = taskList.insertRow();
-        row.innerHTML = `
-            <td>${task.name}</td>
-            <td>
-                <input type="checkbox" onchange="toggleTask(${index}, this)" ${task.done ? 'checked' : ''}>
-                <button class="delete-button" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i></button>
-            </td>
-        `;
-        if (task.done) {
-            row.classList.add('task-done-today');
-        }
-    });
-}
-
-function updateCalendar() {
-    if (calendar) {
-        calendar.removeAllEvents();
-        calendar.addEventSource(getCalendarEvents());
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar');
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        editable: true,
-        events: [
-            // Exemple d'événements
-            { title: 'Tâche 1', start: '2024-08-05', backgroundColor: '#ff9f00' },
-            { title: 'Tâche 2', start: '2024-08-10', end: '2024-08-12', backgroundColor: '#ff0000' }
-        ]
-    });
-
-    calendar.render();
+document.getElementById('menuToggle').addEventListener('click', function() {
+    var sidebar = document.getElementById('sidebar');
+    var menuToggle = document.getElementById('menuToggle');
+    sidebar.classList.toggle('active');
+    menuToggle.classList.toggle('active');
 });
-
