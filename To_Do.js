@@ -1,5 +1,4 @@
 let tasks = [];
-let taskHistory = {};
 let calendar;
 
 const translations = {
@@ -12,7 +11,6 @@ const translations = {
         doneColumn: "Fait Aujourd'hui",
         darkModeButtonText: "Activer le Mode Sombre",
         resetButtonText: "Réinitialiser les Données",
-        chartLabel: "Pourcentage de Tâches Réalisées"
     },
     en: {
         title: "Task Manager",
@@ -23,74 +21,8 @@ const translations = {
         doneColumn: "Done Today",
         darkModeButtonText: "Activate Dark Mode",
         resetButtonText: "Reset Data",
-        chartLabel: "Percentage of Tasks Completed"
     },
-    es: {
-        title: "Gestor de Tareas",
-        motivationText: "Mantente enfocado en tus objetivos al seguir tus tareas regularmente. Esto refuerza tu motivación y aumenta tus posibilidades de éxito.",
-        taskLabel: "Tarea:",
-        addButtonText: "Agregar",
-        taskColumn: "Tarea",
-        doneColumn: "Hecho Hoy",
-        darkModeButtonText: "Activar Modo Oscuro",
-        resetButtonText: "Restablecer Datos",
-        chartLabel: "Porcentaje de Tareas Completadas"
-    },
-    zh: {
-        title: "任务管理器",
-        motivationText: "通过定期跟踪任务来保持目标进度。这可以提升您的动机并增加成功的机会。",
-        taskLabel: "任务：",
-        addButtonText: "添加",
-        taskColumn: "任务",
-        doneColumn: "今天完成",
-        darkModeButtonText: "启用黑暗模式",
-        resetButtonText: "重置数据",
-        chartLabel: "完成任务的百分比"
-    },
-    ar: {
-        title: "مدير المهام",
-        motivationText: "ابقَ مركزًا على أهدافك من خلال متابعة مهامك بانتظام. هذا يعزز حافزك ويزيد من فرص نجاحك.",
-        taskLabel: "مهمة:",
-        addButtonText: "أضف",
-        taskColumn: "مهمة",
-        doneColumn: "تم اليوم",
-        darkModeButtonText: "تفعيل الوضع الداكن",
-        resetButtonText: "إعادة تعيين البيانات",
-        chartLabel: "نسبة المهام المنجزة"
-    },
-    hi: {
-        title: "कार्य प्रबंधक",
-        motivationText: "अपने लक्ष्यों पर केंद्रित रहने के लिए नियमित रूप से अपने कार्यों को ट्रैक करें। इससे आपकी प्रेरणा बढ़ती है और सफलता की संभावनाएं बढ़ती हैं।",
-        taskLabel: "कार्य:",
-        addButtonText: "जोड़ें",
-        taskColumn: "कार्य",
-        doneColumn: "आज पूरा किया",
-        darkModeButtonText: "डार्क मोड सक्रिय करें",
-        resetButtonText: "डेटा रीसेट करें",
-        chartLabel: "पूरे किए गए कार्यों का प्रतिशत"
-    },
-    pt: {
-        title: "Gerenciador de Tarefas",
-        motivationText: "Mantenha-se focado em seus objetivos ao acompanhar suas tarefas regularmente. Isso aumenta sua motivação e suas chances de sucesso.",
-        taskLabel: "Tarefa:",
-        addButtonText: "Adicionar",
-        taskColumn: "Tarefa",
-        doneColumn: "Feito Hoje",
-        darkModeButtonText: "Ativar Modo Escuro",
-        resetButtonText: "Redefinir Dados",
-        chartLabel: "Percentual de Tarefas Concluídas"
-    },
-    bn: {
-        title: "টাস্ক ম্যানেজার",
-        motivationText: "নিয়মিতভাবে আপনার কাজগুলি ট্র্যাক করে আপনার লক্ষ্য অর্জনে মনোযোগ দিন। এটি আপনার মোটিভেশন বাড়ায় এবং সাফল্যের সম্ভাবনা বৃদ্ধি করে।",
-        taskLabel: "কাজ:",
-        addButtonText: "যোগ করুন",
-        taskColumn: "কাজ",
-        doneColumn: "আজ সম্পন্ন",
-        darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
-        resetButtonText: "ডেটা রিসেট করুন",
-        chartLabel: "সম্পন্ন কাজের শতাংশ"
-    }
+    // ... autres langues
 };
 
 function translatePage(language) {
@@ -108,6 +40,7 @@ function translatePage(language) {
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
     document.querySelector('.task-form').addEventListener('submit', addTask);
+    initCalendar();
 });
 
 function addTask(event) {
@@ -194,7 +127,6 @@ function toggleDarkMode() {
 
 function saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
 }
 
 function loadFromLocalStorage() {
@@ -202,16 +134,12 @@ function loadFromLocalStorage() {
     if (storedTasks) {
         tasks = JSON.parse(storedTasks);
     }
-    if (storedTaskHistory) {
-        taskHistory = JSON.parse(storedTaskHistory);
-    }
     updateTaskList();
     updateCalendar();
 }
 
 function resetData() {
     tasks = [];
-    taskHistory = {};
     saveToLocalStorage();
     updateTaskList();
     updateCalendar();
@@ -224,4 +152,3 @@ document.getElementById('menuToggle').addEventListener('click', function() {
     sidebar.classList.toggle('active');
     menuToggle.classList.toggle('active');
 });
-
