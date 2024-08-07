@@ -1,7 +1,31 @@
 let tasks = [];
 let taskHistory = {};
 let taskChart;
-let calendar;
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
+    document.querySelector('.task-form').addEventListener('submit', addTask);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: getCalendarEvents()  // Fonction pour obtenir les événements à partir des tâches
+    });
+
+    calendar.render();
+});
+
+function getCalendarEvents() {
+    // Convertissez les tâches en événements pour le calendrier
+    return tasks.map(task => ({
+        title: task.name,
+        start: new Date().toISOString().split('T')[0]  // Date actuelle pour l'exemple
+    }));
+}
+
 
 const translations = {
     fr: {
@@ -94,22 +118,6 @@ const translations = {
     }
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadFromLocalStorage();
-    document.querySelector('.task-form').addEventListener('submit', addTask);
-    initCalendar();
-    document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-    document.getElementById('reset-button').addEventListener('click', resetData);
-    document.getElementById('menuToggle').addEventListener('click', function() {
-        var sidebar = document.getElementById('sidebar');
-        var menuToggle = document.getElementById('menuToggle');
-        sidebar.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
-    // Set the initial language, e.g., 'en'
-    translatePage('en');
-});
-
 function translatePage(language) {
     const translation = translations[language];
     document.getElementById('title').innerText = translation.title;
@@ -128,14 +136,16 @@ function translatePage(language) {
 
 function addTask(event) {
     event.preventDefault();
+
     const taskInput = document.getElementById('task');
     const task = taskInput.value.trim();
     if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
 
-    tasks.push({ name: task, done: false, dates: [] });
+    tasks.push({ name: task, done: false });
     updateTaskList();
-    updateCalendar();
+    updateTaskChart();
     saveToLocalStorage();
+
     taskInput.value = '';
     return false;
 }
@@ -143,13 +153,14 @@ function addTask(event) {
 function deleteTask(index) {
     tasks.splice(index, 1);
     updateTaskList();
-    updateCalendar();
+    updateTaskChart();
     saveToLocalStorage();
 }
 
 function updateTaskList() {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
+
     tasks.forEach((task, index) => {
         const row = taskList.insertRow();
         row.innerHTML = `
@@ -170,6 +181,7 @@ function toggleTask(index, checkbox) {
     updateTaskList();
     updateTaskChart();
     saveToLocalStorage();
+
     const taskList = document.getElementById('task-list');
     const rows = taskList.getElementsByTagName('tr');
     rows[index].classList.toggle('task-done-today', tasks[index].done);
@@ -191,7 +203,6 @@ function updateTaskChart() {
         const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
         return aDate - bDate;
     });
-
     const totalTasks = tasks.length;
     const percentages = dates.map(date => totalTasks === 0 ? 0 : (taskHistory[date] / totalTasks) * 100);
 
@@ -258,7 +269,6 @@ function loadFromLocalStorage() {
     }
     updateTaskList();
     updateTaskChart();
-    updateCalendar();
 }
 
 function resetData() {
@@ -267,54 +277,9 @@ function resetData() {
     saveToLocalStorage();
     updateTaskList();
     updateTaskChart();
-    updateCalendar();
 }
 
-function initCalendar() {
-    const calendarEl = document.getElementById('calendar');
-    calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        editable: true,
-        events: getCalendarEvents(),
-        eventDrop: handleEventDrop,
-        eventResize: handleEventResize
-    });
-    calendar.render();
-}
-
-function getCalendarEvents() {
-    return tasks.map(task => {
-        const eventDates = task.dates || [];
-        return eventDates.map(date => ({
-            title: task.name,
-            start: date.start,
-            end: date.end || date.start
-        }));
-    }).flat();
-}
-
-function handleEventDrop(info) {
-    const task = tasks.find(t => t.name === info.event.title);
-    if (task) {
-        task.dates = [{
-            start: info.event.startStr,
-            end: info.event.endStr
-        }];
-        saveToLocalStorage();
-    }
-}
-
-function handleEventResize(info) {
-    const task = tasks.find(t => t.name === info.event.title);
-    if (task) {
-        task.dates = [{
-            start: info.event.startStr,
-            end: info.event.endStr
-        }];
-        saveToLocalStorage();
-    }
-}
-
+// JavaScript pour le menu hamburger
 document.getElementById('menuToggle').addEventListener('click', function() {
     var sidebar = document.getElementById('sidebar');
     var menuToggle = document.getElementById('menuToggle');
