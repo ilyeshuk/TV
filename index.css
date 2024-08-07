@@ -144,6 +144,7 @@ h2 {
     display: flex; /* Utilise Flexbox */
     gap: 20px; /* Espace entre les sections */
     margin: 2rem auto; /* Marges automatique */
+    max-width: 850px; /* Largeur maximale */
 }
 
 /* Styles pour chaque section */
