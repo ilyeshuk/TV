@@ -48,15 +48,13 @@ function addTask(event) {
 
     const taskInput = document.getElementById('task');
     const task = taskInput.value.trim();
-    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
+    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return;
 
     tasks.push({ name: task, done: false });
     updateTaskList();
     updateCalendar();
     saveToLocalStorage();
-
     taskInput.value = '';
-    return false;
 }
 
 function deleteTask(index) {
@@ -90,10 +88,6 @@ function toggleTask(index, checkbox) {
     updateTaskList();
     updateCalendar();
     saveToLocalStorage();
-
-    const taskList = document.getElementById('task-list');
-    const rows = taskList.getElementsByTagName('tr');
-    rows[index].classList.toggle('task-done-today', tasks[index].done);
 }
 
 function initCalendar() {
