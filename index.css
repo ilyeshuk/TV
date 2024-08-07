@@ -145,6 +145,7 @@ h2 {
     gap: 20px; /* Espace entre les sections */
     margin: 2rem auto; /* Marges automatique */
     justify-content: center; /* Centre les sections horizontalement */
+    max-width: 500px; /* Largeur maximale */
 }
 
 /* Styles pour chaque section */
