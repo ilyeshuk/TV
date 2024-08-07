@@ -1,31 +1,5 @@
 let tasks = [];
-let taskHistory = {};
-let taskChart;
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    document.querySelector('.task-form').addEventListener('submit', addTask);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar');
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: getCalendarEvents()  // Fonction pour obtenir les événements à partir des tâches
-    });
-
-    calendar.render();
-});
-
-function getCalendarEvents() {
-    // Convertissez les tâches en événements pour le calendrier
-    return tasks.map(task => ({
-        title: task.name,
-        start: new Date().toISOString().split('T')[0]  // Date actuelle pour l'exemple
-    }));
-}
-
+let calendar;
 
 const translations = {
     fr: {
@@ -128,9 +102,9 @@ function translatePage(language) {
     document.getElementById('done-column').innerText = translation.doneColumn;
     document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
     document.getElementById('reset-button-text').innerText = translation.resetButtonText;
-    if (taskChart) {
-        taskChart.data.datasets[0].label = translation.chartLabel;
-        taskChart.update();
+    if (calendar) {
+        calendar.data.datasets[0].label = translation.calendar;
+        calendar.update();
     }
 }
 
@@ -143,7 +117,7 @@ function addTask(event) {
 
     tasks.push({ name: task, done: false });
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
     saveToLocalStorage();
 
     taskInput.value = '';
@@ -153,7 +127,7 @@ function addTask(event) {
 function deleteTask(index) {
     tasks.splice(index, 1);
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
     saveToLocalStorage();
 }
 
@@ -179,7 +153,7 @@ function updateTaskList() {
 function toggleTask(index, checkbox) {
     tasks[index].done = checkbox.checked;
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
     saveToLocalStorage();
 
     const taskList = document.getElementById('task-list');
@@ -187,96 +161,53 @@ function toggleTask(index, checkbox) {
     rows[index].classList.toggle('task-done-today', tasks[index].done);
 }
 
-function updateTaskChart() {
-    const today = new Date();
-    const day = ('0' + today.getDate()).slice(-2);
-    const month = ('0' + (today.getMonth() + 1)).slice(-2);
-    const year = today.getFullYear();
-    const formattedDate = `${day}/${month}/${year}`;
-
-    taskHistory[formattedDate] = tasks.filter(task => task.done).length;
-
-    const dates = Object.keys(taskHistory).sort((a, b) => {
-        const aParts = a.split('/');
-        const bParts = b.split('/');
-        const aDate = new Date(aParts[2], aParts[1] - 1, aParts[0]);
-        const bDate = new Date(bParts[2], bParts[1] - 1, bParts[0]);
-        return aDate - bDate;
-    });
-    const totalTasks = tasks.length;
-    const percentages = dates.map(date => totalTasks === 0 ? 0 : (taskHistory[date] / totalTasks) * 100);
-
-    if (taskChart) {
-        taskChart.destroy();
-    }
-
-    const ctx = document.getElementById('task-chart').getContext('2d');
-    const currentLanguage = document.documentElement.lang || 'en';
-    taskChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: translations[currentLanguage].chartLabel,
-                data: percentages,
-                fill: true,
-                backgroundColor: 'rgba(201, 203, 207, 0.2)',
-                borderColor: 'rgba(201, 203, 207, 1)',
-                tension: 0.4
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        callback: function(value) {
-                            return value + '%';
-                        }
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: document.body.classList.contains('dark-mode') ? '#fff' : '#333'
-                    }
-                }
-            }
+function initCalendar() {
+    calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+        initialView: 'dayGridMonth',
+        editable: true,
+        events: getCalendarEvents(),
+        eventClick: function(info) {
+            alert('Task: ' + info.event.title);
         }
     });
+    calendar.render();
+}
+
+function updateCalendar() {
+    const events = getCalendarEvents();
+    calendar.removeAllEvents();
+    calendar.addEventSource(events);
+}
+
+function getCalendarEvents() {
+    return tasks.map(task => ({
+        title: task.name,
+        start: new Date().toISOString().split('T')[0]  // Date actuelle pour l'exemple
+    }));
 }
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
-    updateTaskChart();
 }
 
 function saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
 }
 
 function loadFromLocalStorage() {
     const storedTasks = localStorage.getItem('tasks');
-    const storedTaskHistory = localStorage.getItem('taskHistory');
     if (storedTasks) {
         tasks = JSON.parse(storedTasks);
     }
-    if (storedTaskHistory) {
-        taskHistory = JSON.parse(storedTaskHistory);
-    }
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
 }
 
 function resetData() {
-    taskHistory = {};
     tasks = [];
     saveToLocalStorage();
     updateTaskList();
-    updateTaskChart();
+    updateCalendar();
 }
 
 // JavaScript pour le menu hamburger
@@ -286,3 +217,4 @@ document.getElementById('menuToggle').addEventListener('click', function() {
     sidebar.classList.toggle('active');
     menuToggle.classList.toggle('active');
 });
+
