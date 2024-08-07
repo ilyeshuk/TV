@@ -1,4 +1,5 @@
 let tasks = [];
+let taskHistory = {};
 let calendar;
 
 const translations = {
@@ -108,6 +109,11 @@ function translatePage(language) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
+    document.querySelector('.task-form').addEventListener('submit', addTask);
+});
+
 function addTask(event) {
     event.preventDefault();
 
@@ -192,6 +198,7 @@ function toggleDarkMode() {
 
 function saveToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskHistory', JSON.stringify(taskHistory));
 }
 
 function loadFromLocalStorage() {
@@ -199,12 +206,16 @@ function loadFromLocalStorage() {
     if (storedTasks) {
         tasks = JSON.parse(storedTasks);
     }
+    if (storedTaskHistory) {
+        taskHistory = JSON.parse(storedTaskHistory);
+    }
     updateTaskList();
     updateCalendar();
 }
 
 function resetData() {
     tasks = [];
+    taskHistory = {};
     saveToLocalStorage();
     updateTaskList();
     updateCalendar();
