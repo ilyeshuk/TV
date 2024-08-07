@@ -40,7 +40,7 @@ function translatePage(language) {
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
     document.querySelector('.task-form').addEventListener('submit', addTask);
-    initCalendar();
+    initCalendar();  // Assure-toi que cette fonction est appelée avant updateCalendar
 });
 
 function addTask(event) {
@@ -103,9 +103,11 @@ function initCalendar() {
 }
 
 function updateCalendar() {
-    const events = getCalendarEvents();
-    calendar.removeAllEvents();
-    calendar.addEventSource(events);
+    if (calendar) {  // Assure-toi que calendar est défini
+        const events = getCalendarEvents();
+        calendar.removeAllEvents();
+        calendar.addEventSource(events);
+    }
 }
 
 function getCalendarEvents() {
