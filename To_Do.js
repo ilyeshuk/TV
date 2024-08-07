@@ -129,8 +129,11 @@ function loadFromLocalStorage() {
         tasks = JSON.parse(storedTasks);
     }
     updateTaskList();
-    updateCalendar();
+    if (calendar) {
+        updateCalendar();  // Assure-toi que calendar est défini
+    }
 }
+
 
 function resetData() {
     tasks = [];
