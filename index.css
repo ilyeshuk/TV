@@ -148,7 +148,7 @@ h2 {
 
 /* Styles pour chaque section */
 .main-sections section {
-    flex: 1; /* Chaque section prend une part égale de l'espace disponible */
+    
     padding: 2rem; /* Remplissage */
     border-radius: 10px; /* Bords arrondis */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
