@@ -152,7 +152,7 @@ h2 {
     padding: 2rem; /* Remplissage */
     border-radius: 10px; /* Bords arrondis */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
-    max-width: 800px; /* Largeur maximale */
+    max-width: 500px; /* Largeur maximale */
     text-align: center; /* Pour centrer le texte, si c'est l'effet souhaité */
 }
 
