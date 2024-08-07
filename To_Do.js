@@ -103,10 +103,6 @@ function translatePage(language) {
     document.getElementById('done-column').innerText = translation.doneColumn;
     document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
     document.getElementById('reset-button-text').innerText = translation.resetButtonText;
-    if (calendar) {
-        calendar.data.datasets[0].label = translation.calendar;
-        calendar.update();
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
