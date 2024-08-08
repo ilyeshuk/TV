@@ -96,7 +96,7 @@ function highlightCalendarDate(date) {
     const calendarDayElements = document.querySelectorAll('.calendar-day');
     calendarDayElements.forEach(day => {
         if (day.dataset.date === date) {
-            day.style.backgroundColor = '#87CEEB'; // Couleur de surbrillance pour les dates avec tâches
+            day.style.backgroundColor = '#ddd'; // Couleur de surbrillance pour les dates avec tâches
         }
     });
 }
