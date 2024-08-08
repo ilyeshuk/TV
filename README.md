@@ -13,14 +13,16 @@ Here are some features I'd like to add at my website (feel free to suggest your 
 
 Here are some features I'd like to add at my homepage (feel free to suggest your own ideas):
   - The homepage is to empty
+  - Dark mode bug
 
 Here are some features I'd like to add at my habit's page (feel free to suggest your own ideas):
   - Add an AI Chat to help the user to do his habits who analyze automatically your habits (motivation and advice)
   - Organizing habits into multiple categories.
   - Analyze the data : the habits you have done the least and the most
+  - Dark mode bug
 
 Here are some features I'd like to add at my To Do's page (feel free to suggest your own ideas):
   - Organizing tasks into multiple categories.
   - Traduction of the days and of the date
   - Add an AI Chat to help the user to do his tasks who analyze automatically your task (motivation and advice)
-
+  - Dark mode bug 
