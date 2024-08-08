@@ -142,7 +142,7 @@ body {
 
 /* Centrage du contenu à droite */
 .right-content {
-    text-align: center;
+    text-align: left;
 }
 
 /* Style pour les titres */
