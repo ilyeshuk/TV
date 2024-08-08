@@ -74,13 +74,14 @@ body {
 .calendar-day {
     cursor: pointer;
     background-color: #fff;
+    border: 1px solid #ddd; /* Bordure pour toutes les cases, y compris celles vides */
+    box-sizing: border-box;
 }
 
 .calendar-day.empty,
 .calendar-day.empty-before {
     background-color: #f9f9f9;
-    border: none; /* Supprime la bordure des jours vides */
-    pointer-events: none; /* Désactive les interactions avec les jours vides */
+    border: 1px solid #ddd; /* Ajouter une bordure pour les cases vides avant et après */
 }
 
 .calendar-day:hover {
