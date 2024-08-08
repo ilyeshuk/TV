@@ -30,13 +30,6 @@ body {
     box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions de l'élément */
 }
 
-.right-content {
-    display: flex;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-}
-
 .calendar-right-content {
     width: 400px;
     margin: 0 20px;
