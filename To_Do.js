@@ -18,7 +18,7 @@ const translations = {
         doneColumn: "Fait Aujourd'hui",
         darkModeButtonText: "Activer le Mode Sombre",
         resetButtonText: "Réinitialiser les Données",
-        chartLabel: "Pourcentage de Tâches Réalisées"
+        calendarLabel: "Pourcentage de Tâches Réalisées"
     },
     en: {
         title: "Task Manager",
@@ -29,7 +29,7 @@ const translations = {
         doneColumn: "Done Today",
         darkModeButtonText: "Activate Dark Mode",
         resetButtonText: "Reset Data",
-        chartLabel: "Percentage of Tasks Completed"
+        calendarLabel: "Percentage of Tasks Completed"
     },
     es: {
         title: "Gestor de Tareas",
