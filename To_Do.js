@@ -1,8 +1,6 @@
-// Variables globales pour stocker les tâches et l'historique des tâches
 let tasks = [];
 let taskHistory = {};
 
-// Initialisation lorsque le DOM est complètement chargé
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage(); // Charger les tâches à partir du stockage local
     updateTaskList(); // Mettre à jour la liste des tâches affichée
@@ -10,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.task-form').addEventListener('submit', addTask); // Ajouter un écouteur d'événement pour l'ajout de tâches
 });
 
-// Fonction pour ajouter une nouvelle tâche
 function addTask(event) {
     event.preventDefault(); // Empêcher le rechargement de la page lors de la soumission du formulaire
 
@@ -36,7 +33,6 @@ function addTask(event) {
     return false;
 }
 
-// Fonction pour supprimer une tâche
 function deleteTask(index) {
     tasks.splice(index, 1); // Supprimer la tâche de la liste
     updateTaskList(); // Mettre à jour l'affichage de la liste des tâches
@@ -44,7 +40,6 @@ function deleteTask(index) {
     initializeCalendar(new Date().getFullYear(), new Date().getMonth()); // Réinitialiser le calendrier pour refléter les changements
 }
 
-// Fonction pour mettre à jour la liste des tâches affichée
 function updateTaskList() {
     const taskList = document.getElementById('task-list'); // Récupérer l'élément DOM qui contient la liste des tâches
     taskList.innerHTML = ''; // Réinitialiser le contenu de la liste des tâches
@@ -65,7 +60,6 @@ function updateTaskList() {
     });
 }
 
-// Fonction pour basculer l'état "fait" d'une tâche
 function toggleTask(index, checkbox) {
     tasks[index].done = checkbox.checked; // Mettre à jour l'état "fait" de la tâche
     updateTaskList(); // Mettre à jour l'affichage de la liste des tâches
@@ -77,7 +71,6 @@ function toggleTask(index, checkbox) {
     rows[index].classList.toggle('task-done-today', tasks[index].done);
 }
 
-// Fonction pour initialiser le calendrier
 function initializeCalendar(year, month) {
     const calendar = document.getElementById('calendar'); // Récupérer l'élément DOM du calendrier
     calendar.innerHTML = ''; // Vider le contenu actuel du calendrier
@@ -97,7 +90,7 @@ function initializeCalendar(year, month) {
     nextButton.onclick = () => initializeCalendar(month === 11 ? year + 1 : year, month === 11 ? 0 : month + 1);
 
     const monthYear = document.createElement('span');
-    monthYear.textContent = currentMonth.toLocaleString('fr-FR', { month: 'long', year: 'numeric' });
+    monthYear.textContent = `${String(month + 1).padStart(2, '0')}/${year}`; // Afficher le mois et l'année en format numérique
 
     header.appendChild(prevButton);
     header.appendChild(monthYear);
@@ -110,6 +103,7 @@ function initializeCalendar(year, month) {
         const dayElement = document.createElement('div');
         dayElement.textContent = day;
         dayElement.className = 'calendar-day-header';
+        dayElement.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les jours
         calendar.appendChild(dayElement);
     });
 
@@ -120,6 +114,7 @@ function initializeCalendar(year, month) {
     for (let i = 0; i < paddingDays; i++) {
         const emptyDay = document.createElement('div');
         emptyDay.className = 'calendar-day empty';
+        emptyDay.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les cases vides
         calendar.appendChild(emptyDay);
     }
 
@@ -130,6 +125,7 @@ function initializeCalendar(year, month) {
         dayElement.textContent = i;
         dayElement.classList.add('calendar-day');
         dayElement.dataset.date = date;
+        dayElement.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les jours
 
         // Ajouter un événement pour modifier ou supprimer une tâche en cliquant sur un jour
         dayElement.addEventListener('click', () => {
@@ -181,9 +177,9 @@ function highlightAllTaskDates() {
     });
 }
 
-// Fonction pour formater une date au format "jour mois année"
+// Fonction pour formater une date au format "jj/mm/aaaa"
 function formatDate(dateString) {
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
 }
 
