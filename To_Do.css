@@ -47,7 +47,7 @@ body {
     margin: 0; /* Supprime les marges par défaut du h2 */
     text-align: left; /* Aligne le texte à gauche */
     flex-grow: 1; /* Permet au titre de prendre tout l'espace disponible */
-    font-size: 1.5rem; /* Ajuste la taille du texte */
+    font-size: 2rem; /* Ajuste la taille du texte */
 }
 
 .calendar-header button {
