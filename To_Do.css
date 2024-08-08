@@ -31,8 +31,9 @@ body {
 }
 
 .calendar-right-content {
-    width: 400px;
+    width: 100%;
     margin: 0 20px;
+    display: inline-block;
 }
 
 .calendar-header {
@@ -67,10 +68,12 @@ body {
     text-align: center;
     border: 1px solid #ddd;
     width: 14.28%; /* Pour que chaque jour prenne une colonne égale */
+    box-sizing: border-box;
 }
 
 .calendar-day {
     cursor: pointer;
+    background-color: #fff;
 }
 
 .calendar-day:hover {
