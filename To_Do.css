@@ -37,7 +37,6 @@ body {
 }
 
 .calendar-header {
-    margin-top: 30px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
@@ -45,7 +44,7 @@ body {
 } 
 
 .calendar-header h2 {
-    margin: 0; /* Supprime les marges par défaut du h2 */
+    margin-top: 30px; /* Supprime les marges par défaut du h2 */
     text-align: left; /* Aligne le texte à gauche */
     flex-grow: 1; /* Permet au titre de prendre tout l'espace disponible */
     font-size: 2rem; !important; /* Ajuste la taille du texte */
