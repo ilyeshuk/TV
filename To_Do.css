@@ -37,12 +37,11 @@ body {
 }
 
 .calendar-header {
-    justify-content: flex-start; /* Aligne le contenu du début à la fin */
+    justify-content: space-between;
     align-items: center;
-    gap: 10px; /* Ajoute un espace entre le titre et les boutons */
     margin-bottom: 10px;
     font-weight: bold;
-}
+} 
 
 .calendar-header button {
     background-color: #ddd;
