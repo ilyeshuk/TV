@@ -21,7 +21,7 @@ body {
 }
 
 /* Mise en page principale avec une grille adaptable */
-.left-content {
+.content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille réactive */
     gap: 20px; /* Espacement entre les éléments */
