@@ -126,6 +126,7 @@ function initializeCalendar(year, month) {
 
     for (let i = 0; i < paddingDays; i++) {
         const emptyCell = document.createElement('td');
+        emptyCell.classList.add('calendar-day', 'empty-before');
         row.appendChild(emptyCell);
     }
 
@@ -168,6 +169,14 @@ function initializeCalendar(year, month) {
         });
 
         row.appendChild(dayElement);
+    }
+    
+    // Ajouter des cases vides après le dernier jour du mois
+    const remainingDays = 7 - ((daysInMonth + paddingDays) % 7);
+    for (let i = 0; i < remainingDays && remainingDays < 7; i++) {
+        const emptyCell = document.createElement('td');
+        emptyCell.classList.add('calendar-day', 'empty');
+        row.appendChild(emptyCell);
     }
 
     highlightAllTaskDates(); // Surligner les jours qui ont des tâches associées
