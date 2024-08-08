@@ -30,6 +30,13 @@ body {
     box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions de l'élément */
 }
 
+.right-content h2 {
+    margin-top: 30px; !important
+    text-align: left;
+    font-size: 2rem !important; /* Utilisation du !important pour forcer le style */
+    margin-bottom: 20px;
+}
+
 .calendar-right-content {
     width: 100%;
     margin: 0 20px;
