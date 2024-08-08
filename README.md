@@ -20,5 +20,7 @@ Here are some features I'd like to add at my habit's page (feel free to suggest 
   - Analyze the data : the habits you have done the least and the most
 
 Here are some features I'd like to add at my To Do's page (feel free to suggest your own ideas):
-  - Put a calendar
   - Organizing tasks into multiple categories.
+  - Traduction of the days and of the date
+  - Add an AI Chat to help the user to do his tasks who analyze automatically your task (motivation and advice)
+
