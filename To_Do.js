@@ -1,4 +1,3 @@
-// Gestion des tâches
 let tasks = [];
 let taskHistory = {};
 
@@ -17,10 +16,11 @@ function addTask(event) {
     const task = taskInput.value.trim();
     const taskDate = taskDateInput.value;
 
-    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase())) return false;
+    if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase() && t.date === taskDate)) return false;
 
     tasks.push({ name: task, done: false, date: taskDate });
     updateTaskList();
+    highlightCalendarDate(taskDate);
     saveToLocalStorage();
 
     taskInput.value = '';
@@ -81,11 +81,30 @@ function initializeCalendar() {
     for (let i = 1; i <= daysInMonth; i++) {
         const dayElement = document.createElement('div');
         dayElement.textContent = i;
+        dayElement.classList.add('calendar-day');
+        dayElement.dataset.date = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
         dayElement.style.border = '1px solid #ccc';
         dayElement.style.padding = '10px';
         dayElement.style.textAlign = 'center';
         calendar.appendChild(dayElement);
     }
+
+    highlightAllTaskDates();
+}
+
+function highlightCalendarDate(date) {
+    const calendarDayElements = document.querySelectorAll('.calendar-day');
+    calendarDayElements.forEach(day => {
+        if (day.dataset.date === date) {
+            day.style.backgroundColor = '#87CEEB'; // Couleur de surbrillance pour les dates avec tâches
+        }
+    });
+}
+
+function highlightAllTaskDates() {
+    tasks.forEach(task => {
+        highlightCalendarDate(task.date);
+    });
 }
 
 function toggleDarkMode() {
@@ -107,6 +126,7 @@ function resetData() {
     tasks = [];
     saveToLocalStorage();
     updateTaskList();
+    initializeCalendar();
 }
 
 // JavaScript pour le menu hamburger
