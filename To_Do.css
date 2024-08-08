@@ -43,13 +43,6 @@ body {
     margin: 0 20px;
 }
 
-#task-date {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
 /* Styles pour les boutons de changement de langue */
 .language-buttons {
     display: flex; /* Affichage en flexbox */
