@@ -109,6 +109,7 @@ function translatePage(language) {
     document.getElementById('done-column').innerText = translation.doneColumn;
     document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
     document.getElementById('reset-button-text').innerText = translation.resetButtonText;
+    document.querySelector('.right-content h2').innerText = translation.calendarLabel;
 }
 
 function addTask(event) {
