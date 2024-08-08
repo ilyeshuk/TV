@@ -37,9 +37,10 @@ body {
 }
 
 .calendar-header {
-    
-    justify-content: space-between;
+    display: flex;
+    justify-content: flex-start; /* Aligne le contenu du début à la fin */
     align-items: center;
+    gap: 10px; /* Ajoute un espace entre le titre et les boutons */
     margin-bottom: 10px;
     font-weight: bold;
 }
