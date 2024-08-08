@@ -18,7 +18,7 @@ const translations = {
         doneColumn: "Fait Aujourd'hui",
         darkModeButtonText: "Activer le Mode Sombre",
         resetButtonText: "Réinitialiser les Données",
-        calendarLabel: "Pourcentage de Tâches Réalisées"
+        calendarLabel: "Calendrier"
     },
     en: {
         title: "Task Manager",
@@ -29,7 +29,7 @@ const translations = {
         doneColumn: "Done Today",
         darkModeButtonText: "Activate Dark Mode",
         resetButtonText: "Reset Data",
-        calendarLabel: "Percentage of Tasks Completed"
+        calendarLabel: "Calendar"
     },
     es: {
         title: "Gestor de Tareas",
@@ -40,7 +40,7 @@ const translations = {
         doneColumn: "Hecho Hoy",
         darkModeButtonText: "Activar Modo Oscuro",
         resetButtonText: "Restablecer Datos",
-        chartLabel: "Porcentaje de Tareas Completadas"
+        calendarLabel: "Calendario"
     },
     zh: {
         title: "任务管理器",
@@ -51,7 +51,7 @@ const translations = {
         doneColumn: "今天完成",
         darkModeButtonText: "启用黑暗模式",
         resetButtonText: "重置数据",
-        chartLabel: "完成任务的百分比"
+        calendarLabel: "日历"
     },
     ar: {
         title: "مدير المهام",
@@ -62,7 +62,7 @@ const translations = {
         doneColumn: "تم اليوم",
         darkModeButtonText: "تفعيل الوضع الداكن",
         resetButtonText: "إعادة تعيين البيانات",
-        chartLabel: "نسبة المهام المنجزة"
+        calendarLabel: "التقويم"
     },
     hi: {
         title: "कार्य प्रबंधक",
@@ -73,7 +73,7 @@ const translations = {
         doneColumn: "आज पूरा किया",
         darkModeButtonText: "डार्क मोड सक्रिय करें",
         resetButtonText: "डेटा रीसेट करें",
-        chartLabel: "पूरे किए गए कार्यों का प्रतिशत"
+        calendarLabel: "कैलेंडर"
     },
     pt: {
         title: "Gerenciador de Tarefas",
@@ -84,7 +84,7 @@ const translations = {
         doneColumn: "Feito Hoje",
         darkModeButtonText: "Ativar Modo Escuro",
         resetButtonText: "Redefinir Dados",
-        chartLabel: "Percentual de Tarefas Concluídas"
+        calendarLabel: "Calendário"
     },
     bn: {
         title: "টাস্ক ম্যানেজার",
@@ -95,7 +95,7 @@ const translations = {
         doneColumn: "আজ সম্পন্ন",
         darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
         resetButtonText: "ডেটা রিসেট করুন",
-        chartLabel: "সম্পন্ন কাজের শতাংশ"
+        calendarLabel: "ক্যালেন্ডার"
     }
 };
 
