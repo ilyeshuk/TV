@@ -38,6 +38,7 @@ body {
 
 .calendar-header {
     justify-content: space-between;
+    margin-top: 30px;
     align-items: center;
     margin-bottom: 10px;
     font-weight: bold;
