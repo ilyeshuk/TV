@@ -43,6 +43,62 @@ body {
     margin: 0 20px;
 }
 
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.calendar-header button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.calendar-header button:hover {
+    background-color: #555;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    width: 14.28%; /* Pour que chaque jour prenne une colonne égale */
+}
+
+.calendar-day {
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day[data-date]:hover {
+    background-color: #ddd;
+}
+
+.calendar-day.empty {
+    background-color: #f9f9f9;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
 /* Styles pour les boutons de changement de langue */
 .language-buttons {
     display: flex; /* Affichage en flexbox */
@@ -145,12 +201,6 @@ th, td {
 /* Style pour les lignes avec des tâches faites */
 .task-done-today {
     background-color: #eee; /* Couleur de fond */
-}
-
-#calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
 }
 
 /* Thème sombre */
