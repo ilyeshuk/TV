@@ -31,7 +31,7 @@ body {
 }
 
 .right-content h2 {
-    margin-top: 30px; !important
+    margin-top: 25px; !important
     text-align: left;
     font-size: 2rem !important; /* Utilisation du !important pour forcer le style */
     margin-bottom: 20px;
