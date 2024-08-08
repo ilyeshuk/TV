@@ -97,35 +97,50 @@ function initializeCalendar(year, month) {
     header.appendChild(nextButton);
     calendar.appendChild(header);
 
+    // Créer un tableau pour le calendrier
+    const table = document.createElement('table');
+    table.className = 'calendar-table';
+    calendar.appendChild(table);
+
     // Ajouter les jours de la semaine en en-tête
+    const thead = document.createElement('thead');
+    table.appendChild(thead);
+    const headerRow = document.createElement('tr');
+    thead.appendChild(headerRow);
     const daysOfWeek = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
     daysOfWeek.forEach(day => {
-        const dayElement = document.createElement('div');
-        dayElement.textContent = day;
-        dayElement.className = 'calendar-day-header';
-        dayElement.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les jours
-        calendar.appendChild(dayElement);
+        const th = document.createElement('th');
+        th.textContent = day;
+        headerRow.appendChild(th);
     });
+
+    // Créer le corps du tableau
+    const tbody = document.createElement('tbody');
+    table.appendChild(tbody);
 
     // Ajouter des cases vides pour aligner le premier jour du mois correctement
     const firstDay = new Date(year, month, 1).getDay();
     const paddingDays = firstDay === 0 ? 6 : firstDay - 1;
+    let row = document.createElement('tr');
+    tbody.appendChild(row);
 
     for (let i = 0; i < paddingDays; i++) {
-        const emptyDay = document.createElement('div');
-        emptyDay.className = 'calendar-day empty';
-        emptyDay.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les cases vides
-        calendar.appendChild(emptyDay);
+        const emptyCell = document.createElement('td');
+        row.appendChild(emptyCell);
     }
 
-    // Créer les jours du mois dans le calendrier
+    // Ajouter les jours du mois
     for (let i = 1; i <= daysInMonth; i++) {
-        const dayElement = document.createElement('div');
+        if (row.children.length === 7) {
+            row = document.createElement('tr');
+            tbody.appendChild(row);
+        }
+
+        const dayElement = document.createElement('td');
         const date = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
         dayElement.textContent = i;
         dayElement.classList.add('calendar-day');
         dayElement.dataset.date = date;
-        dayElement.style.border = '1px solid #ccc'; // Ajouter des bordures pour séparer les jours
 
         // Ajouter un événement pour modifier ou supprimer une tâche en cliquant sur un jour
         dayElement.addEventListener('click', () => {
@@ -152,7 +167,7 @@ function initializeCalendar(year, month) {
             }
         });
 
-        calendar.appendChild(dayElement);
+        row.appendChild(dayElement);
     }
 
     highlightAllTaskDates(); // Surligner les jours qui ont des tâches associées
