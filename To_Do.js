@@ -14,7 +14,7 @@ function addTask(event) {
     const taskInput = document.getElementById('task'); // Récupérer la valeur du champ de texte de la tâche
     const taskDateInput = document.getElementById('task-date'); // Récupérer la date sélectionnée
     const task = taskInput.value.trim(); // Enlever les espaces inutiles dans le nom de la tâche
-    const taskDate = taskDateInput.value ? formatDate(taskDateInput.value) : ''; // Formater la date si elle est sélectionnée
+    const taskDate = taskDateInput.value ? formatDateForStorage(taskDateInput.value) : ''; // Formater la date pour le stockage et la surbrillance
 
     // Vérifier si la tâche est vide ou si une tâche identique existe déjà à la même date
     if (task === '' || tasks.some(t => t.name.toLowerCase() === task.toLowerCase() && t.date === taskDate)) return false;
@@ -48,7 +48,7 @@ function updateTaskList() {
     tasks.forEach((task, index) => {
         const row = taskList.insertRow(); // Créer une nouvelle ligne pour la tâche
         row.innerHTML = `
-            <td>${task.name}${task.date ? ' - ' + task.date : ''}</td> 
+            <td>${task.name}${task.date ? ' - ' + formatDateForDisplay(task.date) : ''}</td> 
             <td>
                 <input type="checkbox" onchange="toggleTask(${index}, this)" ${task.done ? 'checked' : ''}>
                 <button class="delete-button" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i></button>
@@ -129,10 +129,10 @@ function initializeCalendar(year, month) {
 
         // Ajouter un événement pour modifier ou supprimer une tâche en cliquant sur un jour
         dayElement.addEventListener('click', () => {
-            const tasksForThisDay = tasks.filter(task => task.date === formatDate(date));
+            const tasksForThisDay = tasks.filter(task => task.date === date);
             if (tasksForThisDay.length > 0) {
                 let taskOptions = tasksForThisDay.map((task, index) => `${index + 1}: ${task.name}`).join('\n');
-                let choice = prompt(`Tâches pour le ${formatDate(date)}:\n${taskOptions}\n\nEntrez le numéro de la tâche pour la modifier ou supprimer`, '1');
+                let choice = prompt(`Tâches pour le ${formatDateForDisplay(date)}:\n${taskOptions}\n\nEntrez le numéro de la tâche pour la modifier ou supprimer`, '1');
                 let taskIndex = parseInt(choice) - 1;
                 if (!isNaN(taskIndex) && taskIndex >= 0 && taskIndex < tasksForThisDay.length) {
                     let action = confirm("Cliquez sur OK pour supprimer la tâche ou sur Annuler pour la modifier");
@@ -148,7 +148,7 @@ function initializeCalendar(year, month) {
                     }
                 }
             } else {
-                alert(`Aucune tâche pour le ${formatDate(date)}`);
+                alert(`Aucune tâche pour le ${formatDateForDisplay(date)}`);
             }
         });
 
@@ -177,10 +177,16 @@ function highlightAllTaskDates() {
     });
 }
 
-// Fonction pour formater une date au format "jj/mm/aaaa"
-function formatDate(dateString) {
+// Fonction pour formater une date au format "jj/mm/aaaa" pour affichage
+function formatDateForDisplay(dateString) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
+}
+
+// Fonction pour formater une date pour le stockage et les comparaisons
+function formatDateForStorage(dateString) {
+    const [year, month, day] = dateString.split('-');
+    return `${year}-${month}-${day}`;
 }
 
 // Fonction pour basculer entre le mode clair et le mode sombre
