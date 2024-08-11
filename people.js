@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Récupération de l'historique des habitudes et de l'argent stocké dans le localStorage
+    // Récupérer l'historique des habitudes et les jetons depuis le localStorage
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {}; 
+    console.log("HabitHistory récupéré :", habitHistory);
+
     // Récupère l'argent actuel stocké dans le localStorage, ou 0 si aucune donnée n'est trouvée
     let money = parseInt(localStorage.getItem('money')) || 0;
+    console.log("Argent actuel :", money);
 
     // Formattage de la date actuelle en format "DD/MM/YYYY"
     const today = new Date();
@@ -10,18 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const year = today.getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
+    console.log("Date d'aujourd'hui :", formattedDate);
 
     // Récupération de la dernière date à laquelle les jetons ont été calculés
     const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
+    console.log("Dernière date de calcul :", lastCalculatedDate);
 
     // Vérification si la date actuelle est différente de la dernière date calculée
     if (lastCalculatedDate !== formattedDate) {
         // On récupère le nombre d'habitudes accomplies aujourd'hui à partir de l'historique
         const completedHabitsToday = habitHistory[formattedDate] || 0;
+        console.log("Habitudes complétées aujourd'hui :", completedHabitsToday);
 
         // Si des habitudes ont été accomplies, on ajoute l'argent correspondant
         if (completedHabitsToday > 0) {
             money += completedHabitsToday * 2; // 2 pièces par habitude
+            console.log("Argent ajouté :", completedHabitsToday * 2);
         }
 
         // Mise à jour de l'affichage de l'argent
