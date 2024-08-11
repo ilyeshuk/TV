@@ -2,19 +2,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Récupérer l'historique des habitudes et les jetons depuis le localStorage
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {};
     let money = parseInt(localStorage.getItem('money')) || 0;
-    
+
     // Calculer le nombre total d'habitudes accomplies aujourd'hui
     const today = new Date();
     const day = ('0' + today.getDate()).slice(-2);
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const year = today.getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
-    
-    const completedHabitsToday = habitHistory[formattedDate] || 0;
-    money += completedHabitsToday * 2;
 
-    updateMoneyDisplay(money);
-    saveMoney(money);
+    // Vérifier la date du dernier calcul des jetons
+    const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
+
+    if (lastCalculatedDate !== formattedDate) {
+        const completedHabitsToday = habitHistory[formattedDate] || 0;
+        money += completedHabitsToday * 2;
+        updateMoneyDisplay(money);
+        saveMoney(money);
+        localStorage.setItem('lastCalculatedDate', formattedDate);
+    } else {
+        // Afficher l'argent actuel sans ajouter
+        updateMoneyDisplay(money);
+    }
 
     // Charger l'état du personnage et les articles achetés
     loadCharacterState();
