@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnage Customisé</title>
+    <link rel="stylesheet" href="people.css">
+</head>
+<body>
+    <header>
+        <h1>Personnalisez votre personnage</h1>
+    </header>
+    
+    <main>
+        <div id="character-container">
+            <img id="character" src="default-character.png" alt="Personnage">
+        </div>
+
+        <div id="shop">
+            <h2>Magasin</h2>
+            <p>Argent: <span id="money">0</span> pièces</p>
+            <div id="shop-items">
+                <button class="shop-item" data-price="5" data-item="hat.png">Chapeau (5 pièces)</button>
+                <button class="shop-item" data-price="10" data-item="shirt.png">T-shirt (10 pièces)</button>
+                <button class="shop-item" data-price="20" data-item="pants.png">Pantalon (20 pièces)</button>
+                <button class="shop-item" data-price="15" data-item="shoes.png">Chaussures (15 pièces)</button>
+                <button class="shop-item" data-price="25" data-item="glasses.png">Lunettes (25 pièces)</button>
+                <button class="shop-item" data-price="30" data-item="jacket.png">Veste (30 pièces)</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
