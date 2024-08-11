@@ -14,25 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
 
     if (lastCalculatedDate !== formattedDate) {
-        // Vérifier si des habitudes ont été accomplies aujourd'hui
         const completedHabitsToday = habitHistory[formattedDate] || 0;
-        console.log(`Habitudes accomplies aujourd'hui: ${completedHabitsToday}`);
-        
         if (completedHabitsToday > 0) {
-            // Ajouter des pièces seulement si des habitudes ont été complétées
             money += completedHabitsToday * 2;
-            console.log(`Nouvelles pièces ajoutées: ${completedHabitsToday * 2}`);
         }
-        
         updateMoneyDisplay(money);
         saveMoney(money);
         localStorage.setItem('lastCalculatedDate', formattedDate);
     } else {
-        // Afficher l'argent actuel sans ajouter
         updateMoneyDisplay(money);
     }
 
-    // Charger l'état du personnage et les articles achetés
     loadCharacterState();
     loadWardrobe();
 
@@ -95,8 +87,20 @@ function loadWardrobe() {
         if (wardrobe[item]) {
             const button = document.createElement('button');
             button.textContent = `Porter ${item}`;
+            button.classList.add('wardrobe-item');
+
+            // Vérifier si l'élément est déjà sélectionné
+            if (wardrobe[item]) {
+                button.classList.add('selected');
+            }
+
             button.addEventListener('click', () => {
                 wardrobe[item] = !wardrobe[item];
+                if (wardrobe[item]) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
                 updateCharacterImage(wardrobe);
                 saveCharacterState();
             });
