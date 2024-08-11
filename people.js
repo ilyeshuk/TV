@@ -14,8 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
 
     if (lastCalculatedDate !== formattedDate) {
+        // Vérifier si des habitudes ont été accomplies aujourd'hui
         const completedHabitsToday = habitHistory[formattedDate] || 0;
-        money += completedHabitsToday * 2;
+        console.log(`Habitudes accomplies aujourd'hui: ${completedHabitsToday}`);
+        
+        if (completedHabitsToday > 0) {
+            // Ajouter des pièces seulement si des habitudes ont été complétées
+            money += completedHabitsToday * 2;
+            console.log(`Nouvelles pièces ajoutées: ${completedHabitsToday * 2}`);
+        }
+        
         updateMoneyDisplay(money);
         saveMoney(money);
         localStorage.setItem('lastCalculatedDate', formattedDate);
@@ -28,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCharacterState();
     loadWardrobe();
 
-    document.querySelectorAll('.shop-item').forEach(button => {
+    document.querySelectorAll('.shop-item button').forEach(button => {
         button.addEventListener('click', () => {
             buyItem(button, money, (newMoney) => {
                 money = newMoney;
@@ -43,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateMoneyDisplay(money) {
     document.getElementById('money').textContent = money;
-    document.querySelectorAll('.shop-item').forEach(button => {
+    document.querySelectorAll('.shop-item button').forEach(button => {
         const price = parseInt(button.dataset.price, 10);
         button.disabled = money < price;
     });
