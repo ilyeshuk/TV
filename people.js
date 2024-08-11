@@ -16,37 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const formattedDate = `${day}/${month}/${year}`;
     console.log("Date d'aujourd'hui :", formattedDate);
 
-    // Récupération de la dernière date à laquelle les jetons ont été calculés
-    const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
-    console.log("Dernière date de calcul :", lastCalculatedDate);
+    // On récupère le nombre d'habitudes accomplies aujourd'hui à partir de l'historique
+    const completedHabitsToday = habitHistory[formattedDate] || 0;
+    console.log("Habitudes complétées aujourd'hui :", completedHabitsToday);
 
-    // Vérification si la date actuelle est différente de la dernière date calculée
-    if (lastCalculatedDate !== formattedDate) {
-        // On récupère le nombre d'habitudes accomplies aujourd'hui à partir de l'historique
-        const completedHabitsToday = habitHistory[formattedDate] || 0;
-        console.log("Habitudes complétées aujourd'hui :", completedHabitsToday);
-
-        // Si des habitudes ont été accomplies, on ajoute l'argent correspondant
-        if (completedHabitsToday > 0) {
-            console.log(`Ajout de ${completedHabitsToday * 2} pièces pour ${completedHabitsToday} habitudes complétées.`);
-            money += completedHabitsToday * 2;
-            console.log("Nouveau montant d'argent après ajout :", money);
-        } else {
-            console.log("Aucune habitude complétée aujourd'hui ou problème avec le format de la date.");
-        }
-
-        // Mise à jour de l'affichage de l'argent
-        updateMoneyDisplay(money);
-        // Sauvegarde du nouveau montant d'argent dans le localStorage
-        saveMoney(money);
-        // Enregistrement de la date actuelle comme dernière date de calcul des jetons
-        localStorage.setItem('lastCalculatedDate', formattedDate);
-        console.log("Dernière date de calcul mise à jour :", formattedDate);
+    // Ajouter des pièces pour chaque habitude complétée aujourd'hui
+    if (completedHabitsToday > 0) {
+        console.log(`Ajout de ${completedHabitsToday * 2} pièces pour ${completedHabitsToday} habitudes complétées.`);
+        money += completedHabitsToday * 2;
+        console.log("Nouveau montant d'argent après ajout :", money);
     } else {
-        // Si on a déjà calculé les jetons aujourd'hui, on met à jour l'affichage sans ajouter d'argent
-        console.log("L'argent a déjà été calculé aujourd'hui. Pas de mise à jour nécessaire.");
-        updateMoneyDisplay(money);
+        console.log("Aucune habitude complétée aujourd'hui ou problème avec le format de la date.");
     }
+
+    // Mise à jour de l'affichage de l'argent
+    updateMoneyDisplay(money);
+    // Sauvegarde du nouveau montant d'argent dans le localStorage
+    saveMoney(money);
 });
 
 function updateMoneyDisplay(money) {
