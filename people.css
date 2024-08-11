@@ -32,12 +32,14 @@ header {
 .shop-item {
     margin: 10px;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
 }
+
+.shop-item img {
+    max-width: 80px;
+    margin-bottom: 10px;
+}
+
 
 .shop-item:disabled {
     background-color: #888;
