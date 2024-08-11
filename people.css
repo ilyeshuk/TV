@@ -53,3 +53,9 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Style pour la surbrillance des boutons sélectionnés */
+.selected {
+    background-color: #4CAF50; /* Couleur de surbrillance */
+    color: white;
+    border: 2px solid #2E7D32; /* Bordure en surbrillance */
+}
