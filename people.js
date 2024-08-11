@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Récupérer l'historique des habitudes et les jetons depuis le localStorage
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {}; 
     console.log("HabitHistory récupéré :", habitHistory);
+    console.log("Contenu complet de HabitHistory :", JSON.stringify(habitHistory, null, 2));
 
     // Récupère l'argent actuel stocké dans le localStorage, ou 0 si aucune donnée n'est trouvée
     let money = parseInt(localStorage.getItem('money')) || 0;
@@ -25,12 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const completedHabitsToday = habitHistory[formattedDate] || 0;
         console.log("Habitudes complétées aujourd'hui :", completedHabitsToday);
 
+        // Hypothèse : Vérifions si la date formatée dans habitHistory est correcte
+        console.log("HabitHistory pour aujourd'hui (format vérifié) :", habitHistory[formattedDate]);
+
         // Si des habitudes ont été accomplies, on ajoute l'argent correspondant
         if (completedHabitsToday > 0) {
-            console.log("Ajout de l'argent pour", completedHabitsToday, "habitudes complétées.");
-            money += completedHabitsToday * 2; // 2 pièces par habitude
+            console.log(`Ajout de ${completedHabitsToday * 2} pièces pour ${completedHabitsToday} habitudes complétées.`);
+            money += completedHabitsToday * 2;
         } else {
-            console.log("Aucune habitude complétée aujourd'hui.");
+            console.log("Aucune habitude complétée aujourd'hui ou problème avec le format de la date.");
         }
 
         // Mise à jour de l'affichage de l'argent
@@ -53,7 +57,7 @@ function updateMoneyDisplay(money) {
     // Désactive les boutons de la boutique si l'utilisateur n'a pas assez d'argent pour acheter un article
     document.querySelectorAll('.shop-item button').forEach(button => {
         const price = parseInt(button.dataset.price, 10);
-        console.log("Prix de l'article :", price, "| Argent disponible :", money);
+        console.log(`Prix de l'article : ${price} | Argent disponible : ${money}`);
         button.disabled = money < price;
     });
 }
