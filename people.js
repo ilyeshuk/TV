@@ -26,13 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const completedHabitsToday = habitHistory[formattedDate] || 0;
         console.log("Habitudes complétées aujourd'hui :", completedHabitsToday);
 
-        // Hypothèse : Vérifions si la date formatée dans habitHistory est correcte
-        console.log("HabitHistory pour aujourd'hui (format vérifié) :", habitHistory[formattedDate]);
-
         // Si des habitudes ont été accomplies, on ajoute l'argent correspondant
         if (completedHabitsToday > 0) {
             console.log(`Ajout de ${completedHabitsToday * 2} pièces pour ${completedHabitsToday} habitudes complétées.`);
             money += completedHabitsToday * 2;
+            console.log("Nouveau montant d'argent après ajout :", money);
         } else {
             console.log("Aucune habitude complétée aujourd'hui ou problème avec le format de la date.");
         }
@@ -43,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
         saveMoney(money);
         // Enregistrement de la date actuelle comme dernière date de calcul des jetons
         localStorage.setItem('lastCalculatedDate', formattedDate);
+        console.log("Dernière date de calcul mise à jour :", formattedDate);
     } else {
         // Si on a déjà calculé les jetons aujourd'hui, on met à jour l'affichage sans ajouter d'argent
+        console.log("L'argent a déjà été calculé aujourd'hui. Pas de mise à jour nécessaire.");
         updateMoneyDisplay(money);
     }
 });
