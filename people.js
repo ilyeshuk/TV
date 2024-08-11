@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (lastCalculatedDate !== formattedDate) {
         const completedHabitsToday = habitHistory[formattedDate] || 0;
+
         if (completedHabitsToday > 0) {
-            money += completedHabitsToday * 2;
+            money += completedHabitsToday * 2; // Ajouter des pièces pour les habitudes complétées
         }
+
         updateMoneyDisplay(money);
         saveMoney(money);
         localStorage.setItem('lastCalculatedDate', formattedDate);
     } else {
-        updateMoneyDisplay(money);
+        updateMoneyDisplay(money); // Afficher l'argent actuel sans ajouter
     }
 
     loadCharacterState();
@@ -89,7 +91,7 @@ function loadWardrobe() {
             button.textContent = `Porter ${item}`;
             button.classList.add('wardrobe-item');
 
-            // Vérifier si l'élément est déjà sélectionné
+            // Appliquer la classe selected si l'élément est déjà sélectionné
             if (wardrobe[item]) {
                 button.classList.add('selected');
             }
