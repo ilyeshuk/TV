@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Récupérer l'historique des habitudes depuis le localStorage
+    // Récupérer l'historique des habitudes et les jetons depuis le localStorage
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {};
+    let money = parseInt(localStorage.getItem('money')) || 0;
     
     // Calculer le nombre total d'habitudes accomplies aujourd'hui
     const today = new Date();
@@ -10,20 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const formattedDate = `${day}/${month}/${year}`;
     
     const completedHabitsToday = habitHistory[formattedDate] || 0;
+    money += completedHabitsToday * 2;
 
-    // Chaque habitude réalisée donne 2 pièces
-    let money = completedHabitsToday * 2;
     updateMoneyDisplay(money);
+    saveMoney(money);
 
-    // Charger l'état du personnage sauvegardé
+    // Charger l'état du personnage et les articles achetés
     loadCharacterState();
+    loadWardrobe();
 
     document.querySelectorAll('.shop-item').forEach(button => {
         button.addEventListener('click', () => {
             buyItem(button, money, (newMoney) => {
                 money = newMoney;
                 updateMoneyDisplay(money);
+                saveMoney(money);
                 saveCharacterState();
+                loadWardrobe();
             });
         });
     });
@@ -44,18 +48,72 @@ function buyItem(button, money, updateMoneyCallback) {
     if (money >= price) {
         money -= price;
         updateMoneyCallback(money);
-        document.getElementById('character').src = item;
+
+        // Ajouter l'article à la garde-robe
+        let wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
+        wardrobe[item] = true;
+        localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
     }
+}
+
+function saveMoney(money) {
+    localStorage.setItem('money', money);
 }
 
 function saveCharacterState() {
-    const characterSrc = document.getElementById('character').src;
-    localStorage.setItem('characterState', JSON.stringify({ characterSrc }));
+    const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
+    localStorage.setItem('characterState', JSON.stringify(wardrobe));
 }
 
 function loadCharacterState() {
-    const savedState = JSON.parse(localStorage.getItem('characterState'));
-    if (savedState && savedState.characterSrc) {
-        document.getElementById('character').src = savedState.characterSrc;
+    const wardrobe = JSON.parse(localStorage.getItem('characterState')) || {};
+    updateCharacterImage(wardrobe);
+}
+
+function loadWardrobe() {
+    const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
+    const wardrobeItemsContainer = document.getElementById('wardrobe-items');
+    wardrobeItemsContainer.innerHTML = '';
+
+    for (let item in wardrobe) {
+        if (wardrobe[item]) {
+            const button = document.createElement('button');
+            button.textContent = `Porter ${item}`;
+            button.addEventListener('click', () => {
+                wardrobe[item] = !wardrobe[item];
+                updateCharacterImage(wardrobe);
+                saveCharacterState();
+            });
+            wardrobeItemsContainer.appendChild(button);
+        }
     }
+}
+
+function updateCharacterImage(wardrobe) {
+    let imageSrc = 'assets/default.png';
+
+    // Logique pour déterminer quelle image afficher en fonction des articles portés
+    if (wardrobe['hat'] && wardrobe['shirt'] && wardrobe['pants'] && wardrobe['shoes']) {
+        imageSrc = 'assets/complete-outfit.png';
+    } else if (wardrobe['hat'] && wardrobe['shirt'] && wardrobe['pants']) {
+        imageSrc = 'assets/hat-shirt-pants.png';
+    } else if (wardrobe['shirt'] && wardrobe['pants'] && wardrobe['shoes']) {
+        imageSrc = 'assets/shirt-pants-shoes.png';
+    } else if (wardrobe['shirt'] && wardrobe['pants']) {
+        imageSrc = 'assets/shirt-pants.png';
+    } else if (wardrobe['pants'] && wardrobe['shoes']) {
+        imageSrc = 'assets/pants-shoes.png';
+    } else if (wardrobe['shirt'] && wardrobe['shoes']) {
+        imageSrc = 'assets/shirt-shoes.png';
+    } else if (wardrobe['hat']) {
+        imageSrc = 'assets/hat.png';
+    } else if (wardrobe['shirt']) {
+        imageSrc = 'assets/shirt.png';
+    } else if (wardrobe['pants']) {
+        imageSrc = 'assets/pants.png';
+    } else if (wardrobe['shoes']) {
+        imageSrc = 'assets/shoes.png';
+    }
+
+    document.getElementById('character').src = imageSrc;
 }
