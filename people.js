@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Récupère l'argent actuel stocké dans le localStorage, ou 0 si aucune donnée n'est trouvée
     let money = parseInt(localStorage.getItem('money')) || 0;
-    console.log("Argent actuel :", money);
+    console.log("Argent actuel avant calcul :", money);
 
     // Formattage de la date actuelle en format "DD/MM/YYYY"
     const today = new Date();
@@ -27,8 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Si des habitudes ont été accomplies, on ajoute l'argent correspondant
         if (completedHabitsToday > 0) {
+            console.log("Ajout de l'argent pour", completedHabitsToday, "habitudes complétées.");
             money += completedHabitsToday * 2; // 2 pièces par habitude
-            console.log("Argent ajouté :", completedHabitsToday * 2);
+        } else {
+            console.log("Aucune habitude complétée aujourd'hui.");
         }
 
         // Mise à jour de l'affichage de l'argent
@@ -41,32 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si on a déjà calculé les jetons aujourd'hui, on met à jour l'affichage sans ajouter d'argent
         updateMoneyDisplay(money);
     }
-
-    // Chargement de l'état actuel du personnage (articles portés)
-    loadCharacterState();
-    // Chargement de la garde-robe pour afficher les articles achetés
-    loadWardrobe();
-
-    // Pour chaque bouton dans la boutique, on ajoute un événement de clic pour gérer l'achat
-    document.querySelectorAll('.shop-item button').forEach(button => {
-        button.addEventListener('click', () => {
-            buyItem(button, money, (newMoney) => {
-                money = newMoney;
-                updateMoneyDisplay(money);
-                saveMoney(money);
-                saveCharacterState();
-                loadWardrobe();
-            });
-        });
-    });
 });
 
 function updateMoneyDisplay(money) {
     // Met à jour l'affichage de l'argent à l'écran
     document.getElementById('money').textContent = money;
+    console.log("Affichage de l'argent mis à jour :", money);
+
     // Désactive les boutons de la boutique si l'utilisateur n'a pas assez d'argent pour acheter un article
     document.querySelectorAll('.shop-item button').forEach(button => {
         const price = parseInt(button.dataset.price, 10);
+        console.log("Prix de l'article :", price, "| Argent disponible :", money);
         button.disabled = money < price;
     });
 }
@@ -75,39 +62,48 @@ function buyItem(button, money, updateMoneyCallback) {
     // Récupère le prix et l'item correspondant au bouton cliqué
     const price = parseInt(button.dataset.price, 10);
     const item = button.dataset.item;
+    console.log("Tentative d'achat de l'article :", item, "pour", price, "pièces. Argent disponible :", money);
 
     // Si l'utilisateur a assez d'argent, on procède à l'achat
     if (money >= price) {
         money -= price; // On déduit le prix de l'article de l'argent total
+        console.log("Achat réussi. Argent restant :", money);
         updateMoneyCallback(money); // Mise à jour de l'argent après l'achat
 
         // On ajoute l'article acheté à la garde-robe dans le localStorage
         let wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
         wardrobe[item] = true;
         localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
+        console.log("Article ajouté à la garde-robe :", item);
+    } else {
+        console.log("Achat échoué : pas assez d'argent.");
     }
 }
 
 function saveMoney(money) {
     // Sauvegarde le montant actuel d'argent dans le localStorage
     localStorage.setItem('money', money);
+    console.log("Argent sauvegardé :", money);
 }
 
 function saveCharacterState() {
     // Sauvegarde l'état actuel du personnage (articles portés) dans le localStorage
     const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
     localStorage.setItem('characterState', JSON.stringify(wardrobe));
+    console.log("État du personnage sauvegardé :", wardrobe);
 }
 
 function loadCharacterState() {
     // Charge l'état du personnage depuis le localStorage
     const wardrobe = JSON.parse(localStorage.getItem('characterState')) || {};
+    console.log("État du personnage chargé :", wardrobe);
     updateCharacterImage(wardrobe);
 }
 
 function loadWardrobe() {
     // Charge la garde-robe depuis le localStorage et affiche les articles achetés
     const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
+    console.log("Garde-robe chargée :", wardrobe);
     const wardrobeItemsContainer = document.getElementById('wardrobe-items');
     wardrobeItemsContainer.innerHTML = ''; // Vide la garde-robe avant de la recharger
 
@@ -121,6 +117,7 @@ function loadWardrobe() {
             // Si l'article est sélectionné, on applique la classe 'selected'
             if (wardrobe[item]) {
                 button.classList.add('selected');
+                console.log("Article porté :", item);
             }
 
             // Ajoute un événement de clic pour sélectionner/désélectionner l'article
@@ -128,8 +125,10 @@ function loadWardrobe() {
                 wardrobe[item] = !wardrobe[item];
                 if (wardrobe[item]) {
                     button.classList.add('selected');
+                    console.log("Article sélectionné :", item);
                 } else {
                     button.classList.remove('selected');
+                    console.log("Article désélectionné :", item);
                 }
                 updateCharacterImage(wardrobe); // Mise à jour de l'image du personnage
                 saveCharacterState(); // Sauvegarde de l'état actuel du personnage
@@ -145,26 +144,37 @@ function updateCharacterImage(wardrobe) {
 
     if (wardrobe['hat'] && wardrobe['shirt'] && wardrobe['pants'] && wardrobe['shoes']) {
         imageSrc = 'assets/complete-outfit.png';
+        console.log("Affichage : ensemble complet.");
     } else if (wardrobe['hat'] && wardrobe['shirt'] && wardrobe['pants']) {
         imageSrc = 'assets/hat-shirt-pants.png';
+        console.log("Affichage : chapeau, chemise, pantalon.");
     } else if (wardrobe['shirt'] && wardrobe['pants'] && wardrobe['shoes']) {
         imageSrc = 'assets/shirt-pants-shoes.png';
+        console.log("Affichage : chemise, pantalon, chaussures.");
     } else if (wardrobe['shirt'] && wardrobe['pants']) {
         imageSrc = 'assets/shirt-pants.png';
+        console.log("Affichage : chemise, pantalon.");
     } else if (wardrobe['pants'] && wardrobe['shoes']) {
         imageSrc = 'assets/pants-shoes.png';
+        console.log("Affichage : pantalon, chaussures.");
     } else if (wardrobe['shirt'] && wardrobe['shoes']) {
         imageSrc = 'assets/shirt-shoes.png';
+        console.log("Affichage : chemise, chaussures.");
     } else if (wardrobe['hat']) {
         imageSrc = 'assets/hat.png';
+        console.log("Affichage : chapeau.");
     } else if (wardrobe['shirt']) {
         imageSrc = 'assets/shirt.png';
+        console.log("Affichage : chemise.");
     } else if (wardrobe['pants']) {
         imageSrc = 'assets/pants.png';
+        console.log("Affichage : pantalon.");
     } else if (wardrobe['shoes']) {
         imageSrc = 'assets/shoes.png';
+        console.log("Affichage : chaussures.");
     }
 
     // Mise à jour de l'image du personnage avec la bonne combinaison d'articles portés
     document.getElementById('character').src = imageSrc;
+    console.log("Image du personnage mise à jour :", imageSrc);
 }
