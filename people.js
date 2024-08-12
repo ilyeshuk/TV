@@ -133,6 +133,8 @@ function updateCharacterImage(wardrobe) {
         imageSrc = 'assets/pants-shoes.png';
     } else if (wardrobe['shirt'] && wardrobe['shoes']) {
         imageSrc = 'assets/shirt-shoes.png';
+    } else if (wardrobe['hat'] && wardrobe['shoes']) {
+        imageSrc = 'assets/hat-shoes.png';
     } else if (wardrobe['hat']) {
         imageSrc = 'assets/hat.png';
     } else if (wardrobe['shirt']) {
