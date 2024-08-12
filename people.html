@@ -39,45 +39,49 @@
             <a href="people.html">Personnage pour habitude</a>
         </nav>
     </header>
-    <header>
-        <h1>Personnalisez votre personnage</h1>
-    </header>
+    <div class="content">
+        <div class="left-content">
+            <h1 id="title">Personnaliser votre personnage</h1>
+            <p id="motivation-text" class="motivation-text">
+                Motivez-vous a faire en habitudes en gagnant 2 jetons à chaque habitude réalisé aujourd'hui pour personnaliser votre personnage.
+            </p>
+            <div id="shop">
+                <h2>Magasin</h2>
+                <p>Argent: <span id="money">0</span> pièces</p>
+                <div id="shop-items">
+                    <div class="shop-item">
+                        <img src="assets/hat.png" alt="Chapeau">
+                        <button data-price="5" data-item="hat">Chapeau (5 pièces)</button>
+                    </div>
+                    <div class="shop-item">
+                        <img src="assets/shop/shirt.png" alt="T-shirt">
+                        <button data-price="10" data-item="shirt">T-shirt (10 pièces)</button>
+                    </div>
+                    <div class="shop-item">
+                        <img src="assets/shop/pants.png" alt="Pantalon">
+                        <button data-price="20" data-item="pants">Pantalon (20 pièces)</button>
+                    </div>
+                    <div class="shop-item">
+                        <img src="assets/shop/shoes.png" alt="Chaussures">
+                        <button data-price="15" data-item="shoes">Chaussures (15 pièces)</button>
+                    </div>
+                </div>
+            </div>            
+
+            <div id="wardrobe">
+                <h2>Garde-Robe</h2>
+                <div id="wardrobe-items">
+                    <!-- Les articles achetés seront affichés ici -->
+                </div>
+            </div>
+         </div>
     
-    <main>
-        <div id="character-container">
-            <img id="character" src="assets/default.png" alt="Personnage">
-        </div>
-
-        <div id="shop">
-            <h2>Magasin</h2>
-            <p>Argent: <span id="money">0</span> pièces</p>
-            <div id="shop-items">
-                <div class="shop-item">
-                    <img src="assets/hat.png" alt="Chapeau">
-                    <button data-price="5" data-item="hat">Chapeau (5 pièces)</button>
-                </div>
-                <div class="shop-item">
-                    <img src="assets/shop/shirt.png" alt="T-shirt">
-                    <button data-price="10" data-item="shirt">T-shirt (10 pièces)</button>
-                </div>
-                <div class="shop-item">
-                    <img src="assets/shop/pants.png" alt="Pantalon">
-                    <button data-price="20" data-item="pants">Pantalon (20 pièces)</button>
-                </div>
-                <div class="shop-item">
-                    <img src="assets/shop/shoes.png" alt="Chaussures">
-                    <button data-price="15" data-item="shoes">Chaussures (15 pièces)</button>
-                </div>
+        <div class="right-content"> 
+            <div id="character-container">
+                <img id="character" src="assets/default.png" alt="Personnage">
             </div>
         </div>
-
-        <div id="wardrobe">
-            <h2>Garde-Robe</h2>
-            <div id="wardrobe-items">
-                <!-- Les articles achetés seront affichés ici -->
-            </div>
-        </div>
-    </main>
+    </div>
 
     <script src="people.js"></script>
 </body>
