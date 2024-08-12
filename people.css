@@ -66,10 +66,13 @@ body {
     text-align: left;
 }
 
-/* Centrage du contenu à droite */
 .right-content {
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
+    display: flex;
+    flex-direction: column; /* Aligne les éléments en colonne */
+    justify-content: space-between; /* Met l'espace entre l'image et la garde-robe */
+    align-items: center; /* Centre l'image horizontalement */
+    height: 100vh; /* Prend toute la hauteur de la page */
+    padding: 20px; /* Optionnel : un peu d'espace autour */
 }
 
 .right-content-character-container {
@@ -92,8 +95,12 @@ h1 {
     font-size: 1rem; /* Utilisation de rem pour la taille du texte */
 }
 
+/* Styles pour le conteneur du personnage */
 #character-container {
-    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Permet à l'image de prendre tout l'espace disponible verticalement */
 }
 
 #character {
@@ -125,12 +132,10 @@ h1 {
     background-color: #888;
 }
 
+/* Styles pour la garde-robe */
 #wardrobe {
-    margin: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centre le texte et les éléments dans la garde-robe */
+    margin-bottom: 20px; /* Optionnel : espace en bas de la page */
 }
 
 /* Style pour la surbrillance des boutons sélectionnés */
