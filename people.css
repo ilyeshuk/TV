@@ -68,10 +68,13 @@ body {
 
 /* Centrage du contenu à droite */
 .right-content {
-    display: flex;
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
-    
+}
+
+.right-content-character-container {
+    justify-content: down; /* Centre horizontalement */
+    align-items: down; /* Centre verticalement */
 }
 
 /* Style pour les titres */
