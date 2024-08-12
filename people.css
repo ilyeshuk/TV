@@ -71,7 +71,7 @@ body {
     display: flex;
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
-    height: 100vh; /* Exemple pour centrer verticalement sur toute la hauteur de l'écran */
+    
 }
 
 /* Style pour les titres */
