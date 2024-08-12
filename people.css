@@ -68,7 +68,10 @@ body {
 
 /* Centrage du contenu à droite */
 .right-content {
-    text-align: center;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 100vh; /* Exemple pour centrer verticalement sur toute la hauteur de l'écran */
 }
 
 /* Style pour les titres */
