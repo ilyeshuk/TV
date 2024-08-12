@@ -76,8 +76,8 @@ body {
 }
 
 .right-content-character-container {
-    justify-content: down; /* Centre horizontalement */
-    align-items: down; /* Centre verticalement */
+    justify-content: centre; /* Centre horizontalement */
+    align-items: centre; /* Centre verticalement */
 }
 
 /* Style pour les titres */
