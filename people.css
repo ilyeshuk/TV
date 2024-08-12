@@ -71,7 +71,6 @@ body {
     flex-direction: column; /* Aligne les éléments en colonne */
     justify-content: space-between; /* Met l'espace entre l'image et la garde-robe */
     align-items: center; /* Centre l'image horizontalement */
-    height: 100vh; /* Prend toute la hauteur de la page */
     padding: 20px; /* Optionnel : un peu d'espace autour */
 }
 
