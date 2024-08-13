@@ -29,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculer l'argent uniquement si la date a changé ou si de nouvelles habitudes ont été complétées depuis le dernier calcul
     if (lastCalculatedDate !== formattedDate || (habitHistory[formattedDate] > (habitHistory[lastCalculatedDate] || 0))) {
         // Calcule l'argent à ajouter en fonction des nouvelles habitudes complétées
-        const previousHabits = habitHistory[lastCalculatedDate] || 0;
-        const newMoney = completedHabitsToday - previousHabits;
-        console.log(`Habitudes précédentes: ${previousHabits}, Habitudes aujourd'hui: ${completedHabitsToday}, Nouvelles habitudes: ${newMoney}`);
-        
+        const newMoney = (habitHistory[formattedDate] || 0) - (habitHistory[lastCalculatedDate] || 0);
+        console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté et les nouvelles habitudes complétées
+    }        
         if (newMoney > 0) {
             money += newMoney * 2; // Multiplie le nombre d'habitudes complétées par 2 pour calculer l'argent
             console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté et les nouvelles habitudes complétées
