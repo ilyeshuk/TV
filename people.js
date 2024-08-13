@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('lastCalculatedDateWithSeconds', formattedDateWithSeconds);
 
     // Deuxième vérification : Si la date (avec secondes) a changé mais que la date sans secondes est la même.
-    } else if (lastCalculatedDateWithSeconds !== formattedDateWithSeconds) {
+    } else if ((habitHistory[lastCalculatedDateWithSeconds] !== (habitHistory[formattedDateWithSeconds]))) {
         // Cas où la date est la même mais l'heure avec secondes a changé, nécessitant un recalcul.
 
         // Calculer l'argent supplémentaire en fonction des habitudes complétées depuis le dernier calcul avec secondes.
