@@ -255,6 +255,7 @@ function updateCharacterImage(wardrobe) {
         imageSrc = 'assets/pants.png'; // Si seul le pantalon est porté
     } else if (wardrobe['shoes']) {
         imageSrc = 'assets/shoes.png'; // Si seules les chaussures sont portées    
+    }
 }
     // Mettre à jour l'élément d'image du personnage avec la nouvelle source d'image
     document.getElementById('character').src = imageSrc;
