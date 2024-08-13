@@ -49,31 +49,50 @@ function updateMoneyDisplay(money) {
 }
 
 function buyItem(button) {
+    // Récupère le montant d'argent actuel depuis le localStorage
     let money = parseInt(localStorage.getItem('money')) || 0;
+
+    // Récupère le prix de l'article depuis l'attribut data-price du bouton
     const price = parseInt(button.dataset.price, 10);
+
+    // Récupère le nom de l'article depuis l'attribut data-item du bouton
     const item = button.dataset.item;
 
-    // Vérifier si l'utilisateur a assez d'argent
+    // Vérifie si l'utilisateur a suffisamment d'argent pour acheter l'article
     if (money >= price) {
-        // Déduire le prix de l'article
+        // Déduit le prix de l'article du montant d'argent
         money -= price;
+
+        // Sauvegarde le nouveau montant d'argent dans le localStorage
         saveMoney(money);
+
+        // Met à jour l'affichage du montant d'argent sur l'écran
         updateMoneyDisplay(money);
 
-        // Ajouter l'article à la garde-robe
+        // Récupère la garde-robe actuelle depuis le localStorage
         let wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
+
+        // Ajoute l'article à la garde-robe de l'utilisateur
         wardrobe[item] = true;
+
+        // Sauvegarde la nouvelle garde-robe dans le localStorage
         localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
 
+        // Affiche un message dans la console indiquant que l'article a été acheté
         console.log(`Article acheté : ${item}`);
+
+        // Recharge la garde-robe pour refléter l'achat effectué
         loadWardrobe();
     } else {
+        // Si l'utilisateur n'a pas assez d'argent, affiche un message dans la console
         console.log("Pas assez d'argent pour acheter cet article.");
     }
 }
 
+// Ajoute un événement 'click' à chaque bouton d'article du magasin
 document.querySelectorAll('.shop-item button').forEach(button => {
     button.addEventListener('click', function() {
+        // Appelle la fonction buyItem lorsque le bouton est cliqué
         buyItem(button);
     });
 });
