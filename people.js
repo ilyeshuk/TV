@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastCalculatedDateWithSeconds = localStorage.getItem('lastCalculatedDateWithSeconds');
     console.log("Dernière date de calcul de l'argent :", lastCalculatedDate); // Affiche la dernière date de calcul (sans secondes) pour vérification
     console.log("Dernière date de calcul de l'argent (avec secondes) :", lastCalculatedDateWithSeconds); // Affiche la dernière date de calcul avec secondes pour vérification
+    console.log("Dernière habitude de calcul de l'argent (avec secondes) :", habitHistory[lastCalculatedDateWithSeconds]);
+    console.log("Dernière habitude de calcul de l'argent en ce moment (avec secondes) :", habitHistory[formattedDateWithSeconds]);
 
     // Première vérification : Si la date actuelle (sans secondes) est différente de la dernière date de calcul
     if (lastCalculatedDate !== formattedDate) {
