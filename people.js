@@ -1,3 +1,5 @@
+//Script JavaScript qui s'exécute lorsqu'une page Web est complètement chargée (DOMContentLoaded). 
+//Ce script gère un système de suivi des habitudes quotidiennes, des récompenses monétaires associées, ainsi que l'état visuel d'un personnage dans l'interface.
 document.addEventListener('DOMContentLoaded', () => {
     // Récupérer l'historique des habitudes depuis le localStorage ou initialiser à un objet vide si non disponible
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {}; 
@@ -125,13 +127,13 @@ function saveCharacterState() {
     const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
 
     // Sauvegarde l'état actuel du personnage (garde-robe) dans le localStorage
-    localStorage.setItem('characterState', JSON.stringify(wardrobe));
+    localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
     console.log("État du personnage sauvegardé :", wardrobe); // Affiche un message dans la console indiquant que l'état du personnage a été sauvegardé
 }
 
 function loadCharacterState() {
     // Récupère l'état actuel du personnage depuis le localStorage ou initialise à un objet vide si non disponible
-    const wardrobe = JSON.parse(localStorage.getItem('characterState')) || {};
+    const wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
     console.log("État du personnage chargé :", wardrobe); // Affiche l'état du personnage chargé dans la console
 
     // Met à jour l'image du personnage en fonction de l'état actuel de la garde-robe
