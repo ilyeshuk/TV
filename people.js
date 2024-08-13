@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentHabits = habitHistory[formattedDateWithSeconds] || 0; // Obtenir les habitudes actuelles pour comparaison
         const newMoney = currentHabits - previousHabits; // Calculer la différence pour savoir combien d'habitudes supplémentaires ont été complétées
 
+        console.log(`Ajout d'habitudes aujourd'hui : ${newMoney} = ${currentHabits} - ${previousHabits} `);
+        
         if (newMoney > 0) {
             money += newMoney * 2; // Ajouter l'argent supplémentaire pour les nouvelles habitudes complétées
             console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées depuis la dernière vérification.`); // Affiche l'argent ajouté pour vérification
