@@ -254,17 +254,16 @@ function updateCharacterImage(wardrobe) {
     } else if (wardrobe['pants']) {
         imageSrc = 'assets/pants.png'; // Si seul le pantalon est porté
     } else if (wardrobe['shoes']) {
-        imageSrc = 'assets/shoes.png'; // Si seules les chaussures sont portées
-
+        imageSrc = 'assets/shoes.png'; // Si seules les chaussures sont portées    
+}
     // Mettre à jour l'élément d'image du personnage avec la nouvelle source d'image
     document.getElementById('character').src = imageSrc;
     console.log("Image du personnage mise à jour :", imageSrc); // Affiche la nouvelle source d'image dans la console pour vérification
-}
 
 // Gestionnaire d'événement pour le menu hamburger (pour afficher ou masquer la barre latérale)
 document.getElementById('menuToggle').addEventListener('click', function() {
-    var sidebar = document.getElementById('sidebar'); // Sélectionner la barre latérale
-    var menuToggle = document.getElementById('menuToggle'); // Sélectionner le bouton de menu
+    let sidebar = document.getElementById('sidebar'); // Sélectionner la barre latérale
+    let menuToggle = document.getElementById('menuToggle'); // Sélectionner le bouton de menu
 
     // Basculer l'état actif de la barre latérale et du bouton de menu (afficher/masquer)
     sidebar.classList.toggle('active');
