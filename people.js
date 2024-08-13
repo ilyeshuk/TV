@@ -53,11 +53,14 @@ function buyItem(button) {
     const price = parseInt(button.dataset.price, 10);
     const item = button.dataset.item;
 
+    // Vérifier si l'utilisateur a assez d'argent
     if (money >= price) {
+        // Déduire le prix de l'article
         money -= price;
         saveMoney(money);
         updateMoneyDisplay(money);
 
+        // Ajouter l'article à la garde-robe
         let wardrobe = JSON.parse(localStorage.getItem('wardrobe')) || {};
         wardrobe[item] = true;
         localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
@@ -68,6 +71,12 @@ function buyItem(button) {
         console.log("Pas assez d'argent pour acheter cet article.");
     }
 }
+
+document.querySelectorAll('.shop-item button').forEach(button => {
+    button.addEventListener('click', function() {
+        buyItem(button);
+    });
+});
 
 function saveMoney(money) {
     localStorage.setItem('money', money);
