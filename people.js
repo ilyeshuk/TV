@@ -44,11 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si c'est un nouveau jour, calculer l'argent basé sur les habitudes complétées aujourd'hui
         const newMoney = completedHabitsToday; // Utilisation des habitudes du jour
 
-        if (newMoney > 0) {
-            money += newMoney * 2; // Ajouter l'argent gagné (chaque habitude complétée ajoute 2 unités d'argent)
-            console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté pour vérification
-        }
-
+        
+        money += newMoney * 2; // Ajouter l'argent gagné (chaque habitude complétée ajoute 2 unités d'argent)
+        console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté pour vérification
+        
         // Mettre à jour l'affichage de l'argent sur la page
         updateMoneyDisplay(money);
 
@@ -70,10 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(`Ajout d'habitudes aujourd'hui : ${newMoney} = ${currentHabits} - ${previousHabits} `);
         
-        if (newMoney > 0) {
-            money += newMoney * 2; // Ajouter l'argent supplémentaire pour les nouvelles habitudes complétées
-            console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées depuis la dernière vérification.`); // Affiche l'argent ajouté pour vérification
-        }
+        money += newMoney * 2; // Ajouter l'argent supplémentaire pour les nouvelles habitudes complétées
+        console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées depuis la dernière vérification.`); // Affiche l'argent ajouté pour vérification
 
         // Mettre à jour l'affichage de l'argent sur la page
         updateMoneyDisplay(money);
