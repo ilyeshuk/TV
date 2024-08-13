@@ -131,6 +131,12 @@ h1 {
     background-color: #888;
 }
 
+#shop-items .shop-item button:disabled {
+    background-color: green; /* Maintient la couleur verte quand le bouton est désactivé */
+    color: white;
+    cursor: not-allowed; /* Empêche de cliquer à nouveau sur le bouton */
+}
+
 /* Styles pour la garde-robe */
 #wardrobe {
     text-align: center; /* Centre le texte et les éléments dans la garde-robe */
