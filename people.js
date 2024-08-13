@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("HabitHistory récupéré :", habitHistory); // Affiche l'historique des habitudes dans la console pour vérifier les données récupérées
 
     // Récupérer le montant d'argent actuel depuis le localStorage ou initialiser à 0 si non disponible
-    let money = parseInt(localStorage.getItem('money'), 10) || 0;
+    let money = parseInt(localStorage.getItem('money') || '0', 10);
     console.log("Argent actuel avant calcul :", money); // Affiche le montant d'argent actuel pour vérification
 
     // Obtenir la date et l'heure actuelles (avec secondes précises)
