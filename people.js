@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Met à jour la date du dernier calcul d'argent dans le localStorage
         localStorage.setItem('lastCalculatedDate', formattedDate);
     } else {
-        console.log("Pas de nouvelles habitudes ou argent déjà calculé pour aujourd'hui."); // Affiche un message si aucune nouvelle habitude n'a été complétée ou si l'argent a déjà été calculé aujourd'hui
-        updateMoneyDisplay(money); // Met à jour l'affichage de l'argent même si rien n'a changé
+        console.log("Pas de nouvelles habitudes ou argent déjà calculé pour aujourd'hui.");
+        updateMoneyDisplay(money);
     }
 
     // Charge l'état du personnage à partir du localStorage
