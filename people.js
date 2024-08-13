@@ -256,10 +256,10 @@ function updateCharacterImage(wardrobe) {
     } else if (wardrobe['shoes']) {
         imageSrc = 'assets/shoes.png'; // Si seules les chaussures sont portées    
     }
-}
     // Mettre à jour l'élément d'image du personnage avec la nouvelle source d'image
     document.getElementById('character').src = imageSrc;
     console.log("Image du personnage mise à jour :", imageSrc); // Affiche la nouvelle source d'image dans la console pour vérification
+}
 
 // JavaScript pour le menu hamburger
 document.getElementById('menuToggle').addEventListener('click', function() {
