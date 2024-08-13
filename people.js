@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastCalculatedDate = localStorage.getItem('lastCalculatedDate');
 
     // Calculer l'argent uniquement si la date a changé ou si de nouvelles habitudes ont été complétées
-    if (lastCalculatedDate !== formattedDate && completedHabitsToday > 0) {
+    if (lastCalculatedDate !== formattedDate || completedHabitsToday > 0) {
         const newMoney = completedHabitsToday * 2;
         money += newMoney;
         console.log(`Ajout de ${newMoney} pièces pour ${completedHabitsToday} habitudes complétées.`);
