@@ -261,12 +261,10 @@ function updateCharacterImage(wardrobe) {
     document.getElementById('character').src = imageSrc;
     console.log("Image du personnage mise à jour :", imageSrc); // Affiche la nouvelle source d'image dans la console pour vérification
 
-// Gestionnaire d'événement pour le menu hamburger (pour afficher ou masquer la barre latérale)
+// JavaScript pour le menu hamburger
 document.getElementById('menuToggle').addEventListener('click', function() {
-    let sidebar = document.getElementById('sidebar'); // Sélectionner la barre latérale
-    let menuToggle = document.getElementById('menuToggle'); // Sélectionner le bouton de menu
-
-    // Basculer l'état actif de la barre latérale et du bouton de menu (afficher/masquer)
+    var sidebar = document.getElementById('sidebar');
+    var menuToggle = document.getElementById('menuToggle');
     sidebar.classList.toggle('active');
     menuToggle.classList.toggle('active');
 });
