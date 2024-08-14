@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('lastCalculatedDateWithSeconds', formattedDateWithSeconds);
 
     // Deuxième vérification : Si la date avec secondes a changé, comparer les habitudes entre les deux moments
-    } else if (habitHistory[lastCalculatedDateWithSeconds] !== habitHistory[formattedDateWithSeconds]) {
+    } else if (habitHistory[lastCalculatedDateWithSeconds] !== habitHistory[formattedDate]) {
         // Si les habitudes à ces deux moments sont différentes, il y a eu des habitudes supplémentaires
 
         // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
         const previousHabits = habitHistory[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
-        const currentHabits = habitHistory[formattedDateWithSeconds] || 0; // Obtenir les habitudes actuelles pour comparaison
+        const currentHabits = habitHistory[formattedDate] || 0; // Obtenir les habitudes actuelles pour comparaison
         const newMoney = currentHabits - previousHabits; // Calculer la différence pour savoir combien d'habitudes supplémentaires ont été complétées
 
         console.log(`Ajout d'habitudes aujourd'hui : ${newMoney} = ${currentHabits} - ${previousHabits} `);
