@@ -269,6 +269,8 @@ function saveToLocalStorage() {
 function loadFromLocalStorage() {
     const storedHabits = localStorage.getItem('habits');
     const storedHabitHistory = localStorage.getItem('habitHistory');
+    const storedHabitHistoryWithSeconds = localStorage.getItem('habitHistoryWithSeconds'); // Assurez-vous que cette ligne est bien présente
+
     if (storedHabits) {
         habits = JSON.parse(storedHabits);
     }
