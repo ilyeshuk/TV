@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastCalculatedDate !== formattedDate) {
         // Si c'est un nouveau jour, calculer l'argent basé sur les habitudes complétées aujourd'hui
         const newMoney = completedHabitsToday; // Utilisation des habitudes du jour
-
+        console.log("Nouvelle journée dans recalcul de l'argent.");
         
         money += newMoney * 2; // Ajouter l'argent gagné (chaque habitude complétée ajoute 2 unités d'argent)
         console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté pour vérification
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Deuxième vérification : Si la date avec secondes a changé, comparer les habitudes entre les deux moments
     } else if (habitHistoryWithSeconds[lastCalculatedDateWithSeconds] !== habitHistory[formattedDate]) {
         // Si les habitudes à ces deux moments sont différentes, il y a eu des habitudes supplémentaires
-
+        console.log("Une nouvelle habitude faite aujourd'hui.");
         // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
         const previousHabits = habitHistory[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
         const currentHabits = habitHistory[formattedDate] || 0; // Obtenir les habitudes actuelles pour comparaison
