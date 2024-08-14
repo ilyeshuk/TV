@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('lastCalculatedDateWithSeconds', formattedDateWithSeconds);
 
     // Deuxième vérification : Si la date avec secondes a changé, comparer les habitudes entre les deux moments
-    } else if (habitHistory[lastCalculatedDateWithSeconds] !== habitHistory[formattedDate]) {
+    } else if (habitHistoryWithSeconds[lastCalculatedDateWithSeconds] !== habitHistory[formattedDate]) {
         // Si les habitudes à ces deux moments sont différentes, il y a eu des habitudes supplémentaires
 
         // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
