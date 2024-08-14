@@ -275,6 +275,9 @@ function loadFromLocalStorage() {
     if (storedHabitHistory) {
         habitHistory = JSON.parse(storedHabitHistory);
     }
+    if (storedHabitHistoryWithSeconds) { 
+        habitHistoryWithSeconds = JSON.parse(storedHabitHistoryWithSeconds); 
+    }
     updateHabitList();
     updateHabitChart();
 }
