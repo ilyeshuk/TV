@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastCalculatedDate !== formattedDate) {
         // Si c'est un nouveau jour, calculer l'argent basé sur les habitudes complétées aujourd'hui
         const newMoney = completedHabitsToday; // Utilisation des habitudes du jour
-        console.log("Nouvelle journée dans recalcul de l'argent.");
+        console.log("Nouvelle journée donc recalcul de l'argent.");
         
         money += newMoney * 2; // Ajouter l'argent gagné (chaque habitude complétée ajoute 2 unités d'argent)
         console.log(`Ajout de ${newMoney * 2} pièces pour ${newMoney} nouvelles habitudes complétées.`); // Affiche l'argent ajouté pour vérification
