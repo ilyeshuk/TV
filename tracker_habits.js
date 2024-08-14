@@ -263,6 +263,7 @@ function toggleDarkMode() {
 function saveToLocalStorage() {
     localStorage.setItem('habits', JSON.stringify(habits));
     localStorage.setItem('habitHistory', JSON.stringify(habitHistory));
+    localStorage.setItem('habitHistoryWithSeconds', JSON.stringify(habitHistoryWithSeconds)); 
 }
 
 function loadFromLocalStorage() {
