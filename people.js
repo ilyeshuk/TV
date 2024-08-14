@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Dernière habitude de calcul de l'argent (avec secondes) :", habitHistoryWithSeconds[lastCalculatedDateWithSeconds]);
     console.log("Dernière habitude de calcul de l'argent en ce moment (avec secondes) :", habitHistoryWithSeconds[formattedDateWithSeconds]);
 
+    // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
+    const previousHabits = habitHistoryWithSeconds[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
+    const currentHabits = habitHistoryWithSeconds[formattedDateWithSeconds] || lastValue || 0; // Obtenir les habitudes actuelles pour comparaison
+
     // Première vérification : Si la date actuelle (sans secondes) est différente de la dernière date de calcul
     if (lastCalculatedDate !== formattedDate) {
         // Si c'est un nouveau jour, calculer l'argent basé sur les habitudes complétées aujourd'hui
@@ -75,12 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('lastCalculatedDateWithSeconds', formattedDateWithSeconds);
 
     // Deuxième vérification : Si la date avec secondes a changé, comparer les habitudes entre les deux moments
-    } else if (habitHistoryWithSeconds[lastCalculatedDateWithSeconds] !== habitHistoryWithSeconds[formattedDateWithSeconds]) {
+    } else if (currentHabits !== previousHabits) {
         // Si les habitudes à ces deux moments sont différentes, il y a eu des habitudes supplémentaires
         console.log("Une nouvelle habitude faite aujourd'hui.");
-        // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
-        const previousHabits = habitHistoryWithSeconds[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
-        const currentHabits = habitHistoryWithSeconds[formattedDateWithSeconds] || 0; // Obtenir les habitudes actuelles pour comparaison
+
         const newMoney = currentHabits - previousHabits; // Calculer la différence pour savoir combien d'habitudes supplémentaires ont été complétées
 
         console.log(`Ajout d'habitudes aujourd'hui : ${newMoney} = ${currentHabits} - ${previousHabits} `);
