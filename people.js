@@ -262,6 +262,113 @@ function updateCharacterImage(wardrobe) {
     console.log("Image du personnage mise à jour :", imageSrc); // Affiche la nouvelle source d'image dans la console pour vérification
 }
 
+const translations = {
+    fr: {
+        title: "Personnaliser votre personnage",
+        motivationText: "Motivez-vous a faire vos habitudes en gagnant 2 jetons à chaque habitude réalisé aujourd'hui pour personnaliser votre personnage.",
+        habitLabel: "Habitude :",
+        addButtonText: "Ajouter",
+        habitColumn: "Habitude",
+        doneColumn: "Fait aujourd'hui",
+        darkModeButtonText: "Activer le mode sombre",
+        resetButtonText: "Réinitialiser les données",
+        chartLabel: "Pourcentage d'habitudes faites"
+    },
+    en: {
+        title: "Habit Tracker",
+        motivationText: "Motivate yourself to achieve your goals. By regularly tracking your habits, you strengthen your determination and increase your chances of success.",
+        habitLabel: "Habit:",
+        addButtonText: "Add",
+        habitColumn: "Habit",
+        doneColumn: "Done Today",
+        darkModeButtonText: "Activate Dark Mode",
+        resetButtonText: "Reset Data",
+        chartLabel: "Percentage of Habits Done"
+    },
+    es: {
+        title: "Seguimiento de Hábitos",
+        motivationText: "Motívate para alcanzar tus objetivos. Al seguir tus hábitos regularmente, refuerzas tu determinación y aumentas tus posibilidades de éxito.",
+        habitLabel: "Hábito:",
+        addButtonText: "Agregar",
+        habitColumn: "Hábito",
+        doneColumn: "Hecho Hoy",
+        darkModeButtonText: "Activar Modo Oscuro",
+        resetButtonText: "Restablecer Datos",
+        chartLabel: "Porcentaje de Hábitos Realizados"
+    },
+    zh: {
+        title: "习惯追踪",
+        motivationText: "激励自己实现目标。通过定期跟踪您的习惯，您会增强决心并增加成功的机会。",
+        habitLabel: "习惯：",
+        addButtonText: "添加",
+        habitColumn: "习惯",
+        doneColumn: "今天完成",
+        darkModeButtonText: "启用黑暗模式",
+        resetButtonText: "重置数据",
+        chartLabel: "完成习惯的百分比"
+    },
+    ar: {
+        title: "تتبع العادات",
+        motivationText: "حفز نفسك لتحقيق أهدافك. من خلال متابعة عاداتك بانتظام، تقوي عزيمتك وتزيد من فرص نجاحك.",
+        habitLabel: "عادة:",
+        addButtonText: "أضف",
+        habitColumn: "عادة",
+        doneColumn: "تم اليوم",
+        darkModeButtonText: "تفعيل الوضع الداكن",
+        resetButtonText: "إعادة تعيين البيانات",
+        chartLabel: "نسبة العادات المنجزة"
+    },
+    hi: {
+        title: "आदत ट्रैकर",
+        motivationText: "अपने लक्ष्यों को प्राप्त करने के लिए खुद को प्रेरित करें। नियमित रूप से अपनी आदतों को ट्रैक करके, आप अपने दृढ़ संकल्प को मजबूत करते हैं और अपनी सफलता की संभावना बढ़ाते हैं।",
+        habitLabel: "आदत:",
+        addButtonText: "जोड़ें",
+        habitColumn: "आदत",
+        doneColumn: "आज किया गया",
+        darkModeButtonText: "डार्क मोड सक्रिय करें",
+        resetButtonText: "डेटा रीसेट करें",
+        chartLabel: "पूरी की गई आदतों का प्रतिशत"
+    },
+    pt: {
+        title: "Rastreador de Hábitos",
+        motivationText: "Motiva-te a alcançar os teus objetivos. Ao acompanhar regularmente os teus hábitos, fortaleces a tua determinação e aumentas as tuas chances de sucesso.",
+        habitLabel: "Hábito:",
+        addButtonText: "Adicionar",
+        habitColumn: "Hábito",
+        doneColumn: "Feito Hoje",
+        darkModeButtonText: "Ativar Modo Escuro",
+        resetButtonText: "Redefinir Dados",
+        chartLabel: "Porcentagem de Hábitos Realizados"
+    },
+    bn: {
+        title: "অভ্যাস ট্র্যাকার",
+        motivationText: "আপনার লক্ষ্য অর্জনের জন্য নিজেকে অনুপ্রাণিত করুন। আপনার অভ্যাসগুলি নিয়মিতভাবে ট্র্যাক করার মাধ্যমে, আপনি আপনার সংকল্পকে শক্তিশালী করেন এবং আপনার সাফল্যের সম্ভাবনাকে বাড়ান।",
+        habitLabel: "অভ্যাস:",
+        addButtonText: "যোগ করুন",
+        habitColumn: "অভ্যাস",
+        doneColumn: "আজ সম্পন্ন",
+        darkModeButtonText: "ডার্ক মোড সক্রিয় করুন",
+        resetButtonText: "ডেটা রিসেট করুন",
+        chartLabel: "সম্পন্ন অভ্যাসের শতাংশ"
+    }
+};
+
+function translatePage(language) {
+    const translation = translations[language];
+    document.getElementById('title').innerText = translation.title;
+    document.getElementById('motivation-text').innerText = translation.motivationText;
+    document.getElementById('habit-label').innerText = translation.habitLabel;
+    document.getElementById('add-button-text').innerText = translation.addButtonText;
+    document.getElementById('habit-column').innerText = translation.habitColumn;
+    document.getElementById('done-column').innerText = translation.doneColumn;
+    document.getElementById('dark-mode-button-text').innerText = translation.darkModeButtonText;
+    document.getElementById('reset-button-text').innerText = translation.resetButtonText;
+    if (habitChart) {
+        habitChart.data.datasets[0].label = translation.chartLabel;
+        habitChart.update();
+    }
+}
+
 // JavaScript pour le menu hamburger
 document.getElementById('menuToggle').addEventListener('click', function() {
     var sidebar = document.getElementById('sidebar');
