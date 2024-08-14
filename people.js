@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Une nouvelle habitude faite aujourd'hui.");
         // Calculer l'argent supplémentaire en fonction des habitudes complétées entre les deux moments
         const previousHabits = habitHistory[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
-        const currentHabits = habitHistory[formattedDate] || 0; // Obtenir les habitudes actuelles pour comparaison
+        const currentHabits = habitHistoryWithSeconds[formattedDateWithSeconds] || 0; // Obtenir les habitudes actuelles pour comparaison
         const newMoney = currentHabits - previousHabits; // Calculer la différence pour savoir combien d'habitudes supplémentaires ont été complétées
 
         console.log(`Ajout d'habitudes aujourd'hui : ${newMoney} = ${currentHabits} - ${previousHabits} `);
