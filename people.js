@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Récupérer l'historique des habitudes depuis le localStorage ou initialiser à un objet vide si non disponible
     const habitHistory = JSON.parse(localStorage.getItem('habitHistory')) || {}; 
     console.log("HabitHistory récupéré :", habitHistory); // Affiche l'historique des habitudes dans la console pour vérifier les données récupérées
-    
+
+    const habits = JSON.parse(localStorage.getItem('habits')) || {}; 
+    console.log("habits récupéré :", habits); // Affiche l'historique des habitudes dans la console pour vérifier les données récupérées
+   
     // Récupérer l'historique des habitudes avec secondes depuis le localStorage ou initialiser à un objet vide si non disponible
     const habitHistoryWithSeconds = JSON.parse(localStorage.getItem('habitHistoryWithSeconds')) || {}; 
     console.log("HabitHistoryWithSeconds récupéré :", habitHistoryWithSeconds); // Affiche l'historique avec secondes
