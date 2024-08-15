@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let habits = JSON.parse(localStorage.getItem('habits')) || []; 
+let habitHistoryWithSeconds = JSON.parse(localStorage.getItem('habitHistoryWithSeconds')) || {}; 
 
 function updateHabitHistoryWithSeconds() {
     const today = new Date();
