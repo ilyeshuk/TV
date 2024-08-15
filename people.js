@@ -59,6 +59,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const previousHabits = habitHistoryWithSeconds[lastCalculatedDateWithSeconds] || 0; // Obtenir les habitudes précédentes pour comparaison
     const currentHabits = habitHistoryWithSeconds[formattedDateWithSeconds] || lastValue || 0; // Obtenir les habitudes actuelles pour comparaison
 
+function updateHabitHistoryWithSeconds() {
+    const today = new Date();
+    const day = ('0' + today.getDate()).slice(-2);
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const year = today.getFullYear();
+    const hours = ('0' + today.getHours()).slice(-2);
+    const minutes = ('0' + today.getMinutes()).slice(-2);
+    const seconds = ('0' + today.getSeconds()).slice(-2);
+
+    const formattedDateWithSeconds = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
+    // Calculer le nombre d'habitudes complétées aujourd'hui
+    const completedHabitsToday = habits.filter(habit => habit.done).length;
+
+    // Mettre à jour habitHistoryWithSeconds avec la date et l'heure actuelles
+    habitHistoryWithSeconds[formattedDateWithSeconds] = completedHabitsToday;
+
+    // Sauvegarder habitHistoryWithSeconds dans le localStorage
+    localStorage.setItem('habitHistoryWithSeconds', JSON.stringify(habitHistoryWithSeconds));
+
+    console.log(`Mise à jour à ${formattedDateWithSeconds}: ${completedHabitsToday} habitudes complétées.`);
+}
+
+// Appel de la fonction pour mettre à jour habitHistoryWithSeconds à chaque seconde
+setInterval(updateHabitHistoryWithSeconds, 1000);
+
     // Première vérification : Si la date actuelle (sans secondes) est différente de la dernière date de calcul
     if (lastCalculatedDate !== formattedDate) {
         // Si c'est un nouveau jour, calculer l'argent basé sur les habitudes complétées aujourd'hui
