@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let money = parseInt(localStorage.getItem('money') || '0', 10);
     console.log("Argent actuel avant calcul :", money); // Affiche le montant d'argent actuel pour vérification
 
-    // Étape 1 : Récupérer les clés du dictionnaire
+    // Avoir le dernier élement du dictionnaire hHWS : Étape 1 : Récupérer les clés du dictionnaire
     const keys = Object.keys(habitHistoryWithSeconds);
 
     // Étape 2 : (Facultatif) Trier les clés si nécessaire
