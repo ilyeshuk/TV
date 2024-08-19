@@ -204,6 +204,8 @@ document.querySelectorAll('.shop-item button').forEach(button => {
     });
 });
 
+console.log(`wardrobe : ${wardrobe}`);
+
 // Fonction pour sauvegarder le montant d'argent dans le localStorage
 function saveMoney(money) {
     localStorage.setItem('money', money); // Stocke le montant d'argent dans le localStorage
