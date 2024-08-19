@@ -181,6 +181,7 @@ function buyItem(button) {
 
         // Ajouter l'article acheté à la garde-robe de l'utilisateur
         wardrobe[item] = true;
+        console.log(`wardrobe : ${wardrobe}`);
 
         // Sauvegarder la nouvelle garde-robe dans le localStorage
         localStorage.setItem('wardrobe', JSON.stringify(wardrobe));
