@@ -1,6 +1,5 @@
 let habits = [];
 let habitHistory = {};
-let habitHistoryWithSeconds = {};
 let habitChart;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -237,13 +236,11 @@ function toggleDarkMode() {
 function saveToLocalStorage() {
     localStorage.setItem('habits', JSON.stringify(habits));
     localStorage.setItem('habitHistory', JSON.stringify(habitHistory));
-    localStorage.setItem('habitHistoryWithSeconds', JSON.stringify(habitHistoryWithSeconds)); 
 }
 
 function loadFromLocalStorage() {
     const storedHabits = localStorage.getItem('habits');
     const storedHabitHistory = localStorage.getItem('habitHistory');
-    const storedHabitHistoryWithSeconds = localStorage.getItem('habitHistoryWithSeconds'); // Assurez-vous que cette ligne est bien présente
 
     if (storedHabits) {
         habits = JSON.parse(storedHabits);
@@ -251,9 +248,7 @@ function loadFromLocalStorage() {
     if (storedHabitHistory) {
         habitHistory = JSON.parse(storedHabitHistory);
     }
-    if (storedHabitHistoryWithSeconds) { 
-        habitHistoryWithSeconds = JSON.parse(storedHabitHistoryWithSeconds); 
-    }
+    
     updateHabitList();
     updateHabitChart();
 }
