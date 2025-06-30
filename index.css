@@ -42,6 +42,7 @@ header .logo img {
 
 /* Styles du menu hamburger */
 header .menu-toggle {
+    transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
     position: fixed; /* Position fixe */
     top: 1.5rem; /* Distance du haut */
     left: 1rem; /* Distance de la gauche */
