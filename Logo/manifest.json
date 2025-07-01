@@ -1,7 +1,7 @@
 {
   "name": "TrackVibe",
   "short_name": "TrackVibe",
-  "start_url": "index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
