@@ -1,12 +1,12 @@
 [build]
-  publish = "./" # Le dossier à publier, ici la racine
-  command = "echo 'Build command not needed for static site'" # Pas de build nécessaire
+  publish = "./"
+  command = "echo 'build step'"
 
 [[plugins]]
   package = "netlify-plugin-sitemap"
 
   [plugins.inputs]
   baseUrl = "https://trackvibe.netlify.app"
-  sitemapPath = "sitemap.xml"       # Par défaut, tu peux le modifier si tu veux un autre nom
-  generateRobotsTxt = true          # Crée automatiquement un robots.txt qui inclut le sitemap
-  prettyURLs = false                # Laisse les .html visibles (vu que tu utilises To_Do.html etc.)
+  sitemapPath = "sitemap.xml"
+  generateRobotsTxt = true
+  prettyURLs = false
