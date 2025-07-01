@@ -1,0 +1,7 @@
+{
+  "name": "trackvibe",
+  "version": "1.0.0",
+  "devDependencies": {
+    "netlify-plugin-sitemap": "^2.0.0"
+  }
+}
