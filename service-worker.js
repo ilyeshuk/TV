@@ -46,11 +46,16 @@ const urlsToCache = [
 ];
 
 self.addEventListener("install", event => {
+  self.skipWaiting(); // activation immédiate
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(urlsToCache);
     })
   );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(self.clients.claim()); // prendre le contrôle de la page active
 });
 
 self.addEventListener("fetch", event => {
