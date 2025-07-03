@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme Sport Personnalisé</title>
+  <link rel="stylesheet" href="formulaire.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Création de ton programme sportif personnalisé</h1>
+    <form id="sportForm">
+      <div class="question">
+        <label>1. Quel est ton sexe ?</label>
+        <select required><option>Homme</option><option>Femme</option><option>Autre</option></select>
+      </div>
+      <div class="question">
+        <label>2. Quel âge as-tu ?</label>
+        <input type="number" required>
+      </div>
+      <div class="question">
+        <label>3. Quelle est ta taille ? (cm)</label>
+        <input type="number" required>
+      </div>
+      <div class="question">
+        <label>4. Quel est ton poids ? (kg)</label>
+        <input type="number" required>
+      </div>
+      <div class="question">
+        <label>5. As-tu déjà une pratique sportive régulière ?</label>
+        <select required><option>Oui</option><option>Non</option></select>
+      </div>
+      <div class="question">
+        <label>6. Combien de séances peux-tu faire par semaine ?</label>
+        <input type="number" min="1" max="14" required>
+      </div>
+      <div class="question">
+        <label>7. Quelle est la durée max d’une séance ?</label>
+        <select><option>30 min</option><option>45 min</option><option>1h</option><option>1h30+</option></select>
+      </div>
+      <div class="question">
+        <label>8. Où souhaites-tu t’entraîner ?</label>
+        <select><option>Chez moi</option><option>En salle</option><option>Dehors</option></select>
+      </div>
+      <div class="question">
+        <label>9. As-tu du matériel disponible ?</label>
+        <input type="text" placeholder="Ex : haltères, tapis, élastiques...">
+      </div>
+      <div class="question">
+        <label>10. Quels sont tes objectifs ?</label>
+        <select multiple>
+          <option>Perte de poids</option>
+          <option>Prise de muscle</option>
+          <option>Endurance</option>
+          <option>Souplesse</option>
+          <option>Bien-être</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>11. Combien de kilos veux-tu perdre ou prendre ?</label>
+        <input type="number">
+      </div>
+      <div class="question">
+        <label>12. As-tu des groupes musculaires que tu veux prioriser ?</label>
+        <input type="text" placeholder="Ex : fessiers, abdos, dos...">
+      </div>
+      <div class="question">
+        <label>13. Tu préfères quel type d’effort ?</label>
+        <select>
+          <option>Cardio</option>
+          <option>Renforcement musculaire</option>
+          <option>Mix des deux</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>14. Quelle est ton niveau d’énergie général dans la semaine ?</label>
+        <select><option>Faible</option><option>Moyen</option><option>Élevé</option></select>
+      </div>
+      <div class="question">
+        <label>15. À quels moments préfères-tu t’entraîner ?</label>
+        <select multiple>
+          <option>Matin</option>
+          <option>Midi</option>
+          <option>Soir</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>16. Quelle intensité souhaites-tu ?</label>
+        <select>
+          <option>Douce</option>
+          <option>Modérée</option>
+          <option>Intense</option>
+        </select>
+      </div>
+      <div class="question">
+        <label>17. Veux-tu inclure des jours de récupération active ?</label>
+        <select><option>Oui</option><option>Non</option></select>
+      </div>
+      <div class="question">
+        <label>18. As-tu des préférences d’exercices ?</label>
+        <input type="text" placeholder="Ex : course, squat, yoga...">
+      </div>
+      <div class="question">
+        <label>19. Y a-t-il des exercices à éviter ?</label>
+        <input type="text" placeholder="Ex : pompes, burpees...">
+      </div>
+      <div class="question">
+        <label>20. Quel est ton objectif temporel ?</label>
+        <select>
+          <option>En moins de 1 mois</option>
+          <option>En 3 mois</option>
+          <option>En 6 mois</option>
+          <option>À long terme</option>
+        </select>
+      </div>
+
+      <button type="submit">Générer mon programme</button>
+    </form>
+  </main>
+</body>
+</html>
+
+
